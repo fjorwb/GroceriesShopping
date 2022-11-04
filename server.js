@@ -4,9 +4,14 @@ const cors = require('cors')
 
 const app = express()
 
+const usersRouter = require('./routes/users')
+
 // Middleware
 app.use(bodyParser.json())
 app.use(cors())
+
+// Routes
+app.use('/users', usersRouter)
 
 app.get('/', (req, res) => {
 	res.send('Hello World!')

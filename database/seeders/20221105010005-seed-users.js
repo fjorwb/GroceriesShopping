@@ -29,6 +29,14 @@ module.exports = {
 					password: 'secret',
 					created_at: new Date(),
 					updated_at: new Date()
+				},
+				{
+					id: 4,
+					username: 'username4',
+					email: 'user4@email.com',
+					password: 'secret',
+					created_at: new Date(),
+					updated_at: new Date()
 				}
 			],
 			{}

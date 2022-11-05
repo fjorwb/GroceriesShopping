@@ -13,11 +13,11 @@ module.exports = {
 		}
 	},
 	test: {
-		username: process.env.USERNAME || process.env.USERNAME,
-		password: process.env.PASSWORD || process.env.PASSWORD,
-		database: process.env.DATABASE || process.env.DATABASE,
-		host: process.env.HOST || process.env.HOST,
-		dialect: process.env.DIALECT || 'postgres'
+		username: process.env.USERNAME,
+		password: process.env.PASSWORD,
+		database: process.env.DATABASE,
+		host: process.env.HOST,
+		dialect: process.env.DIALECT
 	},
 	production: {
 		use_env_variable: 'DATABASE_URL',

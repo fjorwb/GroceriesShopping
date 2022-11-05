@@ -14,5 +14,22 @@ module.exports = {
 		} else {
 			return res.status(200).send(users)
 		}
+	},
+
+	async getUserById(req, res) {
+		const user = await User.findOne({
+			where: {
+				id: req.params.id
+			},
+			attributes: ['id', 'username', 'email']
+		})
+
+		if (!user) {
+			return res.status(404).send({
+				message: 'User not found'
+			})
+		} else {
+			return res.status(200).send(user)
+		}
 	}
 }

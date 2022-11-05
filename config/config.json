@@ -19,5 +19,11 @@
 		"database": "database_production",
 		"host": "127.0.0.1",
 		"dialect": "postgres"
-	}
+	},
+
+	"migrationStorage": "sequelize",
+	"migrationStorageTableName": "migrations",
+
+	"seederStorage": "sequelize",
+	"seederStorageTableName": "seeders"
 }

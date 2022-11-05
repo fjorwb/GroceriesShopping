@@ -19,9 +19,11 @@ const app = express()
 const { sequelize } = require('./models/index')
 
 const usersRouter = require('./routes/users')
+const { urlencoded } = require('body-parser')
 
 // Middleware
 app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
 // Routes

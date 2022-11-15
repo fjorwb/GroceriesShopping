@@ -19,7 +19,9 @@ const app = express()
 const { sequelize } = require('./models/index')
 
 const usersRouter = require('./routes/users')
-const { urlencoded } = require('body-parser')
+const recipesRouter = require('./routes/recipes')
+
+// const { urlencoded } = require('body-parser')
 
 // Middleware
 app.use(bodyParser.json())
@@ -28,6 +30,7 @@ app.use(cors())
 
 // Routes
 app.use('/users', usersRouter)
+app.use('/recipes', recipesRouter)
 
 app.get('/', (req, res) => {
 	res.send('Hello World!!!!!!!!!!!!!!!!!!')

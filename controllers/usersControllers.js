@@ -98,12 +98,6 @@ module.exports = {
 	},
 
 	async deleteUser(req, res) {
-		const user = await User.destroy({
-			where: {
-				id: req.params.id
-			}
-		})
-
 		const checkUser = await User.findOne({
 			where: {
 				id: req.params.id
@@ -116,14 +110,20 @@ module.exports = {
 			})
 		}
 
-		if (!user) {
-			return res.status(400).send({
-				message: 'User not deleted'
+		await User.destroy({
+			where: {
+				id: req.params.id
+			}
+		})
+			.then(() => {
+				return res.status(200).send({
+					message: 'User deleted successfully'
+				})
 			})
-		} else {
-			return res.status(200).send({
-				message: 'User deleted'
+			.catch(err => {
+				return res.status(400).send({
+					message: err.message
+				})
 			})
-		}
 	}
 }

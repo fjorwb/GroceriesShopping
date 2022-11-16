@@ -24,6 +24,9 @@
 				"require": true,
 				"rejectUnauthorized": false
 			}
+		},
+		"define": {
+			"underscored": true
 		}
 	},
 

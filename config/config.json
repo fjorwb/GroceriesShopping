@@ -4,7 +4,10 @@
 		"password": null,
 		"database": "groceries_shopping",
 		"host": "127.0.0.1",
-		"dialect": "postgres"
+		"dialect": "postgres",
+		"define": {
+			"underscored": true
+		}
 	},
 	"test": {
 		"username": "postgres",
@@ -16,6 +19,10 @@
 	"production": {
 		"use_env_variable": "DATABASE_URL",
 		"dialect": "postgres",
+		"define": {
+			"underscored": true
+		},
+
 		"dialectOptions": {
 			"ssl": {
 				"require": true,

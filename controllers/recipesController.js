@@ -49,17 +49,11 @@ module.exports = {
 
 				obj = { ...{ ingredients: arr } }
 
-				// console.log(arr)
-
 				recipe = {
 					...obj,
 					...{ servings: resp2.servings },
 					...{ instructions: resp2.instructions }
 				}
-
-				// arr{...,resp2.servings}
-
-				// arr.push(resp2.instructions)
 
 				res.send(recipe)
 			})

@@ -22,23 +22,16 @@ module.exports = {
 	production: {
 		use_env_variable: 'DATABASE_URL',
 		dialect: 'postgres',
+		define: {
+			underscored: true
+		},
+
 		dialectOptions: {
 			ssl: {
 				require: true,
 				rejectUnauthorized: false
 			}
 		}
-		// username: process.env.USERNAME,
-		// password: process.env.PASSWORD,
-		// database: process.env.DATABASE,
-		// host: process.env.HOST,
-		// dialect: process.env.DIALECT,
-		// dialectOptions: {
-		// 	ssl: {
-		// 		require: true, // This will help you. But you will see new error
-		// 		rejectUnauthorized: false // This line will fix new error
-		// 	}
-		// }
 	},
 
 	//migration config

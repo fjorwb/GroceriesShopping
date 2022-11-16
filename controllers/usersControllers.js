@@ -4,7 +4,8 @@ const { User } = require('../models/index')
 module.exports = {
 	async getAllUsers(req, res) {
 		const users = await User.findAll({
-			attributes: ['id', 'username', 'email']
+			attributes: ['id', 'username', 'email'],
+			order: [['id', 'ASC']]
 		})
 
 		if (!users) {

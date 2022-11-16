@@ -74,6 +74,7 @@ module.exports = {
 		const user = await User.update(
 			{
 				username,
+				email,
 				password
 				// updated_at: new Date()
 			},

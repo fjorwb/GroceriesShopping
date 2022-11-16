@@ -41,9 +41,7 @@ module.exports = {
 		await User.create({
 			username,
 			email,
-			password,
-			created_at: new Date(),
-			updated_at: new Date()
+			password
 		})
 			.then(() => {
 				return res.status(200).send({

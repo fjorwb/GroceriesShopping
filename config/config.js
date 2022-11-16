@@ -23,7 +23,7 @@ module.exports = {
 		use_env_variable: 'DATABASE_URL',
 		dialect: 'postgres',
 		define: {
-			underscored: false
+			underscored: true
 		},
 
 		dialectOptions: {

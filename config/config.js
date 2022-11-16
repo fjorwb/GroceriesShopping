@@ -27,6 +27,9 @@ module.exports = {
 				require: true,
 				rejectUnauthorized: false
 			}
+		},
+		define: {
+			underscored: true
 		}
 	},
 

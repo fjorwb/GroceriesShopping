@@ -21,6 +21,8 @@ const { sequelize } = require('./models/index')
 
 const usersRouter = require('./routes/users')
 const recipesRouter = require('./routes/recipes')
+const marketsRouter = require('./routes/markets')
+const productsRouter = require('./routes/products')
 
 // const { urlencoded } = require('body-parser')
 
@@ -33,6 +35,8 @@ app.use(morgan('dev'))
 // Routes
 app.use('/users', usersRouter)
 app.use('/recipes', recipesRouter)
+app.use('/markets', marketsRouter)
+app.use('/products', productsRouter)
 
 app.get('/', (req, res) => {
 	res.send('Hello World!!!!!!!!!!!!!!!!!!')

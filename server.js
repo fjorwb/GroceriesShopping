@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const morgan = require('morgan')
 
 const app = express()
 
@@ -19,15 +20,19 @@ const app = express()
 const { sequelize } = require('./models/index')
 
 const usersRouter = require('./routes/users')
-const { urlencoded } = require('body-parser')
+const recipesRouter = require('./routes/recipes')
+
+// const { urlencoded } = require('body-parser')
 
 // Middleware
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cors())
+app.use(morgan('dev'))
 
 // Routes
 app.use('/users', usersRouter)
+app.use('/recipes', recipesRouter)
 
 app.get('/', (req, res) => {
 	res.send('Hello World!!!!!!!!!!!!!!!!!!')

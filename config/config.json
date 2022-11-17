@@ -4,7 +4,10 @@
 		"password": null,
 		"database": "groceries_shopping",
 		"host": "127.0.0.1",
-		"dialect": "postgres"
+		"dialect": "postgres",
+		"define": {
+			"underscored": true
+		}
 	},
 	"test": {
 		"username": "postgres",
@@ -21,6 +24,9 @@
 				"require": true,
 				"rejectUnauthorized": false
 			}
+		},
+		"define": {
+			"underscored": true
 		}
 	},
 

@@ -38,7 +38,7 @@ module.exports = {
 
 		const market = await Market.create(req.body)
 			.then(market => {
-				return res.status(201).json(market)
+				return res.status(201).send({ message: 'market created successfully', market })
 			})
 			.catch(err => {
 				return res.status(500).json(err)

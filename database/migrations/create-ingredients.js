@@ -14,13 +14,17 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: false
 			},
-			name: {
-				type: Sequelize.STRING,
+			ingredients: {
+				type: Sequelize.JSON,
 				allowNull: false
 			},
-			unit: {
-				type: Sequelize.STRING,
-				allowNull: false
+			servings: {
+				type: Sequelize.INTEGER
+				// allowNull: false
+			},
+			instructions: {
+				type: Sequelize.TEXT
+				// allowNull: false
 			},
 			created_at: {
 				type: Sequelize.DATE,

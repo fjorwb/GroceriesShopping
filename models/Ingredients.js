@@ -24,19 +24,24 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.INTEGER,
 				allowNull: false
 			},
-			name: {
-				type: DataTypes.STRING,
+			ingredients: {
+				type: DataTypes.JSON,
 				allowNull: false
 			},
-			unit: {
-				type: DataTypes.STRING,
+			servings: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
+			instructions: {
+				type: DataTypes.TEXT,
 				allowNull: false
 			}
 		},
 		{
 			sequelize,
 			modelName: 'Ingredients',
-			tableName: 'ingredients'
+			tableName: 'ingredients',
+			underscored: true
 		}
 	)
 	return Ingredients

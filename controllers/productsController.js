@@ -1,4 +1,3 @@
-const createProduct = require('../database/migrations/create-product')
 const { Product } = require('../models')
 
 module.exports = {

@@ -23,6 +23,7 @@ const usersRouter = require('./routes/users')
 const recipesRouter = require('./routes/recipes')
 const marketsRouter = require('./routes/markets')
 const productsRouter = require('./routes/products')
+const shoppinglistsRouter = require('./routes/shoppinglists')
 
 // const { urlencoded } = require('body-parser')
 
@@ -37,6 +38,7 @@ app.use('/users', usersRouter)
 app.use('/recipes', recipesRouter)
 app.use('/markets', marketsRouter)
 app.use('/products', productsRouter)
+app.use('/shoppinglists', shoppinglistsRouter)
 
 app.get('/', (req, res) => {
 	res.send('Hello World!!!!!!!!!!!!!!!!!!')

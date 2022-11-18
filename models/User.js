@@ -20,6 +20,14 @@ module.exports = (sequelize, DataTypes) => {
 				autoIncrement: true,
 				allowNull: false
 			},
+			firstname: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			lastname: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
 			username: {
 				type: DataTypes.STRING,
 				allowNull: false
@@ -29,6 +37,38 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			},
 			password: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			address: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			address2: {
+				type: DataTypes.STRING,
+				allowNull: true
+			},
+			city: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			state: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			zip_code: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			country: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			phone: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
+			role: {
 				type: DataTypes.STRING,
 				allowNull: false
 			}

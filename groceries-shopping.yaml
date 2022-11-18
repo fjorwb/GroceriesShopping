@@ -1,0 +1,1278 @@
+openapi: 3.0.0
+info:
+  title: groceries-shopping
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:3000
+  variables: {}
+paths:
+  /auth/login:
+    post:
+      tags:
+      - auth
+      summary: loginUser
+      operationId: loginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/loginUserRequest'
+              - example:
+                  email: userfive@mail.com
+                  password: secret
+            example:
+              email: userfive@mail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+      - auth
+      summary: registerUser
+      operationId: registerUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/registerUserRequest'
+              - example:
+                  firstname: User
+                  lastname: Five
+                  username: userfive
+                  email: userfive@mail.com
+                  password: secret
+                  address: 555 Fifth Ave
+                  address2: Apt 55
+                  city: Miami
+                  state: FL
+                  zip_code: '33136'
+                  country: USA
+                  phone: 555-555-5555
+                  role: user
+            example:
+              firstname: User
+              lastname: Five
+              username: userfive
+              email: userfive@mail.com
+              password: secret
+              address: 555 Fifth Ave
+              address2: Apt 55
+              city: Miami
+              state: FL
+              zip_code: '33136'
+              country: USA
+              phone: 555-555-5555
+              role: user
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /recipes/recipes:
+    get:
+      tags:
+      - ingredients
+      summary: getExternalRecipes
+      operationId: getExternalRecipes
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - ingredients
+      summary: createExternalRecipe
+      operationId: createExternalRecipe
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createExternalRecipeRequest'
+              - {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /recipes/recipes/487873:
+    get:
+      tags:
+      - ingredients
+      summary: getExternalRecipe
+      operationId: getExternalRecipe
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /recipes/recipes/54:
+    put:
+      tags:
+      - ingredients
+      summary: updateExternalRecipe
+      operationId: updateExternalRecipe
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateExternalRecipeRequest'
+              - {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /recipes/recipes/4:
+    delete:
+      tags:
+      - ingredients
+      summary: deleteExternalRecipe
+      operationId: deleteExternalRecipe
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /markets:
+    get:
+      tags:
+      - markets
+      summary: getAllMarkets
+      operationId: getAllMarkets
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - markets
+      summary: createMarket
+      operationId: createMarket
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createMarketRequest'
+              - example:
+                  id: 4
+                  name: Test Market 4
+                  address: 444 Four Ave
+                  city: West Van
+                  state: BC
+                  zip: V7T 1H8
+                  country: Canada
+                  phone: 123-456-4444
+                  email: market4@market4.com
+                  website: http://market4.com
+                  password: password
+            example:
+              id: 4
+              name: Test Market 4
+              address: 444 Four Ave
+              city: West Van
+              state: BC
+              zip: V7T 1H8
+              country: Canada
+              phone: 123-456-4444
+              email: market4@market4.com
+              website: http://market4.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /markets/45:
+    get:
+      tags:
+      - markets
+      summary: getMarketById
+      operationId: getMarketById
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /markets/2:
+    put:
+      tags:
+      - markets
+      summary: updateMarket
+      operationId: updateMarket
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateMarketRequest'
+              - example:
+                  id: 2
+                  name: Test Market 2
+                  address: 222 Second St
+                  city: Second City
+                  state: MA
+                  zip: '54321'
+                  country: usa
+                  phone: 123-456-2222
+                  email: market222@market2.com
+                  website: http://market222.com
+                  password: password2
+            example:
+              id: 2
+              name: Test Market 2
+              address: 222 Second St
+              city: Second City
+              state: MA
+              zip: '54321'
+              country: usa
+              phone: 123-456-2222
+              email: market222@market2.com
+              website: http://market222.com
+              password: password2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /markets/4:
+    delete:
+      tags:
+      - markets
+      summary: deleteMarket
+      operationId: deleteMarket
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /menus:
+    get:
+      tags:
+      - menus
+      summary: getAllMenus
+      operationId: getAllMenus
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - menus
+      summary: createMenu
+      operationId: createMenu
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createMenuRequest'
+              - example:
+                  week: 1
+                  date: 2021-01-02T00:00:00.000Z
+                  meal: Lunch
+                  recipe_id: 4
+            example:
+              week: 1
+              date: 2021-01-02T00:00:00.000Z
+              meal: Lunch
+              recipe_id: 4
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /menus/4:
+    get:
+      tags:
+      - menus
+      summary: getMenuById
+      operationId: getMenuById
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /menus/7:
+    put:
+      tags:
+      - menus
+      summary: updateMenu
+      operationId: updateMenu
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateMenuRequest'
+              - example:
+                  week: 1
+                  date: 2021-01-02T00:00:00.000Z
+                  meal: Breakfast
+                  recipe_id: 2
+            example:
+              week: 1
+              date: 2021-01-02T00:00:00.000Z
+              meal: Breakfast
+              recipe_id: 2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /menus/8:
+    delete:
+      tags:
+      - menus
+      summary: deleteMenu
+      operationId: deleteMenu
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /recipes:
+    get:
+      tags:
+      - recipes
+      summary: getAllRecipes
+      operationId: getAllRecipes
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - recipes
+      summary: createRecipe
+      operationId: createRecipe
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createRecipeRequest'
+              - example:
+                  title: Recipe 3
+                  image: https://www.themealdb.com/images/media/meals/58oia61564916529.jpg
+                  servings: 4
+                  instructions: Instructions for Recipe 3
+            example:
+              title: Recipe 3
+              image: https://www.themealdb.com/images/media/meals/58oia61564916529.jpg
+              servings: 4
+              instructions: Instructions for Recipe 3
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /recipes/2:
+    get:
+      tags:
+      - recipes
+      summary: getRecipeById
+      operationId: getRecipeById
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /recipes/3:
+    put:
+      tags:
+      - recipes
+      summary: updateRecipe
+      operationId: updateRecipe
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateRecipeRequest'
+              - example:
+                  title: Recipe 333333
+                  image: https://www.themealdb.com/images/media/meals/58oia61564916529.jpg
+                  servings: 14
+                  instructions: Instructions for Recipe dddd3
+            example:
+              title: Recipe 333333
+              image: https://www.themealdb.com/images/media/meals/58oia61564916529.jpg
+              servings: 14
+              instructions: Instructions for Recipe dddd3
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /recipes/5:
+    delete:
+      tags:
+      - recipes
+      summary: deleteRecipe
+      operationId: deleteRecipe
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /products:
+    get:
+      tags:
+      - products
+      summary: getAllProducts
+      operationId: getAllProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - products
+      summary: createProduct
+      operationId: createProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createProductRequest'
+              - example:
+                  barcode: 678912354
+                  name: Product 4
+                  description: Product 4 description
+                  unit: Unit 4
+                  presentation: Presentation 4
+            example:
+              barcode: 678912354
+              name: Product 4
+              description: Product 4 description
+              unit: Unit 4
+              presentation: Presentation 4
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /products/4:
+    get:
+      tags:
+      - products
+      summary: getProductById
+      operationId: getProductById
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    put:
+      tags:
+      - products
+      summary: updateProduct
+      operationId: updateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateProductRequest'
+              - example:
+                  barcode: 678912345
+                  name: Product 4asdasd
+                  description: Product 4444444 description
+                  unit: Unit 44444
+                  presentation: Presentation 4444444444444
+            example:
+              barcode: 678912345
+              name: Product 4asdasd
+              description: Product 4444444 description
+              unit: Unit 44444
+              presentation: Presentation 4444444444444
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /products/5:
+    delete:
+      tags:
+      - products
+      summary: deleteProduct
+      operationId: deleteProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /shoppinglists:
+    get:
+      tags:
+      - shoppinglists
+      summary: getAllShoppingLists
+      operationId: getAllShoppingLists
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - shoppinglists
+      summary: createShoppingList
+      operationId: createShoppingList
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createShoppingListRequest'
+              - example:
+                  barcode: '1234567890132'
+                  quantity: 200
+            example:
+              barcode: '1234567890132'
+              quantity: 200
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /shoppinglists/4:
+    get:
+      tags:
+      - shoppinglists
+      summary: getShoppingListById
+      operationId: getShoppingListById
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /shoppinglists/6:
+    put:
+      tags:
+      - shoppinglists
+      summary: updateShoppingList
+      operationId: updateShoppingList
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateShoppingListRequest'
+              - example:
+                  quantity: 255
+            example:
+              quantity: 255
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - shoppinglists
+      summary: deletShoppingList
+      operationId: deletShoppingList
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users:
+    get:
+      tags:
+      - users
+      summary: getAllUsers
+      operationId: getAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - users
+      summary: createUser
+      operationId: createUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createUserRequest'
+              - example:
+                  username: pepito
+                  email: pepito@email.com
+                  password: peps
+            example:
+              username: pepito
+              email: pepito@email.com
+              password: peps
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/1:
+    get:
+      tags:
+      - users
+      summary: getUserById
+      operationId: getUserById
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/17:
+    put:
+      tags:
+      - users
+      summary: updateUser
+      operationId: updateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateUserRequest'
+              - example:
+                  username: pepito
+                  password: secret
+            example:
+              username: pepito
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/5:
+    delete:
+      tags:
+      - users
+      summary: deleteUser
+      operationId: deleteUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    loginUserRequest:
+      title: loginUserRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: userfive@mail.com
+        password: secret
+    registerUserRequest:
+      title: registerUserRequest
+      required:
+      - firstname
+      - lastname
+      - username
+      - email
+      - password
+      - address
+      - address2
+      - city
+      - state
+      - zip_code
+      - country
+      - phone
+      - role
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        address:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        role:
+          type: string
+      example:
+        firstname: User
+        lastname: Five
+        username: userfive
+        email: userfive@mail.com
+        password: secret
+        address: 555 Fifth Ave
+        address2: Apt 55
+        city: Miami
+        state: FL
+        zip_code: '33136'
+        country: USA
+        phone: 555-555-5555
+        role: user
+    createExternalRecipeRequest:
+      title: createExternalRecipeRequest
+      required:
+      - idext
+      - ingredients
+      - servings
+      - instructions
+      type: object
+      properties:
+        idext:
+          type: integer
+          format: int32
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+          description: ''
+        servings:
+          type: integer
+          format: int32
+        instructions:
+          type: string
+    Ingredient:
+      title: Ingredient
+      required:
+      - idext
+      - ingredient
+      - amount
+      - unit
+      type: object
+      properties:
+        idext:
+          type: integer
+          format: int32
+        ingredient:
+          type: string
+          nullable: true
+        amount:
+          oneOf:
+          - type: integer
+            format: int32
+          - type: number
+        unit:
+          type: string
+    updateExternalRecipeRequest:
+      title: updateExternalRecipeRequest
+      required:
+      - idext
+      - ingredients
+      - servings
+      - instructions
+      type: object
+      properties:
+        idext:
+          type: integer
+          format: int32
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+          description: ''
+        servings:
+          type: integer
+          format: int32
+        instructions:
+          type: string
+    createMarketRequest:
+      title: createMarketRequest
+      required:
+      - id
+      - name
+      - address
+      - city
+      - state
+      - zip
+      - country
+      - phone
+      - email
+      - website
+      - password
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
+        password:
+          type: string
+      example:
+        id: 4
+        name: Test Market 4
+        address: 444 Four Ave
+        city: West Van
+        state: BC
+        zip: V7T 1H8
+        country: Canada
+        phone: 123-456-4444
+        email: market4@market4.com
+        website: http://market4.com
+        password: password
+    updateMarketRequest:
+      title: updateMarketRequest
+      required:
+      - id
+      - name
+      - address
+      - city
+      - state
+      - zip
+      - country
+      - phone
+      - email
+      - website
+      - password
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
+        password:
+          type: string
+      example:
+        id: 2
+        name: Test Market 2
+        address: 222 Second St
+        city: Second City
+        state: MA
+        zip: '54321'
+        country: usa
+        phone: 123-456-2222
+        email: market222@market2.com
+        website: http://market222.com
+        password: password2
+    createMenuRequest:
+      title: createMenuRequest
+      required:
+      - week
+      - date
+      - meal
+      - recipe_id
+      type: object
+      properties:
+        week:
+          type: integer
+          format: int32
+        date:
+          type: string
+        meal:
+          type: string
+        recipe_id:
+          type: integer
+          format: int32
+      example:
+        week: 1
+        date: 2021-01-02T00:00:00.000Z
+        meal: Lunch
+        recipe_id: 4
+    updateMenuRequest:
+      title: updateMenuRequest
+      required:
+      - week
+      - date
+      - meal
+      - recipe_id
+      type: object
+      properties:
+        week:
+          type: integer
+          format: int32
+        date:
+          type: string
+        meal:
+          type: string
+        recipe_id:
+          type: integer
+          format: int32
+      example:
+        week: 1
+        date: 2021-01-02T00:00:00.000Z
+        meal: Breakfast
+        recipe_id: 2
+    createRecipeRequest:
+      title: createRecipeRequest
+      required:
+      - title
+      - image
+      - servings
+      - instructions
+      type: object
+      properties:
+        title:
+          type: string
+        image:
+          type: string
+        servings:
+          type: integer
+          format: int32
+        instructions:
+          type: string
+      example:
+        title: Recipe 3
+        image: https://www.themealdb.com/images/media/meals/58oia61564916529.jpg
+        servings: 4
+        instructions: Instructions for Recipe 3
+    updateRecipeRequest:
+      title: updateRecipeRequest
+      required:
+      - title
+      - image
+      - servings
+      - instructions
+      type: object
+      properties:
+        title:
+          type: string
+        image:
+          type: string
+        servings:
+          type: integer
+          format: int32
+        instructions:
+          type: string
+      example:
+        title: Recipe 333333
+        image: https://www.themealdb.com/images/media/meals/58oia61564916529.jpg
+        servings: 14
+        instructions: Instructions for Recipe dddd3
+    createProductRequest:
+      title: createProductRequest
+      required:
+      - barcode
+      - name
+      - description
+      - unit
+      - presentation
+      type: object
+      properties:
+        barcode:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        unit:
+          type: string
+        presentation:
+          type: string
+      example:
+        barcode: 678912354
+        name: Product 4
+        description: Product 4 description
+        unit: Unit 4
+        presentation: Presentation 4
+    updateProductRequest:
+      title: updateProductRequest
+      required:
+      - barcode
+      - name
+      - description
+      - unit
+      - presentation
+      type: object
+      properties:
+        barcode:
+          type: integer
+          format: int32
+        name:
+          type: string
+        description:
+          type: string
+        unit:
+          type: string
+        presentation:
+          type: string
+      example:
+        barcode: 678912345
+        name: Product 4asdasd
+        description: Product 4444444 description
+        unit: Unit 44444
+        presentation: Presentation 4444444444444
+    createShoppingListRequest:
+      title: createShoppingListRequest
+      required:
+      - barcode
+      - quantity
+      type: object
+      properties:
+        barcode:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+      example:
+        barcode: '1234567890132'
+        quantity: 200
+    updateShoppingListRequest:
+      title: updateShoppingListRequest
+      required:
+      - quantity
+      type: object
+      properties:
+        quantity:
+          type: integer
+          format: int32
+      example:
+        quantity: 255
+    createUserRequest:
+      title: createUserRequest
+      required:
+      - username
+      - email
+      - password
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        username: pepito
+        email: pepito@email.com
+        password: peps
+    updateUserRequest:
+      title: updateUserRequest
+      required:
+      - username
+      - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: pepito
+        password: secret
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: auth
+- name: users
+- name: menus
+- name: recipes
+- name: ingredients
+- name: shoppinglists
+- name: markets
+- name: products

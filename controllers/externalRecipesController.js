@@ -4,10 +4,12 @@ const { Recipe, Ingredients } = require('../models/index')
 
 module.exports = {
 	async getRecipesFromApi(req, res) {
+		const { recipe, cuisine } = req.query
+
 		const options = {
 			method: 'GET',
 			url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-			params: { query: 'pasta', cuisine: 'italian', number: '10' },
+			params: { query: recipe, cuisine, number: '10' },
 			headers: {
 				'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
 				'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'

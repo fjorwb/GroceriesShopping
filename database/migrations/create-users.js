@@ -11,6 +11,14 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				onDelete: 'CASCADE'
 			},
+			firstname: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
+			lastname: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
 			username: {
 				allowNull: false,
 				type: Sequelize.STRING
@@ -21,6 +29,38 @@ module.exports = {
 				type: Sequelize.STRING
 			},
 			password: {
+				allowNull: false,
+				type: Sequelize.STRING
+			},
+			address: {
+				allowNull: false,
+				type: Sequelize.STRING
+			},
+			address2: {
+				allowNull: true,
+				type: Sequelize.STRING
+			},
+			city: {
+				allowNull: false,
+				type: Sequelize.STRING
+			},
+			state: {
+				allowNull: false,
+				type: Sequelize.STRING
+			},
+			zip_code: {
+				allowNull: false,
+				type: Sequelize.STRING
+			},
+			country: {
+				allowNull: false,
+				type: Sequelize.STRING
+			},
+			phone: {
+				allowNull: false,
+				type: Sequelize.STRING
+			},
+			role: {
 				allowNull: false,
 				type: Sequelize.STRING
 			},

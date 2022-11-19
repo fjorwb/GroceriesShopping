@@ -1,0 +1,1372 @@
+{
+	"info": {
+		"_postman_id": "c00451ab-ed35-43ce-9815-9d3f8b2068a1",
+		"name": "groceries-shopping",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18468273"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "loginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"userfive@mail.com\",\r\n    \"password\": \"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registerUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"User\",\r\n    \"lastname\": \"Five\",\r\n    \"username\": \"userfive\",\r\n    \"email\": \"userfive@mail.com\",\r\n    \"password\": \"secret\",\r\n    \"address\": \"555 Fifth Ave\",\r\n    \"address2\": \"Apt 55\",\r\n    \"city\": \"Miami\",\r\n    \"state\": \"FL\",\r\n    \"zip_code\": \"33136\",\r\n    \"country\": \"USA\",\r\n    \"phone\": \"555-555-5555\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "externalRecipes",
+			"item": [
+				{
+					"name": "getExternalRecipes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/recipes/recipes?recipe=papa a la huancaina&cuisine=colombian",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "recipe",
+									"value": "papa a la huancaina"
+								},
+								{
+									"key": "cuisine",
+									"value": "colombian"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getExternalRecipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/recipes/recipes/487873",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"recipes",
+								"487873"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createExternalRecipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idext\": 487873,\r\n    \"ingredients\": [\r\n        {\r\n            \"idext\": 11520420,\r\n            \"ingredient\": \"ziti\",\r\n            \"amount\": 100,\r\n            \"unit\": \"grams\"\r\n        },\r\n        {\r\n            \"idext\": 14412,\r\n            \"ingredient\": \"water\",\r\n            \"amount\": 4,\r\n            \"unit\": \"cups\"\r\n        },\r\n        {\r\n            \"idext\": 11333,\r\n            \"ingredient\": \"green pepper\",\r\n            \"amount\": 0.33333334,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"idext\": 11124,\r\n            \"ingredient\": \"carrot\",\r\n            \"amount\": 0.5,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"idext\": 11282,\r\n            \"ingredient\": \"onion\",\r\n            \"amount\": 0.33333334,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"idext\": 11143,\r\n            \"ingredient\": \"celery\",\r\n            \"amount\": 1,\r\n            \"unit\": \"tablespoon\"\r\n        },\r\n        {\r\n            \"idext\": 11297,\r\n            \"ingredient\": \"parsley\",\r\n            \"amount\": 1,\r\n            \"unit\": \"tablespoon\"\r\n        },\r\n        {\r\n            \"idext\": 11297,\r\n            \"ingredient\": \"parsley\",\r\n            \"amount\": 1,\r\n            \"unit\": \"leaves\"\r\n        },\r\n        {\r\n            \"idext\": 42193,\r\n            \"ingredient\": \"fat free mayonnaise\",\r\n            \"amount\": 6,\r\n            \"unit\": \"tablespoons\"\r\n        },\r\n        {\r\n            \"idext\": 1022068,\r\n            \"ingredient\": \"red wine vinegar\",\r\n            \"amount\": 1,\r\n            \"unit\": \"tablespoon\"\r\n        },\r\n        {\r\n            \"idext\": 1002030,\r\n            \"ingredient\": \"black pepper\",\r\n            \"amount\": 0.25,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": 1032046,\r\n            \"ingredient\": \"dijon mustard\",\r\n            \"amount\": 1,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": 1034053,\r\n            \"ingredient\": \"extra virgin olive oil\",\r\n            \"amount\": 2,\r\n            \"unit\": \"tablespoons\"\r\n        },\r\n        {\r\n            \"idext\": 2047,\r\n            \"ingredient\": \"table salt\",\r\n            \"amount\": 1,\r\n            \"unit\": \"serving\"\r\n        },\r\n        {\r\n            \"idext\": 1002028,\r\n            \"ingredient\": \"sweet paprika\",\r\n            \"amount\": 0.5,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": 19908,\r\n            \"ingredient\": \"turbinado sugar\",\r\n            \"amount\": 0.25,\r\n            \"unit\": \"unit\"\r\n        },\r\n        {\r\n            \"idext\": -1,\r\n            \"ingredient\": null,\r\n            \"amount\": 1,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": -1,\r\n            \"ingredient\": null,\r\n            \"amount\": 6,\r\n            \"unit\": \"unit\"\r\n        }\r\n    ],\r\n    \"servings\": 3,\r\n    \"instructions\": \"Instructions\\n\\nCooking pasta\\n\\nBring heavily salted water to a boil in a large pot on high heat. When cooking pasta you want to include enough salt so that the water “tastes like the ocean”.\\n\\nAdd ziti or your preferred small-to-medium sized pasta to the boiling water.\\n\\nReduce the heat to medium or medium-high, so that the water continues boiling but does not bubble over. Stir the pasta in intervals and cook for 8 to 10 minutes or according to package directions.\\n\\nThe pasta should be al dente, or feel free to cook longer if you like a softer texture or are making a cold salad.\\n\\nOnce cooked strain the pasta in a colander.\\n\\nFor a cold salad, rinse the salad in fresh water or drizzle some oil on them and mix gently – to prevent the pasta from sticking.\\n\\nMaking mayo dressing\\n\\nTake the mayonnaise, extra virgin olive oil, dijon mustard, red wine vinegar, ground black pepper, sweet paprika, sugar and salt as per taste in a mixing bowl.\\n\\nMix very well.\\n\\nCheck the taste of the dressing and feel free to add more seasonings to suit your taste. You can add more sugar too.\\n\\nMaking pasta salad\\n\\nAdd the cooked pasta.\\n\\nAdd in the chopped veggies – onions, capsicum, carrots. Add the finely chopped celery, parsley and sliced olives if using.\\n\\nToss and combine well so that the pasta and veggies are coated with the mayo dressing.\\n\\nGarnish with parsley and serve right away while warm, or allow the pasta salad to cool before storing in the fridge to chill and enjoy cold.\\n\\nServing suggestions\\n\\nServe pasta salad as a main dish with your preferred Italian-inspired sides.\\n\\nFor a lighter meal serve with fresh vegetables – cucumber, radish, carrots or greens – like spinach or kale, either as a raw salad or steamed.\\n\\nPasta salad is great for brunch or an afternoon lunch, or even as a hearty snack between meals.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/recipes/recipes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateExternalRecipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idext\": 487873,\r\n    \"ingredients\": [\r\n        {\r\n            \"idext\": 11520420,\r\n            \"ingredient\": \"ZITTI\",\r\n            \"amount\": 100,\r\n            \"unit\": \"grams\"\r\n        },\r\n        {\r\n            \"idext\": 14412,\r\n            \"ingredient\": \"WATER\",\r\n            \"amount\": 4444,\r\n            \"unit\": \"CUPS\"\r\n        },\r\n        {\r\n            \"idext\": 11333,\r\n            \"ingredient\": \"green pepper\",\r\n            \"amount\": 0.33333334,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"idext\": 11124,\r\n            \"ingredient\": \"carrot\",\r\n            \"amount\": 0.5,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"idext\": 11282,\r\n            \"ingredient\": \"onion\",\r\n            \"amount\": 0.33333334,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"idext\": 11143,\r\n            \"ingredient\": \"celery\",\r\n            \"amount\": 1,\r\n            \"unit\": \"tablespoon\"\r\n        },\r\n        {\r\n            \"idext\": 11297,\r\n            \"ingredient\": \"parsley\",\r\n            \"amount\": 1,\r\n            \"unit\": \"tablespoon\"\r\n        },\r\n        {\r\n            \"idext\": 11297,\r\n            \"ingredient\": \"parsley\",\r\n            \"amount\": 1,\r\n            \"unit\": \"leaves\"\r\n        },\r\n        {\r\n            \"idext\": 42193,\r\n            \"ingredient\": \"fat free mayonnaise\",\r\n            \"amount\": 6,\r\n            \"unit\": \"tablespoons\"\r\n        },\r\n        {\r\n            \"idext\": 1022068,\r\n            \"ingredient\": \"red wine vinegar\",\r\n            \"amount\": 1,\r\n            \"unit\": \"tablespoon\"\r\n        },\r\n        {\r\n            \"idext\": 1002030,\r\n            \"ingredient\": \"black pepper\",\r\n            \"amount\": 0.25,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": 1032046,\r\n            \"ingredient\": \"dijon mustard\",\r\n            \"amount\": 1,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": 1034053,\r\n            \"ingredient\": \"extra virgin olive oil\",\r\n            \"amount\": 2,\r\n            \"unit\": \"tablespoons\"\r\n        },\r\n        {\r\n            \"idext\": 2047,\r\n            \"ingredient\": \"table salt\",\r\n            \"amount\": 1,\r\n            \"unit\": \"serving\"\r\n        },\r\n        {\r\n            \"idext\": 1002028,\r\n            \"ingredient\": \"sweet paprika\",\r\n            \"amount\": 0.5,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": 19908,\r\n            \"ingredient\": \"turbinado sugar\",\r\n            \"amount\": 0.25,\r\n            \"unit\": \"unit\"\r\n        },\r\n        {\r\n            \"idext\": -1,\r\n            \"ingredient\": null,\r\n            \"amount\": 1,\r\n            \"unit\": \"teaspoon\"\r\n        },\r\n        {\r\n            \"idext\": -1,\r\n            \"ingredient\": null,\r\n            \"amount\": 6,\r\n            \"unit\": \"unit\"\r\n        }\r\n    ],\r\n    \"servings\": 33,\r\n    \"instructions\": \"Instructions\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/recipes/recipes/54",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"recipes",
+								"54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteExternalRecipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/recipes/recipes/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"recipes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "markets",
+			"item": [
+				{
+					"name": "getAllMarkets",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/markets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"markets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMarketById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/markets/45",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"markets",
+								"45"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createMarket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"name\": \"Test Market 4\",\r\n    \"address\": \"444 Four Ave\",\r\n    \"city\": \"West Van\",\r\n    \"state\": \"BC\",\r\n    \"zip\": \"V7T 1H8\",\r\n    \"country\": \"Canada\",\r\n    \"phone\": \"123-456-4444\",\r\n    \"email\": \"market4@market4.com\",\r\n    \"website\": \"http://market4.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/markets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"markets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMarket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"Test Market 2\",\r\n    \"address\": \"222 Second St\",\r\n    \"city\": \"Second City\",\r\n    \"state\": \"MA\",\r\n    \"zip\": \"54321\",\r\n    \"country\": \"usa\",\r\n    \"phone\": \"123-456-2222\",\r\n    \"email\": \"market222@market2.com\",\r\n    \"website\": \"http://market222.com\",\r\n    \"password\": \"password2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/markets/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"markets",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMarket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/markets/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"markets",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "menus",
+			"item": [
+				{
+					"name": "getAllMenus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/menus",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMenuById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/menus/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menus",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createMenu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"week\": 1,\r\n    \"date\": \"2021-01-02T00:00:00.000Z\",\r\n    \"meal\": \"Lunch\",\r\n    \"recipe_id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/menus",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMenu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"week\": 1,\r\n    \"date\": \"2021-01-02T00:00:00.000Z\",\r\n    \"meal\": \"Breakfast\",\r\n    \"recipe_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/menus/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menus",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMenu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/menus/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"menus",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recipes",
+			"item": [
+				{
+					"name": "getAllRecipes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/recipes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRecipeById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/recipes/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createRecipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"Recipe 3\",\r\n        \"image\": \"https://www.themealdb.com/images/media/meals/58oia61564916529.jpg\",\r\n        \"servings\": 4,\r\n        \"instructions\": \"Instructions for Recipe 3\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/recipes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRecipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Recipe 333333\",\r\n        \"image\": \"https://www.themealdb.com/images/media/meals/58oia61564916529.jpg\",\r\n        \"servings\": 14,\r\n        \"instructions\": \"Instructions for Recipe dddd3\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/recipes/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRecipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/recipes/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "getAllProducts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"barcode\": 678912354,\r\n    \"name\": \"Product 4\",\r\n    \"description\": \"Product 4 description\",\r\n    \"unit\": \"Unit 4\",\r\n    \"presentation\": \"Presentation 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"barcode\": 678912345,\r\n        \"name\": \"Product 4asdasd\",\r\n        \"description\": \"Product 4444444 description\",\r\n        \"unit\": \"Unit 44444\",\r\n        \"presentation\": \"Presentation 4444444444444\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "shoppinglists",
+			"item": [
+				{
+					"name": "getAllShoppingLists",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/shoppinglists",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shoppinglists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getShoppingListById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/shoppinglists/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shoppinglists",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createShoppingList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"barcode\": \"1234567890132\",\r\n    \"quantity\": 200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/shoppinglists",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shoppinglists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateShoppingList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 255\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/shoppinglists/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shoppinglists",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletShoppingList",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/shoppinglists/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"shoppinglists",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"pepito\",\r\n    \"email\": \"pepito@email.com\",\r\n    \"password\": \"peps\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"pepito\",\r\n    \"password\": \"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/17",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ingredients",
+			"item": [
+				{
+					"name": "getAllIngredients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ingredients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getIngredientById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ingredients/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createIngredient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idext\": 9,\r\n    \"ingredients\": [\r\n        {\r\n            \"name\": \"beef\",\r\n            \"amount\": 1,\r\n            \"unit\": \"lb\"\r\n        }\r\n    ],\r\n    \"servings\": 1,\r\n    \"instructions\": \"gril beef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ingredients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateIngredient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredients\": [\r\n        {\r\n            \"name\": \"pork\",\r\n            \"amount\": 1,\r\n            \"unit\": \"lb\"\r\n        },\r\n        {\r\n            \"name\": \"salt\",\r\n            \"amount\": 1,\r\n            \"unit\": \"serving\"\r\n        },\r\n        {\r\n            \"name\": \"soy sauce\",\r\n            \"amount\": 2,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"name\": \"wayen\",\r\n            \"amount\": 1,\r\n            \"unit\": \"teaspoon\"\r\n        }\r\n    ],\r\n    \"servings\": 1,\r\n    \"instructions\": \"gril pork\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ingredients/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteIngredient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ingredients/9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

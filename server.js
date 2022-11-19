@@ -19,12 +19,17 @@ const app = express()
 
 const { sequelize } = require('./models/index')
 
+const authRouter = require('./routes/auth')
 const usersRouter = require('./routes/users')
 const recipesRouter = require('./routes/recipes')
+const ingredientsRouter = require('./routes/ingredients')
 const marketsRouter = require('./routes/markets')
 const productsRouter = require('./routes/products')
 const shoppinglistsRouter = require('./routes/shoppinglists')
 const menusRouter = require('./routes/menus')
+const docsRouter = require('./routes/docs')
+
+const authenticate = require('./middlewares/authentication')
 
 // const { urlencoded } = require('body-parser')
 
@@ -35,12 +40,15 @@ app.use(cors())
 app.use(morgan('dev'))
 
 // Routes
-app.use('/users', usersRouter)
-app.use('/recipes', recipesRouter)
-app.use('/markets', marketsRouter)
-app.use('/products', productsRouter)
-app.use('/shoppinglists', shoppinglistsRouter)
-app.use('/menus', menusRouter)
+app.use('/auth', authRouter)
+app.use('/users', authenticate, usersRouter)
+app.use('/recipes', authenticate, recipesRouter)
+app.use('/ingredients', authenticate, ingredientsRouter)
+app.use('/markets', authenticate, marketsRouter)
+app.use('/products', authenticate, productsRouter)
+app.use('/shoppinglists', authenticate, shoppinglistsRouter)
+app.use('/menus', authenticate, menusRouter)
+app.use('/docs', docsRouter)
 
 app.get('/', (req, res) => {
 	res.send('Hello World!!!!!!!!!!!!!!!!!!')

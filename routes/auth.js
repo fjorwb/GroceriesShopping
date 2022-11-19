@@ -3,8 +3,8 @@ const router = express.Router()
 
 const authController = require('../controllers/authController')
 
-router.get('/changepassword/:id', authController.changePassword)
 router.post('/login', authController.login)
 router.post('/register', authController.register)
+router.get('/changepassword', authController.changePassword)
 
 module.exports = router

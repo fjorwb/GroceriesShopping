@@ -83,6 +83,37 @@ paths:
           headers: {}
       deprecated: false
       security: []
+  /auth/changepassword?email={email}&password={password}&newpassword={newpassword}:
+    get:
+      tags:
+        - auth
+      summary: changePassword
+      operationId: changePassword
+      parameters:
+        - name: email
+          in: query
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: newpassword
+          in: query
+          description: ''
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
   /users:
     get:
       tags:
@@ -533,15 +564,6 @@ paths:
           schema:
             type: string
             example: 52959
-      # requestBody:
-      #   description: ''
-      #   content:
-      #     application/json:
-      #       schema:
-      #         allOf:
-      #           - $ref: '#/components/schemas/createExternalRecipeRequest'
-      #           - {}
-      #   required: true
       responses:
         '200':
           description: ''
@@ -1277,6 +1299,24 @@ components:
           format: int32
         instructions:
           type: string
+    changePasswordRequest:
+      title: changePasswordRequest
+      required:
+        - email
+        - password
+        - newpassword
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        newpassword:
+          type: string
+      example:
+        email: user4@email.com
+        password: secret
+        newPassword: secret2
     createMarketRequest:
       title: createMarketRequest
       required:

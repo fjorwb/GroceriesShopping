@@ -112,7 +112,50 @@ module.exports = {
 	},
 
 	async changePassword(req, res) {
-		res.send('change password')
-		console.log('HHEEEELLLOOOOO')
+		const { email, password, newpassword } = req.query
+
+		console.log(req.query)
+
+		const checkUser = await User.findOne({
+			where: {
+				email: email
+			}
+		})
+			.then(user => {
+				return user
+			})
+			.catch(err => {
+				return res.status(500).send(err)
+			})
+
+		if (!checkUser) {
+			return res.status(404).send({ message: 'user not found' })
+		}
+
+		if (password !== newpassword) {
+			return res.status(400).send({ message: 'passwords do not match' })
+		}
+
+		const salt = bcrypt.genSaltSync(10)
+		const hash = bcrypt.hashSync(newpassword, salt)
+
+		const passwordEncrypted = bcrypt.hashSync(req.query.newpassword, Number(authConfig.rounds))
+
+		const user = await User.update(
+			{
+				password: passwordEncrypted
+			},
+			{
+				where: {
+					email: email
+				}
+			}
+		)
+			.then(user => {
+				return res.status(200).send({ message: 'password changed' })
+			})
+			.catch(err => {
+				return res.status(500).send({ message: err.message })
+			})
 	}
 }

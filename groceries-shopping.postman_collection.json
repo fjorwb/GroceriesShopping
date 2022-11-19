@@ -66,7 +66,7 @@
 			]
 		},
 		{
-			"name": "ingredients",
+			"name": "externalRecipes",
 			"item": [
 				{
 					"name": "getExternalRecipes",
@@ -84,13 +84,23 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/recipes/recipes",
+							"raw": "{{url}}/recipes/recipes?recipe=papa a la huancaina&cuisine=colombian",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"recipes",
 								"recipes"
+							],
+							"query": [
+								{
+									"key": "recipe",
+									"value": "papa a la huancaina"
+								},
+								{
+									"key": "cuisine",
+									"value": "colombian"
+								}
 							]
 						}
 					},
@@ -1190,6 +1200,167 @@
 							"path": [
 								"users",
 								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ingredients",
+			"item": [
+				{
+					"name": "getAllIngredients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ingredients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getIngredientById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ingredients/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createIngredient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idext\": 9,\r\n    \"ingredients\": [\r\n        {\r\n            \"name\": \"beef\",\r\n            \"amount\": 1,\r\n            \"unit\": \"lb\"\r\n        }\r\n    ],\r\n    \"servings\": 1,\r\n    \"instructions\": \"gril beef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ingredients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateIngredient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ingredients\": [\r\n        {\r\n            \"name\": \"pork\",\r\n            \"amount\": 1,\r\n            \"unit\": \"lb\"\r\n        },\r\n        {\r\n            \"name\": \"salt\",\r\n            \"amount\": 1,\r\n            \"unit\": \"serving\"\r\n        },\r\n        {\r\n            \"name\": \"soy sauce\",\r\n            \"amount\": 2,\r\n            \"unit\": \"cup\"\r\n        },\r\n        {\r\n            \"name\": \"wayen\",\r\n            \"amount\": 1,\r\n            \"unit\": \"teaspoon\"\r\n        }\r\n    ],\r\n    \"servings\": 1,\r\n    \"instructions\": \"gril pork\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ingredients/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteIngredient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ingredients/9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ingredients",
+								"9"
 							]
 						}
 					},

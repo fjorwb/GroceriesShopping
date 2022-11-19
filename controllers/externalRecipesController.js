@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const { Recipe, Ingredients } = require('../models/index')
+const { Recipe, Ingredients, sequelize } = require('../models/index')
 
 module.exports = {
 	async getRecipesFromApi(req, res) {
@@ -67,13 +67,66 @@ module.exports = {
 	},
 
 	async createExternalRecipe(req, res) {
-		const recipe = await Ingredients.create(req.body)
+		const idext = req.params.id
+
+		const checkRecipe = await Recipe.findOne({
+			where: { idext: idext }
+		})
 			.then(recipe => {
-				res.status(200).send(recipe)
+				return recipe
 			})
 			.catch(err => {
-				res.status(400).send({ message: err.message })
+				return res.status(500).send(err)
 			})
+
+		console.log(!checkRecipe)
+
+		if (checkRecipe) {
+			return res.status(404).send({ message: 'recipe already exists' })
+		}
+
+		const options = {
+			method: 'GET',
+			url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
+			params: { includeNutrition: 'false' },
+			headers: {
+				'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
+				'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+			}
+		}
+
+		const body = await axios
+			.request(options)
+			.then(function (response) {
+				let resp2 = response.data
+				const { id, title, image, servings, instructions } = resp2
+				return { idext: id, title, image, servings, instructions }
+			})
+			.catch(err => {
+				return res.status(400).json({ error: err })
+			})
+
+		const recipe = await Recipe.create({
+			idext: body.idext,
+			title: body.title,
+			image: body.image,
+			servings: body.servings,
+			instructions: body.instructions
+		})
+			.then(recipe => {
+				return res.status(201).json(recipe)
+			})
+			.catch(err => {
+				return res.status(400).json({ error: err })
+			})
+
+		// const recipe = await Ingredients.create(req.body, body)
+		// 	.then(recipe => {
+		// 		res.status(200).send(recipe)
+		// 	})
+		// 	.catch(err => {
+		// 		res.status(400).send({ message: err.message })
+		// 	})
 	},
 
 	async updateExternalRecipe(req, res) {

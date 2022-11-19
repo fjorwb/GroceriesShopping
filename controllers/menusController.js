@@ -12,13 +12,17 @@ module.exports = {
 	},
 
 	async getMenuById(req, res) {
-		const menu = await Menu.findByPk(req.params.id)
-			.then(menu => {
-				res.status(200).json(menu)
-			})
-			.catch(err => {
-				res.status(500).json(err)
-			})
+		const menu = await Menu.findOne({
+			where: {
+				id: req.params.id
+			}
+		})
+
+		if (!menu) {
+			return res.status(404).send({ message: 'Menu not found' })
+		} else {
+			return res.status(200).send(menu)
+		}
 	},
 
 	async createMenu(req, res) {

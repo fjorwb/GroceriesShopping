@@ -7,6 +7,7 @@ module.exports = {
 			'recipes',
 			[
 				{
+					idext: 1,
 					title: 'Recipe 1',
 					image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
 					servings: 4,
@@ -15,6 +16,7 @@ module.exports = {
 					updated_at: new Date()
 				},
 				{
+					idext: 2,
 					title: 'Recipe 2',
 					image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
 					servings: 4,

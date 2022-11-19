@@ -15,16 +15,23 @@ module.exports = {
 	},
 
 	async getMarketById(req, res) {
-		const market = await Market.findByPk(req.params.id)
+		const market = await Market.findOne({
+			where: {
+				id: req.params.id
+			}
+		})
 			.then(market => {
 				return market
 			})
-			.then(market => {
-				res.status(200).json(market)
-			})
 			.catch(err => {
-				res.status(500).json(err)
+				return res.status(500).send({ message: err.message })
 			})
+
+		if (!market) {
+			return res.status(404).send({ message: 'market not found' })
+		} else {
+			return res.status(200).send(market)
+		}
 	},
 
 	async createMarket(req, res) {
@@ -48,9 +55,6 @@ module.exports = {
 	async updateMarket(req, res) {
 		console.log(req.params.id)
 		const checkMarket = await Market.findOne({ where: { id: req.params.id } })
-
-		// console.log('CHECK>>>', checkMarket.dataValues.id)
-		// console.log('req.body>>>', req.body.id)
 
 		if (!checkMarket) {
 			return res.status(400).json({ message: 'market does not exist' })

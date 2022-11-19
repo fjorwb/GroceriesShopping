@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
 				autoIncrement: true,
 				allowNull: false
 			},
+			idext: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
 			title: {
 				type: DataTypes.STRING,
 				allowNull: false

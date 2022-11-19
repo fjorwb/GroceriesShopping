@@ -20,11 +20,17 @@ module.exports = {
 			}
 		})
 			.then(recipe => {
-				res.status(200).send(recipe)
+				return recipe
 			})
 			.catch(err => {
-				res.status(400).send({ message: err.message })
+				return res.status(400).send({ message: err.message })
 			})
+
+		if (!recipe) {
+			return res.status(404).send({ message: 'recipe not found' })
+		} else {
+			return res.status(200).send(recipe)
+		}
 	},
 
 	async createRecipe(req, res) {

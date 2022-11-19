@@ -5,7 +5,7 @@ const recipesController = require('../controllers/recipesController')
 const externalRecipesController = require('../controllers/externalRecipesController')
 
 recipesRouter.get('/recipes', externalRecipesController.getRecipesFromApi)
-recipesRouter.post('/recipes', externalRecipesController.createExternalRecipe)
+recipesRouter.post('/recipes/:id', externalRecipesController.createExternalRecipe)
 recipesRouter.get('/recipes/:id', externalRecipesController.getRecipeFromApi)
 recipesRouter.put('/recipes/:id', externalRecipesController.updateExternalRecipe)
 recipesRouter.delete('/recipes/:id', externalRecipesController.deleteExternalRecipe)

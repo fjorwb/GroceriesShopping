@@ -109,5 +109,10 @@ module.exports = {
 			.catch(err => {
 				res.status(500).send({ message: err.message })
 			})
+	},
+
+	async changePassword(req, res) {
+		res.send('change password')
+		console.log('HHEEEELLLOOOOO')
 	}
 }

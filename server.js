@@ -7,16 +7,6 @@ const morgan = require('morgan')
 
 const app = express()
 
-// const Sequelize = require('sequelize')
-// sequelize = new Sequelize(process.env.DATABASE_URL, {
-// 	dialectOptions: {
-// 		ssl: {
-// 			require: true,
-// 			rejectUnauthorized: false
-// 		}
-// 	}
-// })
-
 const { sequelize } = require('./models/index')
 
 const authRouter = require('./routes/auth')
@@ -31,13 +21,15 @@ const docsRouter = require('./routes/docs')
 
 const authenticate = require('./middlewares/authentication')
 
-// const { urlencoded } = require('body-parser')
-
 // Middleware
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(morgan('dev'))
+
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.use(express.static(__dirname + '/public'))
 
 // Routes
 app.use('/auth', authRouter)
@@ -50,8 +42,8 @@ app.use('/shoppinglists', authenticate, shoppinglistsRouter)
 app.use('/menus', authenticate, menusRouter)
 app.use('/docs', docsRouter)
 
-app.get('/', (req, res) => {
-	res.send('Hello World!!!!!!!!!!!!!!!!!!')
+app.get('/', function (req, res) {
+	res.render('index')
 })
 
 const PORT = process.env.PORT || 5000

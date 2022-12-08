@@ -9,7 +9,7 @@ module.exports = {
 		const options = {
 			method: 'GET',
 			url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-			params: { query: recipe, cuisine, number: '10' },
+			params: { query: recipe, cuisine, number: '30' },
 			headers: {
 				'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
 				'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
@@ -79,7 +79,7 @@ module.exports = {
 				return res.status(500).send(err)
 			})
 
-		console.log(!checkRecipe)
+		// console.log(!checkRecipe)
 
 		if (checkRecipe) {
 			return res.status(404).send({ message: 'recipe already exists' })

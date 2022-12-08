@@ -48,7 +48,7 @@ module.exports = {
 	},
 
 	async createUser(req, res) {
-		console.log(req.body)
+		// console.log(req.body)
 
 		const {
 			firstname,
@@ -94,7 +94,7 @@ module.exports = {
 	},
 
 	async updateUser(req, res) {
-		console.log(req.body)
+		// console.log(req.body)
 		const { username, email, password } = req.body
 
 		const checkUser = await User.findOne({

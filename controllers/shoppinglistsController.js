@@ -52,7 +52,7 @@ module.exports = {
 	},
 
 	async updateShoppingList(req, res) {
-		console.log(req.params.id)
+		// console.log(req.params.id)
 
 		const checkShoppingList = await ShoppingList.findOne({
 			where: {
@@ -60,7 +60,7 @@ module.exports = {
 			}
 		})
 
-		console.log(!checkShoppingList)
+		// console.log(!checkShoppingList)
 
 		if (!checkShoppingList) {
 			return res.status(500).json({ message: 'shoppingList not found' })

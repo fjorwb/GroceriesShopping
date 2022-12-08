@@ -9,7 +9,7 @@ module.exports = {
 	login(req, res) {
 		const { email, password } = req.body
 
-		console.log(email, password)
+		// console.log(email, password)
 
 		const user = User.findOne({
 			where: {
@@ -60,7 +60,7 @@ module.exports = {
 			role
 		} = req.body
 
-		console.log(req.body)
+		// console.log(req.body)
 
 		const checkUser = await User.findOne({
 			where: {
@@ -74,13 +74,13 @@ module.exports = {
 				return res.status(500).send(err)
 			})
 
-		console.log(!checkUser)
+		// console.log(!checkUser)
 
 		if (checkUser) {
 			return res.status(400).send({ message: 'user already exists' })
 		}
 
-		console.log('user does not exist')
+		// console.log('user does not exist')
 
 		const salt = bcrypt.genSaltSync(10)
 		const hash = bcrypt.hashSync(password, salt)
@@ -114,7 +114,7 @@ module.exports = {
 	async changePassword(req, res) {
 		const { email, password, newpassword } = req.query
 
-		console.log(req.query)
+		// console.log(req.query)
 
 		const checkUser = await User.findOne({
 			where: {

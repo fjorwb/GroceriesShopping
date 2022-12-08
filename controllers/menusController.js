@@ -48,7 +48,7 @@ module.exports = {
 	},
 
 	async updateMenu(req, res) {
-		console.log(req.params.id)
+		// console.log(req.params.id)
 
 		const checkMenu = await Menu.findOne({ where: { id: req.params.id } })
 			.then(menu => {
@@ -58,7 +58,7 @@ module.exports = {
 				res.status(500).json(err)
 			})
 
-		console.log(checkMenu)
+		// console.log(checkMenu)
 
 		if (!checkMenu) {
 			return res.status(400).json({ message: 'meal not found' })

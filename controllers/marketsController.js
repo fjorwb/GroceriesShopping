@@ -37,7 +37,7 @@ module.exports = {
 	async createMarket(req, res) {
 		const checkMarket = await Market.findOne({ where: { email: req.body.email } })
 
-		console.log(checkMarket)
+		// console.log(checkMarket)
 
 		if (checkMarket) {
 			return res.status(400).json({ message: 'market already exists' })
@@ -53,7 +53,7 @@ module.exports = {
 	},
 
 	async updateMarket(req, res) {
-		console.log(req.params.id)
+		// console.log(req.params.id)
 		const checkMarket = await Market.findOne({ where: { id: req.params.id } })
 
 		if (!checkMarket) {

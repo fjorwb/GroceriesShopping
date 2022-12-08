@@ -53,13 +53,17 @@ module.exports = {
 
 				obj = { ...{ ingredients: arr } }
 
+				console.log(resp2)
+
 				recipe = {
 					...obj,
 					...{ servings: resp2.servings },
-					...{ instructions: resp2.instructions }
+					...{ instructions: resp2.instructions },
+					...{ title: resp2.title },
+					...{ image: resp2.image }
 				}
 
-				res.send(recipe)
+				res.json(recipe)
 			})
 			.catch(function (error) {
 				console.error(error)

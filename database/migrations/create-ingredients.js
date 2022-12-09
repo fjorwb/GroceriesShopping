@@ -15,8 +15,8 @@ module.exports = {
 				allowNull: false
 			},
 			ingredients: {
-				type: Sequelize.JSON,
-				allowNull: false
+				type: Sequelize.JSON
+				// allowNull: false
 			},
 			servings: {
 				type: Sequelize.INTEGER

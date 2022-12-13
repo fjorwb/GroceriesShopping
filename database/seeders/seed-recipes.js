@@ -23,7 +23,6 @@ module.exports = {
 					servings: 4,
 					instructions: 'Instructions for Recipe 2',
 					user_id: 2,
-
 					created_at: new Date(),
 					updated_at: new Date()
 				}

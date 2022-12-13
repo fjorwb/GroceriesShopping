@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			Recipe.hasMany(models.User, {
-				foreignKey: 'user_id',
-				as: 'user'
+				foreignKey: 'id',
+				as: 'user_id'
 			})
 
 			// define association here

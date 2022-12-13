@@ -22,27 +22,64 @@ module.exports = {
 			where: {
 				id: req.params.id
 			},
-			attributes: ['id', 'username', 'email']
+			attributes: [
+				'id',
+				'firstname',
+				'lastname',
+				'username',
+				'email',
+				'password',
+				'address',
+				'address2',
+				'city',
+				'state',
+				'zip_code',
+				'country',
+				'phone',
+				'role'
+			]
 		})
 
 		if (!user) {
-			return res.status(404).send({
-				message: 'User not found'
-			})
+			return res.status(404).send({ message: 'User not found' })
 		} else {
 			return res.status(200).send(user)
 		}
 	},
 
 	async createUser(req, res) {
-		console.log(req.body)
+		// console.log(req.body)
 
-		const { username, email, password } = req.body
-
-		await User.create({
+		const {
+			firstname,
+			lastname,
 			username,
 			email,
-			password
+			password,
+			address,
+			address2,
+			city,
+			state,
+			zip_code,
+			country,
+			phone,
+			role
+		} = req.body
+
+		await User.create({
+			firstname,
+			lastname,
+			username,
+			email,
+			password,
+			address,
+			address2,
+			city,
+			state,
+			zip_code,
+			country,
+			phone,
+			role
 		})
 			.then(() => {
 				return res.status(200).send({
@@ -57,7 +94,7 @@ module.exports = {
 	},
 
 	async updateUser(req, res) {
-		console.log(req.body)
+		// console.log(req.body)
 		const { username, email, password } = req.body
 
 		const checkUser = await User.findOne({

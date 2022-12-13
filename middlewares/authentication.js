@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
 				return res.status(401).json({ msg: 'Invalid token' })
 			}
 
-			console.log('decoded>>> ', decoded)
+			// console.log('decoded>>> ', decoded)
 
 			User.findByPk(decoded.id, {}).then(user => {
 				// console.log('user_id>>> ',user.role[0].dataValues.id)

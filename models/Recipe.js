@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
+			Recipe.hasMany(models.User, {
+				foreignKey: 'user_id',
+				as: 'user'
+			})
+
 			// define association here
 		}
 	}
@@ -18,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.INTEGER,
 				primaryKey: true,
 				autoIncrement: true,
+				allowNull: false
+			},
+			idext: {
+				type: DataTypes.INTEGER,
 				allowNull: false
 			},
 			title: {
@@ -33,7 +42,11 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			},
 			instructions: {
-				type: DataTypes.STRING,
+				type: DataTypes.TEXT,
+				allowNull: false
+			},
+			user_id: {
+				type: DataTypes.INTEGER,
 				allowNull: false
 			}
 		},

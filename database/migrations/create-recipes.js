@@ -2,6 +2,8 @@
 
 /** @type {import('sequelize-cli').Migration} */
 
+// PEPITO
+
 module.exports = {
 	async up(queryInterface, Sequelize) {
 		await queryInterface.createTable('recipes', {
@@ -10,6 +12,10 @@ module.exports = {
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER
+			},
+			idext: {
+				type: Sequelize.INTEGER,
+				allowNull: false
 			},
 			title: {
 				allowNull: false,
@@ -25,7 +31,15 @@ module.exports = {
 			},
 			instructions: {
 				allowNull: false,
-				type: Sequelize.STRING
+				type: Sequelize.TEXT
+			},
+			user_id: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+				references: {
+					model: 'users',
+					key: 'id'
+				}
 			},
 			created_at: {
 				allowNull: false,

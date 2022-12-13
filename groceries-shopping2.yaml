@@ -83,37 +83,6 @@ paths:
           headers: {}
       deprecated: false
       security: []
-  /auth/changepassword?email={email}&password={password}&newpassword={newpassword}:
-    get:
-      tags:
-        - auth
-      summary: changePassword
-      operationId: changePassword
-      parameters:
-        - name: email
-          in: query
-          description: ''
-          required: true
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: ''
-          required: true
-          schema:
-            type: string
-        - name: newpassword
-          in: query
-          description: ''
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: ''
-          headers: {}
-      deprecated: false
-
   /users:
     get:
       tags:
@@ -564,6 +533,15 @@ paths:
           schema:
             type: string
             example: 52959
+      # requestBody:
+      #   description: ''
+      #   content:
+      #     application/json:
+      #       schema:
+      #         allOf:
+      #           - $ref: '#/components/schemas/createExternalRecipeRequest'
+      #           - {}
+      #   required: true
       responses:
         '200':
           description: ''
@@ -571,6 +549,76 @@ paths:
       deprecated: false
       security:
         - bearer: []
+  # /recipes/recipes/{id}:
+  # get:
+  #   tags:
+  #     - externalRecipes
+  #   summary: getExternalRecipe
+  #   operationId: getExternalRecipe
+  #   parameters:
+  #     - name: id
+  #       in: path
+  #       description: menu ID
+  #       required: true
+  #       schema:
+  #         type: integer
+  #         format: int64
+  #   responses:
+  #     '200':
+  #       description: ''
+  #       headers: {}
+  #   deprecated: false
+  #   security:
+  #     - bearer: []
+  # put:
+  #   tags:
+  #     - externalRecipes
+  #   summary: updateExternalRecipe
+  #   operationId: updateExternalRecipe
+  #   parameters:
+  #     - name: id
+  #       in: path
+  #       description: menu ID
+  #       required: true
+  #       schema:
+  #         type: integer
+  #         format: int64
+  #   requestBody:
+  #     description: ''
+  #     content:
+  #       application/json:
+  #         schema:
+  #           allOf:
+  #             - $ref: '#/components/schemas/updateExternalRecipeRequest'
+  #             - {}
+  #     required: true
+  #   responses:
+  #     '200':
+  #       description: ''
+  #       headers: {}
+  #   deprecated: false
+  #   security:
+  #     - bearer: []
+  # delete:
+  #   tags:
+  #     - externalRecipes
+  #   summary: deleteExternalRecipe
+  #   operationId: deleteExternalRecipe
+  #   parameters:
+  #     - name: id
+  #       in: path
+  #       description: menu ID
+  #       required: true
+  #       schema:
+  #         type: integer
+  #         format: int64
+  #   responses:
+  #     '200':
+  #       description: ''
+  #       headers: {}
+  #   deprecated: false
+  #   security:
+  #     - bearer: []
   /ingredients:
     get:
       tags:
@@ -723,20 +771,57 @@ paths:
       deprecated: false
       security:
         - bearer: []
-  /ingredients/external/{idext}:
+  /ingredients:
+    get:
+      tags:
+        - ingredients
+      summary: getAllIngredients
+      operationId: getAllIngredients
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
     post:
       tags:
         - external ingredients
-      summary: createExternalIngredient
-      operationId: createExternalIngredient
-      parameters:
+      summary: createIngredient
+      operationId: createIngredient
+      parameters: 
         - name: idext
-          in: path
+          in: query
           description: external id
           required: true
           schema:
             type: integer
             format: int64
+      # requestBody:
+      #   description: ''
+      #   content:
+      #     application/json:
+      #       schema:
+      #         allOf:
+      #           - $ref: '#/components/schemas/createIngredientRequest'
+      #           - example:
+      #               idext: 9
+      #               ingredients:
+      #                 - name: beef
+      #                   amount: 1
+      #                   unit: lb
+      #               servings: 1
+      #               instructions: gril beef
+      #       example:
+      #         idext: 9
+      #         ingredients:
+      #           - name: beef
+      #             amount: 1
+      #             unit: lb
+      #         servings: 1
+      #         instructions: gril beef
+      #   required: true
       responses:
         '200':
           description: ''
@@ -1299,24 +1384,6 @@ components:
           format: int32
         instructions:
           type: string
-    changePasswordRequest:
-      title: changePasswordRequest
-      required:
-        - email
-        - password
-        - newpassword
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-        newpassword:
-          type: string
-      example:
-        email: user4@email.com
-        password: secret
-        newPassword: secret2
     createMarketRequest:
       title: createMarketRequest
       required:

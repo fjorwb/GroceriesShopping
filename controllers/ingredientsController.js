@@ -12,13 +12,23 @@ module.exports = {
 	},
 
 	async getIngredientById(req, res) {
-		const ingredient = await Ingredient.findByPk(req.params.id)
+		const ingredient = await Ingredient.findOne({
+			where: {
+				id: req.params.id
+			}
+		})
 			.then(ingredient => {
-				res.status(200).json(ingredient)
+				return ingredient
 			})
 			.catch(err => {
-				res.status(500).json(err)
+				return res.status(500).send({ message: err.message })
 			})
+
+		if (!ingredient) {
+			return res.status(404).send({ message: 'ingredient not found' })
+		} else {
+			return res.status(200).send(ingredient)
+		}
 	},
 
 	async createIngredient(req, res) {

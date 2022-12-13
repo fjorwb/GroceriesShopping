@@ -12,13 +12,23 @@ module.exports = {
 	},
 
 	async getProductById(req, res) {
-		const product = await Product.findByPk(req.params.id)
+		const product = await Product.findOne({
+			where: {
+				id: req.params.id
+			}
+		})
 			.then(product => {
-				return res.status(200).json(product)
+				return product
 			})
 			.catch(error => {
 				return res.status(500).json(error)
 			})
+
+		if (!product) {
+			return res.status(404).json({ message: 'product not found' })
+		} else {
+			return res.status(200).json(product)
+		}
 	},
 
 	async createProduct(req, res) {

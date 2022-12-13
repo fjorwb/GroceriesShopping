@@ -12,13 +12,23 @@ module.exports = {
 	},
 
 	async getShoppingListById(req, res) {
-		const shoppinglist = await ShoppingList.findByPk(req.params.id)
+		const shoppinglist = await ShoppingList.findOne({
+			where: {
+				id: req.params.id
+			}
+		})
 			.then(shoppinglist => {
-				return res.status(200).json(shoppinglist)
+				return shoppinglist
 			})
-			.catch(err => {
-				return res.status(500).json(err)
+			.catch(error => {
+				return res.status(500).json(error)
 			})
+
+		if (!shoppinglist) {
+			return res.status(404).json({ message: 'shopping list not found' })
+		} else {
+			return res.status(200).json(shoppinglist)
+		}
 	},
 
 	async createShoppingList(req, res) {
@@ -42,7 +52,7 @@ module.exports = {
 	},
 
 	async updateShoppingList(req, res) {
-		console.log(req.params.id)
+		// console.log(req.params.id)
 
 		const checkShoppingList = await ShoppingList.findOne({
 			where: {
@@ -50,7 +60,7 @@ module.exports = {
 			}
 		})
 
-		console.log(!checkShoppingList)
+		// console.log(!checkShoppingList)
 
 		if (!checkShoppingList) {
 			return res.status(500).json({ message: 'shoppingList not found' })

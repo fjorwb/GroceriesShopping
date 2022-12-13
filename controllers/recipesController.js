@@ -6,7 +6,7 @@ module.exports = {
 	async getAllRecipes(req, res) {
 		const recipes = await Recipe.findAll({
 			where: {
-				userId: req.user.id
+				user_id: req.user.id
 			}
 		})
 			.then(recipes => {

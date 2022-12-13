@@ -4,7 +4,11 @@ const { Recipe } = require('../models/index')
 
 module.exports = {
 	async getAllRecipes(req, res) {
-		const recipes = await Recipe.findAll({})
+		const recipes = await Recipe.findAll({
+			where: {
+				userId: req.user.id
+			}
+		})
 			.then(recipes => {
 				res.status(200).send(recipes)
 			})

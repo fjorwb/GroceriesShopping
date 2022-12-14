@@ -38,6 +38,22 @@ module.exports = {
 	},
 
 	async createRecipe(req, res) {
+		const checkRecipe = await Recipe.findOne({
+			where: {
+				idext: req.body.idext
+			}
+		})
+			.then(recipe => {
+				return recipe
+			})
+			.catch(err => {
+				return res.status(500).json({ message: err.message })
+			})
+
+		if (checkRecipe) {
+			return res.status(400).json({ message: 'recipe already exists' })
+		}
+
 		const recipe = await Recipe.create(req.body)
 			.then(recipe => {
 				res.status(200).send(recipe)

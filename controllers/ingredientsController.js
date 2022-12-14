@@ -49,7 +49,7 @@ module.exports = {
 				return res.status(201).json({ message: 'ingredient successfully created' })
 			})
 			.catch(err => {
-				return res.status(500).json(err)
+				return res.status(500).json({ message: err.message })
 			})
 	},
 

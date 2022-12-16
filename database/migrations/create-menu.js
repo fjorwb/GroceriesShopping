@@ -21,6 +21,12 @@ module.exports = {
 			recipe_id: {
 				type: Sequelize.INTEGER
 			},
+			recipe_title: {
+				type: Sequelize.STRING
+			},
+			servings: {
+				type: Sequelize.INTEGER
+			},
 			created_at: {
 				allowNull: false,
 				type: Sequelize.DATE

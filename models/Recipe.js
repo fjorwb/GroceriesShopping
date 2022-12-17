@@ -10,8 +10,6 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			Recipe.belongsTo(models.User)
-
-			// define association here
 		}
 	}
 	Recipe.init(

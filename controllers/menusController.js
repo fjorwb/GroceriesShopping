@@ -26,6 +26,7 @@ module.exports = {
 	},
 
 	async createMenu(req, res) {
+		console.log(req.body)
 		const checkMenu = await Menu.findOne({ where: { date: req.body.date, meal: req.body.meal } })
 			.then(menu => {
 				return menu

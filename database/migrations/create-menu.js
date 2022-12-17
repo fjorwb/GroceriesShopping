@@ -33,7 +33,8 @@ module.exports = {
 				references: {
 					model: 'users',
 					key: 'id'
-				},
+				}
+			},
 			created_at: {
 				allowNull: false,
 				type: Sequelize.DATE

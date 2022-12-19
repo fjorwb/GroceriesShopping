@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			// define association here
+			Market.hasMany(models.User)
 		}
 	}
 	Market.init(
@@ -39,6 +39,10 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			password: {
 				type: DataTypes.STRING,
+				allowNull: false
+			},
+			user_id: {
+				type: DataTypes.INTEGER,
 				allowNull: false
 			}
 		},

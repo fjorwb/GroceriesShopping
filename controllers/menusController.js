@@ -26,18 +26,6 @@ module.exports = {
 	},
 
 	async createMenu(req, res) {
-		const checkMenu = await Menu.findOne({ where: { date: req.body.date, meal: req.body.meal } })
-			.then(menu => {
-				return menu
-			})
-			.catch(err => {
-				res.status(500).json(err)
-			})
-
-		if (checkMenu) {
-			return res.status(400).json({ message: 'menu already exists' })
-		}
-
 		const menu = await Menu.create(req.body)
 			.then(menu => {
 				res.status(201).send({ message: 'meal created successfully', menu })

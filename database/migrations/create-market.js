@@ -32,10 +32,6 @@ module.exports = {
 				type: Sequelize.STRING,
 				allowNull: false
 			},
-			market_type: {
-				type: Sequelize.STRING,
-				allowNull: false
-			},
 			user_id: {
 				type: Sequelize.INTEGER,
 				allowNull: false

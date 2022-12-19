@@ -9,18 +9,21 @@ module.exports = {
 				{
 					barcode: '1234567890123',
 					quantity: 1,
+					user_id: 2,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
 				{
 					barcode: '1234567890124',
 					quantity: 2,
+					user_id: 2,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
 				{
 					barcode: '1234567890125',
 					quantity: 3,
+					user_id: 2,
 					created_at: new Date(),
 					updated_at: new Date()
 				}

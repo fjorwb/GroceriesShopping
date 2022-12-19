@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			// define association here
+			ShoppingList.belongsTo(models.User)
 		}
 	}
 	ShoppingList.init(
@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false
 			},
 			quantity: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
+			user_id: {
 				type: DataTypes.INTEGER,
 				allowNull: false
 			}

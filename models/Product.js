@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			// define association here
+			Product.belongsTo(models.User)
 		}
 	}
 	Product.init(
@@ -37,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			presentation: {
 				type: DataTypes.STRING,
+				allowNull: false
+			},
+			user_id: {
+				type: DataTypes.INTEGER,
 				allowNull: false
 			}
 		},

@@ -21,6 +21,9 @@ module.exports = {
 			recipe_id: {
 				type: Sequelize.INTEGER
 			},
+			idext: {
+				type: Sequelize.INTEGER
+			},
 			recipe_title: {
 				type: Sequelize.STRING
 			},

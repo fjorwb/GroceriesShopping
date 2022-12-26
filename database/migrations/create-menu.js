@@ -27,6 +27,9 @@ module.exports = {
 			servings: {
 				type: Sequelize.INTEGER
 			},
+			factor: {
+				type: Sequelize.INTEGER
+			},
 			user_id: {
 				allowNull: false,
 				type: Sequelize.INTEGER,

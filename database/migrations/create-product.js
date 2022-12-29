@@ -27,6 +27,9 @@ module.exports = {
 			category: {
 				type: Sequelize.STRING
 			},
+			market_id: {
+				type: Sequelize.INTEGER
+			},
 			user_id: {
 				type: Sequelize.INTEGER
 			},

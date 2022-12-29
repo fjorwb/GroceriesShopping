@@ -13,6 +13,7 @@ module.exports = {
 					unit: 'Unit 1',
 					presentation: 'Presentation 1',
 					category: 'vegetables',
+					market_id: 1,
 					user_id: 2,
 					created_at: new Date(),
 					updated_at: new Date()
@@ -24,6 +25,7 @@ module.exports = {
 					unit: 'Unit 2',
 					presentation: 'Presentation 2',
 					category: 'vegetables',
+					market_id: 1,
 					user_id: 2,
 					created_at: new Date(),
 					updated_at: new Date()
@@ -35,6 +37,7 @@ module.exports = {
 					unit: 'Unit 3',
 					presentation: 'Presentation 3',
 					category: 'fruit',
+					market_id: 1,
 					user_id: 2,
 					created_at: new Date(),
 					updated_at: new Date()

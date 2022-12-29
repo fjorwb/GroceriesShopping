@@ -63,7 +63,7 @@ module.exports = {
 			})
 	},
 
-	async deleteProduct(req, res) {
+	async deleteCategory(req, res) {
 		const checkCategory = await ProductCategory.findByPk(req.params.id)
 
 		if (!checkCategory) {

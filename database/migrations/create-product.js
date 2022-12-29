@@ -24,6 +24,9 @@ module.exports = {
 			presentation: {
 				type: Sequelize.STRING
 			},
+			category: {
+				type: Sequelize.STRING
+			},
 			user_id: {
 				type: Sequelize.INTEGER
 			},

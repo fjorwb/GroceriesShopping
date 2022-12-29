@@ -17,6 +17,7 @@ const marketsRouter = require('./routes/markets')
 const productsRouter = require('./routes/products')
 const shoppinglistsRouter = require('./routes/shoppinglists')
 const menusRouter = require('./routes/menus')
+const categoriesRouter = require('./routes/productcategories')
 const docsRouter = require('./routes/docs')
 
 const authenticate = require('./middlewares/authentication')
@@ -40,6 +41,7 @@ app.use('/markets', authenticate, marketsRouter)
 app.use('/products', authenticate, productsRouter)
 app.use('/shoppinglists', authenticate, shoppinglistsRouter)
 app.use('/menus', authenticate, menusRouter)
+app.use('/categories', authenticate, categoriesRouter)
 app.use('/docs', docsRouter)
 
 app.get('/', function (req, res) {

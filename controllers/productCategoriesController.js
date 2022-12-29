@@ -38,7 +38,7 @@ module.exports = {
 			return res.status(400).json({ message: 'category already exists' })
 		}
 
-		const category = await Product.create(req.body)
+		const category = await ProductCategory.create(req.body)
 			.then(category => {
 				return res.status(201).send({ message: 'category created successfully', category })
 			})
@@ -54,7 +54,7 @@ module.exports = {
 			return res.status(404).json({ message: 'category not found' })
 		}
 
-		const category = await Product.update(req.body, { where: { id: req.params.id } })
+		const category = await ProductCategory.update(req.body, { where: { id: req.params.id } })
 			.then(category => {
 				return res.status(200).send({ message: 'category updated successfully' })
 			})
@@ -64,13 +64,13 @@ module.exports = {
 	},
 
 	async deleteProduct(req, res) {
-		const checkProduct = await Product.findByPk(req.params.id)
+		const checkCategory = await ProductCategory.findByPk(req.params.id)
 
-		if (!checkProduct) {
+		if (!checkCategory) {
 			return res.status(404).json({ message: 'category not found' })
 		}
 
-		const category = await Product.destroy({ where: { id: req.params.id } })
+		const category = await ProductCategory.destroy({ where: { id: req.params.id } })
 			.then(category => {
 				return res.status(200).send({ message: 'category deleted successfully' })
 			})

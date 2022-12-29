@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {}
 	}
-	Product.init(
+	ProductCategory.init(
 		{
 			id: {
 				type: DataTypes.INTEGER,

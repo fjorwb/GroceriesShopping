@@ -3,8 +3,8 @@ const { ProductCategory } = require('../models')
 module.exports = {
 	async getAllCategories(req, res) {
 		const categories = await ProductCategory.findAll()
-			.then(category => {
-				return res.status(200).json(category)
+			.then(categories => {
+				return res.status(200).json(categories)
 			})
 			.catch(error => {
 				return res.status(500).json(error)

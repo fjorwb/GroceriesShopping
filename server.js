@@ -41,7 +41,7 @@ app.use('/markets', authenticate, marketsRouter)
 app.use('/products', authenticate, productsRouter)
 app.use('/shoppinglists', authenticate, shoppinglistsRouter)
 app.use('/menus', authenticate, menusRouter)
-app.use('/categories', authenticate, categoriesRouter)
+app.use('/productcategories', authenticate, categoriesRouter)
 app.use('/docs', docsRouter)
 
 app.get('/', function (req, res) {

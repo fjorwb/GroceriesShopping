@@ -24,6 +24,12 @@ module.exports = {
 			presentation: {
 				type: Sequelize.STRING
 			},
+			category: {
+				type: Sequelize.STRING
+			},
+			market_id: {
+				type: Sequelize.INTEGER
+			},
 			user_id: {
 				type: Sequelize.INTEGER
 			},

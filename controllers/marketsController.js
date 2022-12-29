@@ -3,9 +3,9 @@ const { Market } = require('../models')
 module.exports = {
 	async getAllMarkets(req, res) {
 		const markets = await Market.findAll()
-			.then(markets => {
-				return markets
-			})
+			// .then(markets => {
+			// 	return markets
+			// })
 			.then(markets => {
 				res.status(200).json(markets)
 			})

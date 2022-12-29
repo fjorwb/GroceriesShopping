@@ -35,11 +35,19 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.INTEGER,
 				allowNull: false
 			},
+			idext: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
 			recipe_title: {
 				type: DataTypes.STRING,
 				allowNull: false
 			},
 			servings: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
+			factor: {
 				type: DataTypes.INTEGER,
 				allowNull: false
 			},

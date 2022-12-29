@@ -21,10 +21,16 @@ module.exports = {
 			recipe_id: {
 				type: Sequelize.INTEGER
 			},
+			idext: {
+				type: Sequelize.INTEGER
+			},
 			recipe_title: {
 				type: Sequelize.STRING
 			},
 			servings: {
+				type: Sequelize.INTEGER
+			},
+			factor: {
 				type: Sequelize.INTEGER
 			},
 			user_id: {

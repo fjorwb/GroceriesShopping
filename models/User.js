@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			User.hasMany(models.Recipe)
-			// define association here
+			// , User.hasMany(models.Market)
 		}
 	}
 	User.init(

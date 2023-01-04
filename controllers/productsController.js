@@ -56,7 +56,7 @@ module.exports = {
 
 		const product = await Product.update(req.body, { where: { id: req.params.id } })
 			.then(product => {
-				return res.status(200).send({ message: 'product updated successfully' })
+				return res.status(200).send({ message: 'product updated successfully', product })
 			})
 			.catch(error => {
 				return res.status(500).json(error)

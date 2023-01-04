@@ -32,11 +32,11 @@ module.exports = {
 	},
 
 	async createCategory(req, res) {
-		const checkCategory = await ProductCategory.findOne({ where: { id: req.body.id } })
+		// const checkCategory = await ProductCategory.findOne({ where: { id: req.body.id } })
 
-		if (checkCategory) {
-			return res.status(400).json({ message: 'category already exists' })
-		}
+		// if (checkCategory) {
+		// 	return res.status(400).json({ message: 'category already exists' })
+		// }
 
 		const category = await ProductCategory.create(req.body)
 			.then(category => {

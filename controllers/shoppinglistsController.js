@@ -1,12 +1,12 @@
-const { ShoppingList } = require('../models')
+const {ShoppingList} = require('../models')
 
 module.exports = {
 	async getAllShoppingLists(req, res) {
 		await ShoppingList.findAll()
-			.then(shoppingLists => {
+			.then((shoppingLists) => {
 				return res.status(200).json(shoppingLists)
 			})
-			.catch(error => {
+			.catch((error) => {
 				return res.status(500).json(error)
 			})
 	},
@@ -17,36 +17,39 @@ module.exports = {
 				id: req.params.id
 			}
 		})
-			.then(shoppinglist => {
+			.then((shoppinglist) => {
 				return shoppinglist
 			})
-			.catch(error => {
+			.catch((error) => {
 				return res.status(500).json(error)
 			})
 
 		if (!shoppinglist) {
-			return res.status(404).json({ message: 'shopping list not found' })
+			return res.status(404).json({message: 'shopping list not found'})
 		} else {
 			return res.status(200).json(shoppinglist)
 		}
 	},
 
 	async createShoppingList(req, res) {
-		const checkShoppingList = await ShoppingList.findOne({
-			where: {
-				barcode: req.body.barcode
-			}
-		})
+		console.log(req.body)
+		// const checkShoppingList = await ShoppingList.findOne({
+		// 	where: {
+		// 		barcode: req.body.barcode
+		// 	}
+		// })
 
-		if (checkShoppingList) {
-			return res.status(500).json({ message: 'shoppingList already exists' })
-		}
+		// if (checkShoppingList) {
+		// 	return res.status(500).json({ message: 'shoppingList already exists' })
+		// }
 
 		const shoppinglist = await ShoppingList.create(req.body)
-			.then(shoppinglist => {
-				return res.status(201).send({ message: 'shoppingList created successfully', shoppinglist })
+			.then((shoppinglist) => {
+				return res
+					.status(201)
+					.send({message: 'shoppingList created successfully', shoppinglist})
 			})
-			.catch(err => {
+			.catch((err) => {
 				return res.status(500).json(err)
 			})
 	},
@@ -63,7 +66,7 @@ module.exports = {
 		// console.log(!checkShoppingList)
 
 		if (!checkShoppingList) {
-			return res.status(500).json({ message: 'shoppingList not found' })
+			return res.status(500).json({message: 'shoppingList not found'})
 		}
 
 		const shoppinglist = await ShoppingList.update(req.body, {
@@ -71,10 +74,10 @@ module.exports = {
 				id: req.params.id
 			}
 		})
-			.then(shoppinglist => {
-				res.status(200).send({ message: 'shoppingList updated successfully' })
+			.then((shoppinglist) => {
+				res.status(200).send({message: 'shoppingList updated successfully'})
 			})
-			.catch(err => {
+			.catch((err) => {
 				res.status(500).json(err)
 			})
 	},
@@ -83,7 +86,7 @@ module.exports = {
 		const checkShoppingList = await ShoppingList.findByPk(req.params.id)
 
 		if (!checkShoppingList) {
-			return res.status(404).json({ message: 'shoppingList not found' })
+			return res.status(404).json({message: 'shoppingList not found'})
 		}
 
 		const shoppinglist = await ShoppingList.destroy({
@@ -91,10 +94,10 @@ module.exports = {
 				id: req.params.id
 			}
 		})
-			.then(shoppinglist => {
-				res.status(200).send({ message: 'shoppingList deleted successfully' })
+			.then((shoppinglist) => {
+				res.status(200).send({message: 'shoppingList deleted successfully'})
 			})
-			.catch(err => {
+			.catch((err) => {
 				res.status(500).json(err)
 			})
 	}

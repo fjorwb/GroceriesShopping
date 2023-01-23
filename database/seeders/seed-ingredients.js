@@ -27,6 +27,7 @@ module.exports = {
 					]),
 					servings: 4,
 					instructions: 'cook chicken',
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -51,6 +52,7 @@ module.exports = {
 					]),
 					servings: 4,
 					instructions: 'cook beef',
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -75,6 +77,7 @@ module.exports = {
 					]),
 					servings: 4,
 					instructions: 'cook pork',
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				}

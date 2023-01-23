@@ -1,5 +1,5 @@
 'use strict'
-const { Model } = require('sequelize')
+const {Model} = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
 	class Ingredient extends Model {
@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			instructions: {
 				type: DataTypes.TEXT,
+				allowNull: false
+			},
+			user_id: {
+				type: DataTypes.INTEGER,
 				allowNull: false
 			}
 		},

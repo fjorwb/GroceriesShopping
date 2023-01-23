@@ -9,11 +9,9 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
-			barcode: {
-				type: Sequelize.STRING
-			},
-			quantity: {
-				type: Sequelize.INTEGER
+			shop_list: {
+				type: Sequelize.JSON
+				// allowNull: false
 			},
 			user_id: {
 				type: Sequelize.INTEGER

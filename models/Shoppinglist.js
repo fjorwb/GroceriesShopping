@@ -1,5 +1,5 @@
 'use strict'
-const { Model } = require('sequelize')
+const {Model} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
 	class ShoppingList extends Model {
 		/**
@@ -19,13 +19,9 @@ module.exports = (sequelize, DataTypes) => {
 				autoIncrement: true,
 				allowNull: false
 			},
-			barcode: {
-				type: DataTypes.STRING,
-				allowNull: false
-			},
-			quantity: {
-				type: DataTypes.INTEGER,
-				allowNull: false
+			shop_list: {
+				type: DataTypes.JSON
+				// allowNull: false
 			},
 			user_id: {
 				type: DataTypes.INTEGER,

@@ -10,6 +10,9 @@ module.exports = {
 				type: Sequelize.INTEGER
 			},
 			barcode: {
+				type: Sequelize.STRING
+			},
+			extid: {
 				type: Sequelize.INTEGER
 			},
 			name: {
@@ -26,6 +29,10 @@ module.exports = {
 			},
 			category: {
 				type: Sequelize.STRING
+			},
+			price: {
+				type: Sequelize.DECIMAL(10, 2),
+				defaultValue: 0.0
 			},
 			market_id: {
 				type: Sequelize.INTEGER

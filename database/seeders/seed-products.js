@@ -8,37 +8,40 @@ module.exports = {
 			[
 				{
 					barcode: '123456789',
+					extid: 123456789,
 					name: 'Product 1',
 					description: 'Product 1 description',
 					unit: 'Unit 1',
 					presentation: 'Presentation 1',
 					category: 'vegetables',
 					market_id: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
 				{
 					barcode: '987654321',
+					extid: 987654321,
 					name: 'Product 2',
 					description: 'Product 2 description',
 					unit: 'Unit 2',
 					presentation: 'Presentation 2',
 					category: 'vegetables',
 					market_id: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
 				{
 					barcode: '123456789',
+					extid: 123456789,
 					name: 'Product 3',
 					description: 'Product 3 description',
 					unit: 'Unit 3',
 					presentation: 'Presentation 3',
 					category: 'fruit',
 					market_id: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				}

@@ -1,12 +1,16 @@
-const { Product } = require('../models')
+const {Product} = require('../models')
 
 module.exports = {
 	async getAllProducts(req, res) {
-		const products = await Product.findAll()
-			.then(products => {
+		const products = await Product.findAll({
+			where: {
+				user_id: req.user.id
+			}
+		})
+			.then((products) => {
 				return res.status(200).json(products)
 			})
-			.catch(error => {
+			.catch((error) => {
 				return res.status(500).json(error)
 			})
 	},
@@ -17,32 +21,34 @@ module.exports = {
 				id: req.params.id
 			}
 		})
-			.then(product => {
+			.then((product) => {
 				return product
 			})
-			.catch(error => {
+			.catch((error) => {
 				return res.status(500).json(error)
 			})
 
 		if (!product) {
-			return res.status(404).json({ message: 'product not found' })
+			return res.status(404).json({message: 'product not found'})
 		} else {
 			return res.status(200).json(product)
 		}
 	},
 
 	async createProduct(req, res) {
-		const checkProduct = await Product.findOne({ where: { barcode: req.body.barcode } })
+		const checkProduct = await Product.findOne({where: {barcode: req.body.barcode}})
 
-		if (checkProduct) {
-			return res.status(400).json({ message: 'product already exists' })
+		// console.log('CHECK >>>>', checkProduct.dataValues.barcode)
+
+		if (checkProduct && checkProduct.dataValues.barcode !== 'XOXO') {
+			return res.status(400).json({message: 'product already exists'})
 		}
 
 		const product = await Product.create(req.body)
-			.then(product => {
-				return res.status(201).send({ message: 'product created successfully', product })
+			.then((product) => {
+				return res.status(201).send({message: 'product created successfully', product})
 			})
-			.catch(error => {
+			.catch((error) => {
 				return res.status(500).json(error)
 			})
 	},
@@ -51,14 +57,14 @@ module.exports = {
 		const checkProduct = await Product.findByPk(req.params.id)
 
 		if (!checkProduct) {
-			return res.status(404).json({ message: 'product not found' })
+			return res.status(404).json({message: 'product not found'})
 		}
 
-		const product = await Product.update(req.body, { where: { id: req.params.id } })
-			.then(product => {
-				return res.status(200).send({ message: 'product updated successfully', product })
+		const product = await Product.update(req.body, {where: {id: req.params.id}})
+			.then((product) => {
+				return res.status(200).send({message: 'product updated successfully', product})
 			})
-			.catch(error => {
+			.catch((error) => {
 				return res.status(500).json(error)
 			})
 	},
@@ -67,14 +73,14 @@ module.exports = {
 		const checkProduct = await Product.findByPk(req.params.id)
 
 		if (!checkProduct) {
-			return res.status(404).json({ message: 'product not found' })
+			return res.status(404).json({message: 'product not found'})
 		}
 
-		const product = await Product.destroy({ where: { id: req.params.id } })
-			.then(product => {
-				return res.status(200).send({ message: 'product deleted successfully' })
+		const product = await Product.destroy({where: {id: req.params.id}})
+			.then((product) => {
+				return res.status(200).send({message: 'product deleted successfully'})
 			})
-			.catch(error => {
+			.catch((error) => {
 				return res.status(500).json(error)
 			})
 	}

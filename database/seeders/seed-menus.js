@@ -15,7 +15,7 @@ module.exports = {
 					recipe_title: 'Recipe 1',
 					servings: 4,
 					factor: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -28,7 +28,7 @@ module.exports = {
 					recipe_title: 'Recipe 2',
 					servings: 4,
 					factor: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -41,7 +41,7 @@ module.exports = {
 					recipe_title: 'Recipe 3',
 					servings: 4,
 					factor: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -55,7 +55,7 @@ module.exports = {
 					recipe_title: 'Recipe 4',
 					servings: 4,
 					factor: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -69,7 +69,7 @@ module.exports = {
 					recipe_title: 'Recipe 5',
 					servings: 4,
 					factor: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -83,7 +83,7 @@ module.exports = {
 					recipe_title: 'Recipe 6',
 					servings: 3,
 					factor: 1,
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				}

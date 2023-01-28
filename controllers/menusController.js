@@ -2,6 +2,7 @@ const {Menu} = require('../models')
 
 module.exports = {
 	async getAllMenus(req, res) {
+		console.log('REQ USER ID', req.user.id)
 		const menus = await Menu.findAll({
 			where: {
 				user_id: req.user.id

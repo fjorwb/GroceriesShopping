@@ -17,7 +17,7 @@ module.exports = {
 					email: 'market1@market1.com',
 					website: 'http://market1.com',
 					password: 'password',
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -32,7 +32,7 @@ module.exports = {
 					email: 'market2@market2.com',
 					website: 'http://market2.com',
 					password: 'password',
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
@@ -47,7 +47,7 @@ module.exports = {
 					email: 'market3@market3.com',
 					website: 'http://market3.com',
 					password: 'password',
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				}

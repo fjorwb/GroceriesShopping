@@ -9,6 +9,10 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
+			shop_list_id: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
 			shop_list: {
 				type: Sequelize.JSON
 				// allowNull: false

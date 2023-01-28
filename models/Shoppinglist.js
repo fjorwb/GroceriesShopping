@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
 				autoIncrement: true,
 				allowNull: false
 			},
+			shop_list_id: {
+				type: DataTypes.STRING,
+				allowNull: false
+			},
 			shop_list: {
 				type: DataTypes.JSON
 				// allowNull: false

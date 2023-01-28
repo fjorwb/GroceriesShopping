@@ -7,6 +7,7 @@ module.exports = {
 			'shoppinglists',
 			[
 				{
+					shop_list_id: 'w012022',
 					shop_list: JSON.stringify([
 						{
 							name: 'chicken',
@@ -24,11 +25,12 @@ module.exports = {
 							unit: 'tsp'
 						}
 					]),
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
 				{
+					shop_list_id: 'w022022',
 					shop_list: JSON.stringify([
 						{
 							name: 'chicken',
@@ -46,11 +48,12 @@ module.exports = {
 							unit: 'tsp'
 						}
 					]),
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				},
 				{
+					shop_list_id: 'w032022',
 					shop_list: JSON.stringify([
 						{
 							name: 'chicken',
@@ -68,7 +71,7 @@ module.exports = {
 							unit: 'tsp'
 						}
 					]),
-					user_id: 2,
+					user_id: 1,
 					created_at: new Date(),
 					updated_at: new Date()
 				}

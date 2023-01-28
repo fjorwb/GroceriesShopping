@@ -2,7 +2,11 @@ const {ShoppingList} = require('../models')
 
 module.exports = {
 	async getAllShoppingLists(req, res) {
-		await ShoppingList.findAll()
+		await ShoppingList.findAll({
+			where: {
+				user_id: req.user.id
+			}
+		})
 			.then((shoppingLists) => {
 				return res.status(200).json(shoppingLists)
 			})
@@ -31,17 +35,37 @@ module.exports = {
 		}
 	},
 
+	async getShoppingListByShopListId(req, res) {
+		const shoppinglist = await ShoppingList.findOne({
+			where: {
+				shop_list_id: req.params.id
+			}
+		})
+			.then((shoppinglist) => {
+				return shoppinglist
+			})
+			.catch((error) => {
+				return res.status(500).json(error)
+			})
+
+		if (!shoppinglist) {
+			return res.status(404).json({message: 'shopping list not found'})
+		} else {
+			return res.status(200).json(shoppinglist)
+		}
+	},
+
 	async createShoppingList(req, res) {
 		console.log(req.body)
-		// const checkShoppingList = await ShoppingList.findOne({
-		// 	where: {
-		// 		barcode: req.body.barcode
-		// 	}
-		// })
+		const checkShoppingList = await ShoppingList.findOne({
+			where: {
+				shop_list_id: req.body.shop_list_id
+			}
+		})
 
-		// if (checkShoppingList) {
-		// 	return res.status(500).json({ message: 'shoppingList already exists' })
-		// }
+		if (checkShoppingList) {
+			return res.status(500).json({message: 'shoppingList already exists'})
+		}
 
 		const shoppinglist = await ShoppingList.create(req.body)
 			.then((shoppinglist) => {
@@ -55,11 +79,11 @@ module.exports = {
 	},
 
 	async updateShoppingList(req, res) {
-		// console.log(req.params.id)
+		console.log('REQ PARAMS', req.params.id)
 
 		const checkShoppingList = await ShoppingList.findOne({
 			where: {
-				id: req.params.id
+				shop_list_id: req.params.id
 			}
 		})
 
@@ -71,7 +95,7 @@ module.exports = {
 
 		const shoppinglist = await ShoppingList.update(req.body, {
 			where: {
-				id: req.params.id
+				shop_list_id: req.params.id
 			}
 		})
 			.then((shoppinglist) => {

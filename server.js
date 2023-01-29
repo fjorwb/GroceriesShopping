@@ -7,7 +7,7 @@ const morgan = require('morgan')
 
 const app = express()
 
-const { sequelize } = require('./models/index')
+const {sequelize} = require('./models/index')
 
 const authRouter = require('./routes/auth')
 const usersRouter = require('./routes/users')
@@ -18,13 +18,14 @@ const productsRouter = require('./routes/products')
 const shoppinglistsRouter = require('./routes/shoppinglists')
 const menusRouter = require('./routes/menus')
 const categoriesRouter = require('./routes/productcategories')
+const productmocksRouter = require('./routes/productmocks')
 const docsRouter = require('./routes/docs')
 
 const authenticate = require('./middlewares/authentication')
 
 // Middleware
 app.use(bodyParser.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({extended: true}))
 app.use(cors())
 app.use(morgan('dev'))
 
@@ -42,6 +43,7 @@ app.use('/products', authenticate, productsRouter)
 app.use('/shoppinglists', authenticate, shoppinglistsRouter)
 app.use('/menus', authenticate, menusRouter)
 app.use('/productcategories', authenticate, categoriesRouter)
+app.use('/productmocks', authenticate, productmocksRouter)
 app.use('/docs', docsRouter)
 
 app.get('/', function (req, res) {
@@ -59,6 +61,6 @@ sequelize
 	.then(() => {
 		console.log('Connection has been established successfully.')
 	})
-	.catch(err => {
+	.catch((err) => {
 		console.error('Unable to connect to the database:', err)
 	})

@@ -18,21 +18,25 @@ module.exports = {
 			name: {
 				type: Sequelize.STRING
 			},
-			description: {
+			presentation: {
 				type: Sequelize.STRING
 			},
 			unit: {
 				type: Sequelize.STRING
 			},
-			presentation: {
-				type: Sequelize.STRING
-			},
-			category: {
-				type: Sequelize.STRING
+			amount: {
+				type: Sequelize.DECIMAL(10, 3),
+				defaultValue: 0
 			},
 			price: {
-				type: Sequelize.DECIMAL
+				type: Sequelize.DECIMAL(10, 2),
+				defaultValue: 0
 			},
+			total: {
+				type: Sequelize.DECIMAL(10, 2),
+				defaultValue: 0
+			},
+
 			market_id: {
 				type: Sequelize.INTEGER
 			},

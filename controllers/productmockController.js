@@ -24,7 +24,12 @@ module.exports = {
 			})
 	},
 	async createProductMocks(req, res) {
-		const checkProductMock = await ProductMock.findOne({where: {barcode: req.body.barcode}})
+		const checkProductMock = await ProductMock.findOne({
+			where: {
+				idext: req.body.idext,
+				market_id: req.body.market_id
+			}
+		})
 
 		if (checkProductMock) {
 			return res.status(400).json({message: 'product already exists'})

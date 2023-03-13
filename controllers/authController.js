@@ -1,49 +1,47 @@
-const { User } = require('../models/index')
+const { User } = require( '../models/index' )
 
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const authConfig = require('../config/authConfig')
+const bcrypt = require( 'bcrypt' )
+const jwt = require( 'jsonwebtoken' )
+const authConfig = require( '../config/authConfig' )
 
 module.exports = {
 	// GET /auth
-	login(req, res) {
+	login ( req, res ) {
 		const { email, password } = req.body
 
-		// console.log(email, password)
-
-		const user = User.findOne({
+		const user = User.findOne( {
 			where: {
 				email: email
 			}
-		}).then(user => {
-			if (!user) {
-				return res.status(404).send({
+		} ).then( user => {
+			if ( !user ) {
+				return res.status( 404 ).send( {
 					message: 'User not found'
-				})
+				} )
 			}
 
-			const passwordIsValid = bcrypt.compareSync(password, user.password)
+			const passwordIsValid = bcrypt.compareSync( password, user.password )
 
-			if (!passwordIsValid) {
-				return res.status(401).json({ msg: 'Invalid Password!', ok: false })
+			if ( !passwordIsValid ) {
+				return res.status( 401 ).json( { msg: 'Invalid Password!', ok: false } )
 			}
 
-			const token = jwt.sign({ id: user.id, email: user.email }, authConfig.secret, {
+			const token = jwt.sign( { id: user.id, email: user.email }, authConfig.secret, {
 				expiresIn: 86400 // 24 hours
-			})
+			} )
 
-			res.cookie('accessToken', { user_id: user.id, token }, { maxAge: 900000, httpOnly: true })
+			res.cookie( 'accessToken', { user_id: user.id, token }, { maxAge: 900000, httpOnly: true } )
 
-			res.status(200).json({
+			res.status( 200 ).json( {
 				id: user.id,
 				email: user.email,
 				accessToken: token,
 				role: user.role
-			})
-		})
+			} )
+		} )
 	},
 
-	async register(req, res) {
+	async register ( req, res ) {
 		const {
 			firstname,
 			lastname,
@@ -60,34 +58,28 @@ module.exports = {
 			role
 		} = req.body
 
-		// console.log(req.body)
-
-		const checkUser = await User.findOne({
+		const checkUser = await User.findOne( {
 			where: {
 				email: email
 			}
-		})
-			.then(user => {
+		} )
+			.then( user => {
 				return user
-			})
-			.catch(err => {
-				return res.status(500).send(err)
-			})
+			} )
+			.catch( err => {
+				return res.status( 500 ).send( err )
+			} )
 
-		// console.log(!checkUser)
-
-		if (checkUser) {
-			return res.status(400).send({ message: 'user already exists' })
+		if ( checkUser ) {
+			return res.status( 400 ).send( { message: 'user already exists' } )
 		}
 
-		// console.log('user does not exist')
+		const salt = bcrypt.genSaltSync( 10 )
+		const hash = bcrypt.hashSync( password, salt )
 
-		const salt = bcrypt.genSaltSync(10)
-		const hash = bcrypt.hashSync(password, salt)
+		const passwordEncrypted = bcrypt.hashSync( req.body.password, Number( authConfig.rounds ) )
 
-		const passwordEncrypted = bcrypt.hashSync(req.body.password, Number(authConfig.rounds))
-
-		User.create({
+		User.create( {
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
 			username: req.body.username,
@@ -101,45 +93,43 @@ module.exports = {
 			country: req.body.country,
 			phone: req.body.phone,
 			role: req.body.role
-		})
-			.then(user => {
-				const token = jwt.sign({ user }, authConfig.secret, { expiresIn: authConfig.expiresIn })
-				res.status(200).send({ user, token })
-			})
-			.catch(err => {
-				res.status(500).send({ message: err.message })
-			})
+		} )
+			.then( user => {
+				const token = jwt.sign( { user }, authConfig.secret, { expiresIn: authConfig.expiresIn } )
+				res.status( 200 ).send( { user, token } )
+			} )
+			.catch( err => {
+				res.status( 500 ).send( { message: err.message } )
+			} )
 	},
 
-	async changePassword(req, res) {
+	async changePassword ( req, res ) {
 		const { email, password, newpassword } = req.query
 
-		// console.log(req.query)
-
-		const checkUser = await User.findOne({
+		const checkUser = await User.findOne( {
 			where: {
 				email: email
 			}
-		})
-			.then(user => {
+		} )
+			.then( user => {
 				return user
-			})
-			.catch(err => {
-				return res.status(500).send(err)
-			})
+			} )
+			.catch( err => {
+				return res.status( 500 ).send( err )
+			} )
 
-		if (!checkUser) {
-			return res.status(404).send({ message: 'user not found' })
+		if ( !checkUser ) {
+			return res.status( 404 ).send( { message: 'user not found' } )
 		}
 
-		if (password !== newpassword) {
-			return res.status(400).send({ message: 'passwords do not match' })
+		if ( password !== newpassword ) {
+			return res.status( 400 ).send( { message: 'passwords do not match' } )
 		}
 
-		const salt = bcrypt.genSaltSync(10)
-		const hash = bcrypt.hashSync(newpassword, salt)
+		const salt = bcrypt.genSaltSync( 10 )
+		const hash = bcrypt.hashSync( newpassword, salt )
 
-		const passwordEncrypted = bcrypt.hashSync(req.query.newpassword, Number(authConfig.rounds))
+		const passwordEncrypted = bcrypt.hashSync( req.query.newpassword, Number( authConfig.rounds ) )
 
 		const user = await User.update(
 			{
@@ -151,11 +141,11 @@ module.exports = {
 				}
 			}
 		)
-			.then(user => {
-				return res.status(200).send({ message: 'password changed' })
-			})
-			.catch(err => {
-				return res.status(500).send({ message: err.message })
-			})
+			.then( user => {
+				return res.status( 200 ).send( { message: 'password changed' } )
+			} )
+			.catch( err => {
+				return res.status( 500 ).send( { message: err.message } )
+			} )
 	}
 }

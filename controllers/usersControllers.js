@@ -1,24 +1,24 @@
 //user controller
-const { User } = require('../models/index')
+const { User } = require( '../models/index' )
 
 module.exports = {
-	async getAllUsers(req, res) {
-		const users = await User.findAll({
-			attributes: ['id', 'username', 'email'],
-			order: [['id', 'ASC']]
-		})
+	async getAllUsers ( req, res ) {
+		const users = await User.findAll( {
+			attributes: [ 'id', 'username', 'email' ],
+			order: [ [ 'id', 'ASC' ] ]
+		} )
 
-		if (!users) {
-			return res.status(404).send({
+		if ( !users ) {
+			return res.status( 404 ).send( {
 				message: 'No users found'
-			})
+			} )
 		} else {
-			return res.status(200).send(users)
+			return res.status( 200 ).send( users )
 		}
 	},
 
-	async getUserById(req, res) {
-		const user = await User.findOne({
+	async getUserById ( req, res ) {
+		const user = await User.findOne( {
 			where: {
 				id: req.params.id
 			},
@@ -38,17 +38,16 @@ module.exports = {
 				'phone',
 				'role'
 			]
-		})
+		} )
 
-		if (!user) {
-			return res.status(404).send({ message: 'User not found' })
+		if ( !user ) {
+			return res.status( 404 ).send( { message: 'User not found' } )
 		} else {
-			return res.status(200).send(user)
+			return res.status( 200 ).send( user )
 		}
 	},
 
-	async createUser(req, res) {
-		// console.log(req.body)
+	async createUser ( req, res ) {
 
 		const {
 			firstname,
@@ -66,7 +65,7 @@ module.exports = {
 			role
 		} = req.body
 
-		await User.create({
+		await User.create( {
 			firstname,
 			lastname,
 			username,
@@ -80,33 +79,32 @@ module.exports = {
 			country,
 			phone,
 			role
-		})
-			.then(() => {
-				return res.status(200).send({
+		} )
+			.then( () => {
+				return res.status( 200 ).send( {
 					message: 'User created successfully'
-				})
-			})
-			.catch(err => {
-				return res.status(400).send({
+				} )
+			} )
+			.catch( err => {
+				return res.status( 400 ).send( {
 					message: err.message
-				})
-			})
+				} )
+			} )
 	},
 
-	async updateUser(req, res) {
-		// console.log(req.body)
+	async updateUser ( req, res ) {
 		const { username, email, password } = req.body
 
-		const checkUser = await User.findOne({
+		const checkUser = await User.findOne( {
 			where: {
 				id: req.params.id
 			}
-		})
+		} )
 
-		if (!checkUser) {
-			return res.status(404).send({
+		if ( !checkUser ) {
+			return res.status( 404 ).send( {
 				message: 'User not found'
-			})
+			} )
 		}
 
 		const user = await User.update(
@@ -122,45 +120,45 @@ module.exports = {
 				}
 			}
 		)
-			.then(() => {
-				return res.status(200).send({
+			.then( () => {
+				return res.status( 200 ).send( {
 					message: 'User updated successfully'
-				})
-			})
-			.catch(err => {
-				return res.status(400).send({
+				} )
+			} )
+			.catch( err => {
+				return res.status( 400 ).send( {
 					message: err.message
-				})
-			})
+				} )
+			} )
 	},
 
-	async deleteUser(req, res) {
-		const checkUser = await User.findOne({
+	async deleteUser ( req, res ) {
+		const checkUser = await User.findOne( {
 			where: {
 				id: req.params.id
 			}
-		})
+		} )
 
-		if (!checkUser) {
-			return res.status(404).send({
+		if ( !checkUser ) {
+			return res.status( 404 ).send( {
 				message: 'User not found'
-			})
+			} )
 		}
 
-		await User.destroy({
+		await User.destroy( {
 			where: {
 				id: req.params.id
 			}
-		})
-			.then(() => {
-				return res.status(200).send({
+		} )
+			.then( () => {
+				return res.status( 200 ).send( {
 					message: 'User deleted successfully'
-				})
-			})
-			.catch(err => {
-				return res.status(400).send({
+				} )
+			} )
+			.catch( err => {
+				return res.status( 400 ).send( {
 					message: err.message
-				})
-			})
+				} )
+			} )
 	}
 }

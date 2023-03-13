@@ -28,21 +28,26 @@ module.exports = (sequelize, DataTypes) => {
 			name: {
 				type: DataTypes.STRING
 			},
-			description: {
+			presentation: {
 				type: DataTypes.STRING
 			},
 			unit: {
 				type: DataTypes.STRING
 			},
-			presentation: {
-				type: DataTypes.STRING
+			amount: {
+				type: DataTypes.DECIMAL(10, 3),
+				defaultValue: 0
+			},
+			price: {
+				type: DataTypes.DECIMAL(10, 2),
+				defaultValue: 0
+			},
+			total: {
+				type: DataTypes.DECIMAL(10, 2),
+				defaultValue: 0
 			},
 			market_id: {
 				type: DataTypes.INTEGER
-			},
-			category: {
-				type: DataTypes.STRING,
-				defaultValue: 'Others'
 			},
 			user_id: {
 				type: DataTypes.INTEGER

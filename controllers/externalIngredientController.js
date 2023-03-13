@@ -1,30 +1,30 @@
-const axios = require('axios')
+const axios = require( 'axios' )
 
-const { Ingredient } = require('../models')
+const { Ingredient } = require( '../models' )
 
 module.exports = {
-	async createExternalIngredient(req, res) {
+	async createExternalIngredient ( req, res ) {
 		const { idext } = req.params
 
-		const checkIngredient = await Ingredient.findOne({
+		const checkIngredient = await Ingredient.findOne( {
 			where: {
 				idext: idext
 			}
-		})
-			.then(ingredient => {
+		} )
+			.then( ingredient => {
 				return ingredient
-			})
-			.catch(err => {
-				return res.status(400).send(err)
-			})
+			} )
+			.catch( err => {
+				return res.status( 400 ).json( err )
+			} )
 
-		if (checkIngredient) {
-			return res.status(400).send({ message: 'ingredients already exists' })
+		if ( checkIngredient ) {
+			return res.status( 400 ).send( { message: 'ingredients already exists' } )
 		}
 
 		const options = {
 			method: 'GET',
-			url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
+			url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${ idext }/information`,
 			params: { includeNutrition: 'false' },
 			headers: {
 				'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
@@ -33,27 +33,27 @@ module.exports = {
 		}
 
 		const body = await axios
-			.request(options)
-			.then(function (response) {
+			.request( options )
+			.then( function ( response ) {
 				let resp2 = response.data
 				const { id, extendedIngredients, servings, instructions } = resp2
 				return { idext: id, ingredients: extendedIngredients, servings, instructions }
-			})
-			.catch(err => {
-				return res.status(400).json({ error: err })
-			})
+			} )
+			.catch( err => {
+				return res.status( 400 ).json( { error: err } )
+			} )
 
-		const externalIngredient = await Ingredient.create({
+		const externalIngredient = await Ingredient.create( {
 			idext: body.idext,
 			ingredients: body.ingredients,
 			servings: body.servings,
 			instructions: body.instructions
-		})
-			.then(ingredient => {
-				return res.status(201).send(ingredient)
-			})
-			.catch(err => {
-				return res.status(400).send(err)
-			})
+		} )
+			.then( ingredient => {
+				return res.status( 201 ).send( ingredient )
+			} )
+			.catch( err => {
+				return res.status( 400 ).send( err )
+			} )
 	}
 }

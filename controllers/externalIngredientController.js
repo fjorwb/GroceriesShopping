@@ -40,7 +40,8 @@ module.exports = {
 				return { idext: id, ingredients: extendedIngredients, servings, instructions }
 			} )
 			.catch( err => {
-				return res.status( 400 ).json( { error: err } )
+				console.log( err )
+				// return res.status( 400 ).json( { error: err } )
 			} )
 
 		const externalIngredient = await Ingredient.create( {

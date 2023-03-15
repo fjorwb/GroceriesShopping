@@ -56,7 +56,7 @@ module.exports = {
 
 		const recipe = await Recipe.create( req.body )
 			.then( recipe => {
-				res.status( 200 ).send( recipe )
+				res.status( 200 ).json( { data: recipe, message: 'recipe successfully created' } )
 			} )
 			.catch( err => {
 				res.status( 400 ).send( { message: err.message } )

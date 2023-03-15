@@ -104,8 +104,9 @@ module.exports = {
 				const { id, title, image, servings, instructions } = resp2
 				return { idext: id, title, image, servings, instructions }
 			} )
-			.catch( err => {
-				return res.status( 400 ).json( { error: err } )
+			.catch( error => {
+				// return res.status( 400 ).json( { error: error } )
+				console.log( error )
 			} )
 
 		const recipe = await Recipe.create( {

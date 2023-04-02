@@ -56,6 +56,7 @@ module.exports = {
 	},
 
 	async createShoppingList ( req, res ) {
+		console.log( req.body )
 		const checkShoppingList = await ShoppingList.findOne( {
 			where: {
 				shop_list_id: req.body.shop_list_id
@@ -79,70 +80,72 @@ module.exports = {
 
 	async updateShoppingList ( req, res ) {
 
-		const checkShoppingList = await ShoppingList.findOne( {
-			where: {
-				shop_list_id: req.params.id
-			}
-		} )
+		console.log( req.params )
 
-		if ( !checkShoppingList ) {
-			return res.status( 500 ).json( { message: 'shoppingList not found' } )
-		}
+		// const checkShoppingList = await ShoppingList.findOne( {
+		// 	where: {
+		// 		shop_list_id: req.params.shop_list_id
+		// 	}
+		// } )
 
-		const shoppinglist = await ShoppingList.update( req.body, {
-			where: {
-				shop_list_id: req.params.id
-			}
-		} )
-			.then( ( shoppinglist ) => {
-				res.status( 200 ).send( { message: 'shoppingList updated successfully' } )
-			} )
-			.catch( ( err ) => {
-				res.status( 500 ).json( err )
-			} )
-	},
+		// if ( !checkShoppingList ) {
+		// 	return res.status( 500 ).json( { message: 'shoppingList not found' } )
+		// }
 
-	async deleteShoppingList ( req, res ) {
-		const checkShoppingList = await ShoppingList.findByPk( req.params.id )
-
-		if ( !checkShoppingList ) {
-			return res.status( 404 ).json( { message: 'shoppingList not found' } )
-		}
-
-		const shoppinglist = await ShoppingList.destroy( {
-			where: {
-				id: req.params.id
-			}
-		} )
-			.then( ( shoppinglist ) => {
-				res.status( 200 ).send( { message: 'shoppingList deleted successfully' } )
-			} )
-			.catch( ( err ) => {
-				res.status( 500 ).json( err )
-			} )
-	},
-
-	async deleteShoppingListByShopListId ( req, res ) {
-		const checkShoppingList = await ShoppingList.findOne( {
-			where: {
-				shop_list_id: req.params.id
-			}
-		} )
-
-		if ( !checkShoppingList ) {
-			return res.status( 404 ).json( { message: 'shoppingList not found' } )
-		}
-
-		const shoppinglist = await ShoppingList.destroy( {
-			where: {
-				shop_list_id: req.params.id
-			}
-		} )
-			.then( ( shoppinglist ) => {
-				res.status( 200 ).send( { message: 'shoppingList deleted successfully' } )
-			} )
-			.catch( ( err ) => {
-				res.status( 500 ).json( err )
-			} )
+		// const shoppinglist = await ShoppingList.update( req.body, {
+		// 	where: {
+		// 		shop_list_id: req.params.id
 	}
+} )
+			.then( ( shoppinglist ) => {
+	res.status( 200 ).send( { message: 'shoppingList updated successfully' } )
+} )
+	.catch( ( err ) => {
+		res.status( 500 ).json( err )
+	} )
+	},
+
+	async deleteShoppingList( req, res ) {
+	const checkShoppingList = await ShoppingList.findByPk( req.params.id )
+
+	if ( !checkShoppingList ) {
+		return res.status( 404 ).json( { message: 'shoppingList not found' } )
+	}
+
+	const shoppinglist = await ShoppingList.destroy( {
+		where: {
+			id: req.params.id
+		}
+	} )
+		.then( ( shoppinglist ) => {
+			res.status( 200 ).send( { message: 'shoppingList deleted successfully' } )
+		} )
+		.catch( ( err ) => {
+			res.status( 500 ).json( err )
+		} )
+},
+
+	async deleteShoppingListByShopListId( req, res ) {
+	const checkShoppingList = await ShoppingList.findOne( {
+		where: {
+			shop_list_id: req.params.id
+		}
+	} )
+
+	if ( !checkShoppingList ) {
+		return res.status( 404 ).json( { message: 'shoppingList not found' } )
+	}
+
+	const shoppinglist = await ShoppingList.destroy( {
+		where: {
+			shop_list_id: req.params.id
+		}
+	} )
+		.then( ( shoppinglist ) => {
+			res.status( 200 ).send( { message: 'shoppingList deleted successfully' } )
+		} )
+		.catch( ( err ) => {
+			res.status( 500 ).json( err )
+		} )
+}
 }

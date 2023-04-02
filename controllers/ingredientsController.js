@@ -80,19 +80,21 @@ module.exports = {
 	},
 
 	async deleteIngredient ( req, res ) {
-		const checkIngredient = await Ingredient.findByPk( req.params.id )
-			.then( ( ingredient ) => {
-				return ingredient
-			} )
-			.catch( ( err ) => {
-				return res.status( 500 ).json( err )
-			} )
+		const checkIngredient = await Ingredient.findOne( {
+			where: {
+				idext: req.params.id
+			}
+		} )
 
 		if ( !checkIngredient ) {
 			return res.status( 400 ).json( { message: 'ingredient does not exist' } )
 		}
 
-		const ingredient = await Ingredient.destroy( { where: { id: req.params.id } } )
+		const ingredient = await Ingredient.destroy( {
+			where: {
+				idext: req.params.id
+			}
+		} )
 			.then( ( ingredient ) => {
 				return res.status( 200 ).send( { message: 'ingredient succesfully deleted' } )
 			} )

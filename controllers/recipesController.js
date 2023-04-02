@@ -88,7 +88,7 @@ module.exports = {
 	async deleteRecipe ( req, res ) {
 		const checkRecipe = await Recipe.findOne( {
 			where: {
-				id: req.params.id
+				idext: req.params.id
 			}
 		} )
 
@@ -98,7 +98,7 @@ module.exports = {
 
 		const recipe = await Recipe.destroy( {
 			where: {
-				id: req.params.id
+				idext: req.params.id
 			}
 		} )
 			.then( recipe => {

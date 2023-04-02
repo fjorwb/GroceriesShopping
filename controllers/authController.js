@@ -36,7 +36,10 @@ module.exports = {
 				id: user.id,
 				email: user.email,
 				accessToken: token,
-				role: user.role
+				role: user.role,
+				username: user.username,
+				firstname: user.firstname,
+				lastname: user.lastname
 			} )
 		} )
 	},

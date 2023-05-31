@@ -30,7 +30,7 @@ async function getIngredients(idext) {
     (ingredient) => ingredient.idext === idext
   )
 
-  if (checkIngredient) {
+  if (checkIngredient ?? false) {
     console.log('ingredients already exists')
   } else {
     counter++
@@ -75,6 +75,7 @@ async function getIngredients(idext) {
     // })
 
     // ingredients.push(body)
+    // console.log(body)
     return {
       idext: body.idext,
       ingredients: body.ingredients,

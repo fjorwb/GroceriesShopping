@@ -10,6 +10,9 @@ ingredientsRouter.post('/', ingredientsController.createIngredient)
 ingredientsRouter.put('/:id', ingredientsController.updateIngredient)
 ingredientsRouter.delete('/:id', ingredientsController.deleteIngredient)
 
-ingredientsRouter.post('/external/:idext', externalIngredientsController.createExternalIngredient)
+ingredientsRouter.post(
+  '/external/:idext',
+  externalIngredientsController.createExternalIngredient
+)
 
 module.exports = ingredientsRouter

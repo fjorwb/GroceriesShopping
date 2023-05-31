@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const path = require('path')
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -30,8 +32,8 @@ app.use(cors())
 app.use(morgan('dev'))
 
 app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
-app.use(express.static(__dirname + '/public'))
+app.set('views', path.join(__dirname, 'views'))
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 // Routes
 app.use('/auth', authRouter)
@@ -47,20 +49,20 @@ app.use('/productmocks', authenticate, productmocksRouter)
 app.use('/docs', docsRouter)
 
 app.get('/', function (req, res) {
-	res.render('index')
+  res.render('index')
 })
 
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
-	console.log(`Server running on port http://localhost:${PORT}`)
+  console.log(`Server running on port http://localhost:${PORT}`)
 })
 
 sequelize
-	.authenticate()
-	.then(() => {
-		console.log('Connection has been established successfully.')
-	})
-	.catch((err) => {
-		console.error('Unable to connect to the database:', err)
-	})
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.')
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err)
+  })

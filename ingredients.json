@@ -1,0 +1,1306 @@
+[
+  {
+    "idext": 592479,
+    "ingredients": [
+      {
+        "id": 1022009,
+        "aisle": "Ethnic Foods;Spices and Seasonings",
+        "image": "chili-powder.jpg",
+        "consistency": "SOLID",
+        "name": "ancho chile powder",
+        "nameClean": "ancho chili powder",
+        "original": "1 teaspoon ancho chile powder (or other pure chile powder, not a blend)",
+        "originalName": "ancho chile powder (or other pure chile powder, not a blend)",
+        "amount": 1,
+        "unit": "teaspoon",
+        "meta": [
+          "pure",
+          "(or other chile powder, not a blend)"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "tsp",
+            "unitLong": "teaspoon"
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "tsp",
+            "unitLong": "teaspoon"
+          }
+        }
+      },
+      {
+        "id": 9037,
+        "aisle": "Produce",
+        "image": "avocado.jpg",
+        "consistency": "SOLID",
+        "name": "avocado",
+        "nameClean": "avocado",
+        "original": "1 avocado, sliced or cubed (optional)",
+        "originalName": "avocado, sliced or cubed (optional)",
+        "amount": 1,
+        "unit": "",
+        "meta": [
+          "cubed",
+          "sliced"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "",
+            "unitLong": ""
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "",
+            "unitLong": ""
+          }
+        }
+      },
+      {
+        "id": 16015,
+        "aisle": "Pasta and Rice;Canned and Jarred",
+        "image": "black-beans.jpg",
+        "consistency": "SOLID",
+        "name": "can black beans",
+        "nameClean": "black beans",
+        "original": "1 15-ounce can black beans, rinsed and drained (about 1 1/2 cups)",
+        "originalName": "15-ounce can black beans, rinsed and drained (about",
+        "amount": 1.5,
+        "unit": "cups",
+        "meta": [
+          "rinsed",
+          "drained",
+          "canned"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1.5,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 354.882,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 11124,
+        "aisle": "Produce",
+        "image": "sliced-carrot.png",
+        "consistency": "SOLID",
+        "name": "carrot",
+        "nameClean": "carrot",
+        "original": "1/2 cup grated carrot",
+        "originalName": "grated carrot",
+        "amount": 0.5,
+        "unit": "cup",
+        "meta": [
+          "grated"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 118.294,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 98839,
+        "aisle": "Canned and Jarred;Ethnic Foods",
+        "image": "chile-chipotle.jpg",
+        "consistency": "SOLID",
+        "name": "chipotle chile powder",
+        "nameClean": "chipotle chiles",
+        "original": "1/4 teaspoon chipotle chile powder, or to taste",
+        "originalName": "chipotle chile powder, or to taste",
+        "amount": 0.25,
+        "unit": "teaspoon",
+        "meta": [
+          "to taste"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.25,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          },
+          "metric": {
+            "amount": 0.25,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          }
+        }
+      },
+      {
+        "id": 1002014,
+        "aisle": "Spices and Seasonings",
+        "image": "ground-cumin.jpg",
+        "consistency": "SOLID",
+        "name": "cumin",
+        "nameClean": "cumin",
+        "original": "1/2 teaspoon cumin",
+        "originalName": "cumin",
+        "amount": 0.5,
+        "unit": "teaspoon",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          },
+          "metric": {
+            "amount": 0.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          }
+        }
+      },
+      {
+        "id": 11215,
+        "aisle": "Produce",
+        "image": "garlic.png",
+        "consistency": "SOLID",
+        "name": "garlic",
+        "nameClean": "garlic",
+        "original": "2 cloves garlic, minced",
+        "originalName": "garlic, minced",
+        "amount": 2,
+        "unit": "cloves",
+        "meta": [
+          "minced"
+        ],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "cloves",
+            "unitLong": "cloves"
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "cloves",
+            "unitLong": "cloves"
+          }
+        }
+      },
+      {
+        "id": 12220,
+        "aisle": "Health Foods;Baking",
+        "image": "flax-seeds.png",
+        "consistency": "SOLID",
+        "name": "ground flaxseed",
+        "nameClean": "ground flaxseed",
+        "original": "1 teaspoon chia seeds or ground flaxseed",
+        "originalName": "chia seeds or ground flaxseed",
+        "amount": 1,
+        "unit": "teaspoon",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "tsp",
+            "unitLong": "teaspoon"
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "tsp",
+            "unitLong": "teaspoon"
+          }
+        }
+      },
+      {
+        "id": 11233,
+        "aisle": "Produce",
+        "image": "kale.jpg",
+        "consistency": "SOLID",
+        "name": "kale leaves",
+        "nameClean": "kale",
+        "original": "4 – 6 cups chopped kale leaves (about 4-5 ounces)",
+        "originalName": "– 6 cups chopped kale leaves (about",
+        "amount": 4,
+        "unit": "ounces",
+        "meta": [
+          "chopped"
+        ],
+        "measures": {
+          "us": {
+            "amount": 4,
+            "unitShort": "oz",
+            "unitLong": "ounces"
+          },
+          "metric": {
+            "amount": 113.398,
+            "unitShort": "g",
+            "unitLong": "grams"
+          }
+        }
+      },
+      {
+        "id": 9152,
+        "aisle": "Produce",
+        "image": "lemon-juice.jpg",
+        "consistency": "LIQUID",
+        "name": "additional lemon juice and seasonings",
+        "nameClean": "lemon juice",
+        "original": "additional lemon juice and seasonings, to taste",
+        "originalName": "additional lemon juice and seasonings, to taste",
+        "amount": 6,
+        "unit": "servings",
+        "meta": [
+          "to taste"
+        ],
+        "measures": {
+          "us": {
+            "amount": 6,
+            "unitShort": "servings",
+            "unitLong": "servings"
+          },
+          "metric": {
+            "amount": 6,
+            "unitShort": "servings",
+            "unitLong": "servings"
+          }
+        }
+      },
+      {
+        "id": 9160,
+        "aisle": "Produce",
+        "image": "lime-juice.png",
+        "consistency": "LIQUID",
+        "name": "lime juice",
+        "nameClean": "lime juice",
+        "original": "1/4 cup freshly squeezed lemon or lime juice",
+        "originalName": "freshly squeezed lemon or lime juice",
+        "amount": 0.25,
+        "unit": "cup",
+        "meta": [
+          "freshly squeezed"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.25,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 59.147,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 20035,
+        "aisle": "Pasta and Rice;Health Foods",
+        "image": "uncooked-quinoa.png",
+        "consistency": "SOLID",
+        "name": "quinoa",
+        "nameClean": "quinoa",
+        "original": "1 cup quinoa, rinsed very well (I used a combo of red and white quinoa)",
+        "originalName": "quinoa, rinsed very well (I used a combo of red and white quinoa)",
+        "amount": 1,
+        "unit": "cup",
+        "meta": [
+          "white",
+          "red",
+          "rinsed",
+          "well",
+          "(I used a combo of and quinoa)"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "cup",
+            "unitLong": "cup"
+          },
+          "metric": {
+            "amount": 236.588,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 11821,
+        "aisle": "Produce",
+        "image": "red-pepper.jpg",
+        "consistency": "SOLID",
+        "name": "bell pepper",
+        "nameClean": "red pepper",
+        "original": "1/2 red bell pepper, chopped",
+        "originalName": "red bell pepper, chopped",
+        "amount": 0.5,
+        "unit": "",
+        "meta": [
+          "red",
+          "chopped"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "",
+            "unitLong": ""
+          },
+          "metric": {
+            "amount": 0.5,
+            "unitShort": "",
+            "unitLong": ""
+          }
+        }
+      },
+      {
+        "id": 2047,
+        "aisle": "Spices and Seasonings",
+        "image": "salt.jpg",
+        "consistency": "SOLID",
+        "name": "salt",
+        "nameClean": "table salt",
+        "original": "1/2 tsp salt, or to taste (optional)",
+        "originalName": "salt, or to taste (optional)",
+        "amount": 0.5,
+        "unit": "tsp",
+        "meta": [
+          "to taste"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          },
+          "metric": {
+            "amount": 0.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          }
+        }
+      },
+      {
+        "id": 6615,
+        "aisle": "Canned and Jarred",
+        "image": "chicken-broth.png",
+        "consistency": "LIQUID",
+        "name": "vegetable broth",
+        "nameClean": "vegetable stock",
+        "original": "3 tablespoons vegetable broth",
+        "originalName": "vegetable broth",
+        "amount": 3,
+        "unit": "tablespoons",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 3,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          },
+          "metric": {
+            "amount": 3,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          }
+        }
+      }
+    ],
+    "servings": 6,
+    "instructions": "Instructions  Heat a saucepan. Add the rinsed and drained quinoa and the garlic and toast it until almost dry. Add the vegetable broth, bring to a boil, reduce heat, and cover. Simmer until all the water is absorbed, about 20 minutes. Remove from heat and allow to cool. While the quinoa is cooking, make the dressing in a small bowl or measuring cup: whisk together the lemon juice, 3 tablespoons broth, chia/flax seeds, chile powders, cumin, and salt. Allow to stand until the chia seeds start to thicken the dressing. Place the kale in a large serving bowl. Add half of the dressing and massage it into the kale using a wringing motion until the kale is very tender. Two minutes of massaging should do it, but the longer, the better. Add the quinoa, black beans, carrot, and bell pepper, along with the remaining dressing. Mix well and refrigerate until ready to serve. Just before serving, check the seasoning and add more lemon juice, chile powder, cumin, and salt, as needed. Stir in chopped avocado, if desired, or serve with slices of avocado on the side."
+  },
+  {
+    "idext": 495111,
+    "ingredients": [
+      {
+        "id": 11215,
+        "aisle": "Produce",
+        "image": "garlic.png",
+        "consistency": "SOLID",
+        "name": "garlic",
+        "nameClean": "garlic",
+        "original": "1 clove garlic, minced",
+        "originalName": "garlic, minced",
+        "amount": 1,
+        "unit": "clove",
+        "meta": [
+          "minced"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "clove",
+            "unitLong": "clove"
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "clove",
+            "unitLong": "clove"
+          }
+        }
+      },
+      {
+        "id": 11216,
+        "aisle": "Produce;Ethnic Foods;Spices and Seasonings",
+        "image": "ginger.png",
+        "consistency": "SOLID",
+        "name": "ginger",
+        "nameClean": "ginger",
+        "original": "1 tsp. grated ginger",
+        "originalName": "grated ginger",
+        "amount": 1,
+        "unit": "tsp",
+        "meta": [
+          "grated"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "tsp",
+            "unitLong": "teaspoon"
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "tsp",
+            "unitLong": "teaspoon"
+          }
+        }
+      },
+      {
+        "id": 11233,
+        "aisle": "Produce",
+        "image": "kale.jpg",
+        "consistency": "SOLID",
+        "name": "kale",
+        "nameClean": "kale",
+        "original": "1 bunch kale (about 3/4 lb.), tough stems removed & leaves torn into bite-sized pieces",
+        "originalName": "bunch kale (about , tough stems removed & leaves torn into bite-sized pieces",
+        "amount": 0.75,
+        "unit": "lb",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 0.75,
+            "unitShort": "lb",
+            "unitLong": "pounds"
+          },
+          "metric": {
+            "amount": 340.194,
+            "unitShort": "g",
+            "unitLong": "grams"
+          }
+        }
+      },
+      {
+        "id": 9206,
+        "aisle": "Beverages",
+        "image": "orange-juice.jpg",
+        "consistency": "LIQUID",
+        "name": "orange juice",
+        "nameClean": "orange juice",
+        "original": "1 tbsp. fresh orange juice",
+        "originalName": "fresh orange juice",
+        "amount": 1,
+        "unit": "tbsp",
+        "meta": [
+          "fresh"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "Tbsp",
+            "unitLong": "Tbsp"
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "Tbsp",
+            "unitLong": "Tbsp"
+          }
+        }
+      },
+      {
+        "id": 4058,
+        "aisle": "Ethnic Foods",
+        "image": "sesame-oil.png",
+        "consistency": "LIQUID",
+        "name": "sesame oil",
+        "nameClean": "sesame oil",
+        "original": "2 tsp. sesame oil (I used toasted)",
+        "originalName": "sesame oil (I used toasted)",
+        "amount": 2,
+        "unit": "tsp",
+        "meta": [
+          "toasted",
+          "(I used )"
+        ],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          }
+        }
+      },
+      {
+        "id": 12023,
+        "aisle": "Ethnic Foods;Spices and Seasonings",
+        "image": "sesame-seeds.png",
+        "consistency": "SOLID",
+        "name": "sesame seeds",
+        "nameClean": "sesame seeds",
+        "original": "2 tsp. sesame seeds",
+        "originalName": "sesame seeds",
+        "amount": 2,
+        "unit": "tsp",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          }
+        }
+      },
+      {
+        "id": 16124,
+        "aisle": "Ethnic Foods;Condiments",
+        "image": "soy-sauce.jpg",
+        "consistency": "LIQUID",
+        "name": "soy sauce",
+        "nameClean": "soy sauce",
+        "original": "1 1/2 tsp. soy sauce or tamari",
+        "originalName": "soy sauce or tamari",
+        "amount": 1.5,
+        "unit": "tsp",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 1.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          },
+          "metric": {
+            "amount": 1.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          }
+        }
+      }
+    ],
+    "servings": 4,
+    "instructions": "Heat sesame oil in a large skillet or wok over medium heat. Add ginger and garlic; cook for 30 seconds, or until fragrant, stirring constantly. Add kale and stir until coated with oil. Stir in soy sauce and orange juice; cover and cook for 3 minutes, or until kale is softened.Stir in sesame seeds and red pepper flakes (if using) and serve."
+  },
+  {
+    "idext": 582897,
+    "ingredients": [
+      {
+        "id": 9037,
+        "aisle": "Produce",
+        "image": "avocado.jpg",
+        "consistency": "SOLID",
+        "name": "avocado",
+        "nameClean": "avocado",
+        "original": "1 avocado, diced",
+        "originalName": "avocado, diced",
+        "amount": 1,
+        "unit": "",
+        "meta": [
+          "diced"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "",
+            "unitLong": ""
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "",
+            "unitLong": ""
+          }
+        }
+      },
+      {
+        "id": 11172,
+        "aisle": "Produce",
+        "image": "corn.png",
+        "consistency": "SOLID",
+        "name": "corn kernels",
+        "nameClean": "corn kernels",
+        "original": "½ cup corn kernels (canned or freshly cooked)",
+        "originalName": "corn kernels (canned or freshly cooked)",
+        "amount": 0.5,
+        "unit": "cup",
+        "meta": [
+          "canned",
+          "cooked",
+          "( or freshly )"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 118.294,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 10111205,
+        "aisle": "Produce",
+        "image": "english-cucumber.png",
+        "consistency": "SOLID",
+        "name": "cucumber",
+        "nameClean": "english cucumber",
+        "original": "½ English cucumber, sliced",
+        "originalName": "English cucumber, sliced",
+        "amount": 0.5,
+        "unit": "",
+        "meta": [
+          "english",
+          "sliced"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "",
+            "unitLong": ""
+          },
+          "metric": {
+            "amount": 0.5,
+            "unitShort": "",
+            "unitLong": ""
+          }
+        }
+      },
+      {
+        "id": 10111529,
+        "aisle": "Produce",
+        "image": "cherry-tomatoes.png",
+        "consistency": "SOLID",
+        "name": "grape tomatoes",
+        "nameClean": "grape tomato",
+        "original": "1 cup Cherry or grape tomatoes, halved (or large tomato, diced)",
+        "originalName": "Cherry or grape tomatoes, halved (or large tomato, diced)",
+        "amount": 1,
+        "unit": "cup",
+        "meta": [
+          "diced",
+          "halved",
+          "(or large tomato, )"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "cup",
+            "unitLong": "cup"
+          },
+          "metric": {
+            "amount": 236.588,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 10111251,
+        "aisle": "Produce",
+        "image": "romaine.jpg",
+        "consistency": "SOLID",
+        "name": "romaine lettuce",
+        "nameClean": "romaine",
+        "original": "1 large head Romaine Lettuce, rinsed, chopped and dried",
+        "originalName": "Romaine Lettuce, rinsed, chopped and dried",
+        "amount": 1,
+        "unit": "large head",
+        "meta": [
+          "dried",
+          "rinsed",
+          "chopped"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "large head",
+            "unitLong": "large head"
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "large head",
+            "unitLong": "large head"
+          }
+        }
+      },
+      {
+        "id": 1012047,
+        "aisle": "Spices and Seasonings",
+        "image": "salt.jpg",
+        "consistency": "SOLID",
+        "name": "sea salt",
+        "nameClean": "coarse sea salt",
+        "original": "½ tsp sea salt",
+        "originalName": "sea salt",
+        "amount": 0.5,
+        "unit": "tsp",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          },
+          "metric": {
+            "amount": 0.5,
+            "unitShort": "tsps",
+            "unitLong": "teaspoons"
+          }
+        }
+      },
+      {
+        "id": 10011300,
+        "aisle": "Produce",
+        "image": "sugar-snap-peas.jpg",
+        "consistency": "SOLID",
+        "name": "l snap peas",
+        "nameClean": "sugar snap peas",
+        "original": "l cup Snap peas, whole, optional",
+        "originalName": "l Snap peas, whole, optional",
+        "amount": 1,
+        "unit": "cup",
+        "meta": [
+          "whole"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "cup",
+            "unitLong": "cup"
+          },
+          "metric": {
+            "amount": 236.588,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 1026168,
+        "aisle": "Condiments",
+        "image": "hot-sauce-or-tabasco.png",
+        "consistency": "LIQUID",
+        "name": "tabasco sauce",
+        "nameClean": "tabasco sauce",
+        "original": "¼ - ½ tsp tabasco sauce, or to taste",
+        "originalName": "tsp tabasco sauce, or to taste",
+        "amount": 0.25,
+        "unit": "",
+        "meta": [
+          "to taste"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.25,
+            "unitShort": "",
+            "unitLong": ""
+          },
+          "metric": {
+            "amount": 0.25,
+            "unitShort": "",
+            "unitLong": ""
+          }
+        }
+      },
+      {
+        "id": 10511282,
+        "aisle": "Produce",
+        "image": "brown-onion.png",
+        "consistency": "SOLID",
+        "name": "onion",
+        "nameClean": "yellow onion",
+        "original": "½ small yellow onion, thinly sliced",
+        "originalName": "yellow onion, thinly sliced",
+        "amount": 0.5,
+        "unit": "small",
+        "meta": [
+          "yellow",
+          "thinly sliced"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "small",
+            "unitLong": "smalls"
+          },
+          "metric": {
+            "amount": 0.5,
+            "unitShort": "small",
+            "unitLong": "smalls"
+          }
+        }
+      }
+    ],
+    "servings": 4,
+    "instructions": "Combine all salad dressing ingredients and shake or whisk them together then set aside.Chop all salad ingredients and combine in a large salad bowl.Shake salad dressing again prior to serving and drizzle the top with as much salad dressing as you prefer. Toss salad together and enjoy!"
+  },
+  {
+    "idext": 535580,
+    "ingredients": [
+      {
+        "id": 9037,
+        "aisle": "Produce",
+        "image": "avocado.jpg",
+        "consistency": "SOLID",
+        "name": "avocado",
+        "nameClean": "avocado",
+        "original": "1 avocado, halved, seeded, peeled and diced",
+        "originalName": "avocado, halved, seeded, peeled and diced",
+        "amount": 1,
+        "unit": "",
+        "meta": [
+          "diced",
+          "peeled",
+          "halved",
+          "seeded"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "",
+            "unitLong": ""
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "",
+            "unitLong": ""
+          }
+        }
+      },
+      {
+        "id": 2069,
+        "aisle": "Oil, Vinegar, Salad Dressing",
+        "image": "balsamic-vinegar.jpg",
+        "consistency": "LIQUID",
+        "name": "balsamic vinegar",
+        "nameClean": "balsamic vinegar",
+        "original": "1/2 cup balsamic vinegar",
+        "originalName": "balsamic vinegar",
+        "amount": 0.5,
+        "unit": "cup",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 118.294,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 2044,
+        "aisle": "Produce",
+        "image": "fresh-basil.jpg",
+        "consistency": "SOLID",
+        "name": "basil leaves",
+        "nameClean": "fresh basil",
+        "original": "1/4 cup basil leaves, chiffonade",
+        "originalName": "basil leaves, chiffonade",
+        "amount": 0.25,
+        "unit": "cup",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 0.25,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 59.147,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 19334,
+        "aisle": "Baking",
+        "image": "light-brown-sugar.jpg",
+        "consistency": "SOLID",
+        "name": "brown sugar",
+        "nameClean": "golden brown sugar",
+        "original": "2 tablespoons brown sugar, packed",
+        "originalName": "brown sugar, packed",
+        "amount": 2,
+        "unit": "tablespoons",
+        "meta": [
+          "packed"
+        ],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          }
+        }
+      },
+      {
+        "id": 10311529,
+        "aisle": "Produce",
+        "image": "cherry-tomatoes.png",
+        "consistency": "SOLID",
+        "name": "cherry tomatoes",
+        "nameClean": "cherry tomato",
+        "original": "1 cup cherry tomatoes, halved",
+        "originalName": "cherry tomatoes, halved",
+        "amount": 1,
+        "unit": "cup",
+        "meta": [
+          "halved"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "cup",
+            "unitLong": "cup"
+          },
+          "metric": {
+            "amount": 236.588,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 5062,
+        "aisle": "Meat",
+        "image": "chicken-breasts.png",
+        "consistency": "SOLID",
+        "name": "thin- chicken breasts",
+        "nameClean": "chicken breast",
+        "original": "2 boneless, skinless thin-sliced chicken breasts",
+        "originalName": "boneless, skinless thin-sliced chicken breasts",
+        "amount": 2,
+        "unit": "",
+        "meta": [
+          "boneless",
+          "skinless"
+        ],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "",
+            "unitLong": ""
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "",
+            "unitLong": ""
+          }
+        }
+      },
+      {
+        "id": 1002030,
+        "aisle": "Spices and Seasonings",
+        "image": "pepper.jpg",
+        "consistency": "SOLID",
+        "name": "kosher salt and pepper",
+        "nameClean": "black pepper",
+        "original": "Kosher salt and freshly ground black pepper, to taste",
+        "originalName": "Kosher salt and freshly ground black pepper, to taste",
+        "amount": 2,
+        "unit": "servings",
+        "meta": [
+          "black",
+          "freshly ground",
+          "to taste"
+        ],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "servings",
+            "unitLong": "servings"
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "servings",
+            "unitLong": "servings"
+          }
+        }
+      },
+      {
+        "id": 1021026,
+        "aisle": "Cheese",
+        "image": "mozzarella.png",
+        "consistency": "SOLID",
+        "name": "ovaline mozzarella",
+        "nameClean": "fresh mozzarella",
+        "original": "6 ounces ovaline fresh mozzarella",
+        "originalName": "ovaline fresh mozzarella",
+        "amount": 6,
+        "unit": "ounces",
+        "meta": [
+          "fresh"
+        ],
+        "measures": {
+          "us": {
+            "amount": 6,
+            "unitShort": "oz",
+            "unitLong": "ounces"
+          },
+          "metric": {
+            "amount": 170.097,
+            "unitShort": "g",
+            "unitLong": "grams"
+          }
+        }
+      },
+      {
+        "id": 4053,
+        "aisle": "Oil, Vinegar, Salad Dressing",
+        "image": "olive-oil.jpg",
+        "consistency": "LIQUID",
+        "name": "olive oil",
+        "nameClean": "olive oil",
+        "original": "1 tablespoon olive oil",
+        "originalName": "olive oil",
+        "amount": 1,
+        "unit": "tablespoon",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "Tbsp",
+            "unitLong": "Tbsp"
+          },
+          "metric": {
+            "amount": 1,
+            "unitShort": "Tbsp",
+            "unitLong": "Tbsp"
+          }
+        }
+      },
+      {
+        "id": 10111251,
+        "aisle": "Produce",
+        "image": "romaine.jpg",
+        "consistency": "SOLID",
+        "name": "romaine lettuce",
+        "nameClean": "romaine",
+        "original": "6 cups chopped romaine lettuce",
+        "originalName": "chopped romaine lettuce",
+        "amount": 6,
+        "unit": "cups",
+        "meta": [
+          "chopped"
+        ],
+        "measures": {
+          "us": {
+            "amount": 6,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 1.42,
+            "unitShort": "l",
+            "unitLong": "liters"
+          }
+        }
+      }
+    ],
+    "servings": 2,
+    "instructions": "To make the balsamic reduction, add balsamic vinegar and brown sugar to a small saucepan over medium heat. Bring to a slight boil and reduce by half, about 6-8 minutes; set aside and let cool. Heat olive oil in a medium skillet over medium high heat. Season chicken breasts with salt and pepper, to taste. Add to skillet and cook, flipping once, until cooked through, about 3-4 minutes per side. Let cool before dicing into bite-size pieces. To assemble the salad, place romaine lettuce in a large bowl; top with chicken, mozzarella, tomatoes, avocado and basil. Pour balsamic reduction on top of the salad and gently toss to combine. Serve immediately."
+  },
+  {
+    "idext": 839418,
+    "ingredients": [
+      {
+        "id": 2069,
+        "aisle": "Oil, Vinegar, Salad Dressing",
+        "image": "balsamic-vinegar.jpg",
+        "consistency": "LIQUID",
+        "name": "balsamic vinegar",
+        "nameClean": "balsamic vinegar",
+        "original": "2 tablespoons balsamic vinegar",
+        "originalName": "balsamic vinegar",
+        "amount": 2,
+        "unit": "tablespoons",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          }
+        }
+      },
+      {
+        "id": 11098,
+        "aisle": "Produce",
+        "image": "brussels-sprouts.jpg",
+        "consistency": "SOLID",
+        "name": "brussels sprouts",
+        "nameClean": "brussels sprouts",
+        "original": "1 pound fresh Brussels sprouts, trimmed and halved lengthwise",
+        "originalName": "fresh Brussels sprouts, trimmed and halved lengthwise",
+        "amount": 1,
+        "unit": "pound",
+        "meta": [
+          "fresh",
+          "trimmed",
+          "halved lengthwise"
+        ],
+        "measures": {
+          "us": {
+            "amount": 1,
+            "unitShort": "lb",
+            "unitLong": "pound"
+          },
+          "metric": {
+            "amount": 453.592,
+            "unitShort": "g",
+            "unitLong": "grams"
+          }
+        }
+      },
+      {
+        "id": 9079,
+        "aisle": "Dried Fruits;Produce",
+        "image": "dried-cranberries.jpg",
+        "consistency": "SOLID",
+        "name": "cranberries",
+        "nameClean": "dried cranberries",
+        "original": "1/2 cup dried cranberries",
+        "originalName": "dried cranberries",
+        "amount": 0.5,
+        "unit": "cup",
+        "meta": [
+          "dried"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.5,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 118.294,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 4053,
+        "aisle": "Oil, Vinegar, Salad Dressing",
+        "image": "olive-oil.jpg",
+        "consistency": "LIQUID",
+        "name": "olive oil",
+        "nameClean": "olive oil",
+        "original": "1/4 cup olive oil",
+        "originalName": "olive oil",
+        "amount": 0.25,
+        "unit": "cup",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 0.25,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 59.147,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 10112155,
+        "aisle": "Nuts;Savory Snacks;Baking",
+        "image": "walnuts.jpg",
+        "consistency": "SOLID",
+        "name": "walnuts",
+        "nameClean": "walnut pieces",
+        "original": "1/3 cup chopped walnuts",
+        "originalName": "chopped walnuts",
+        "amount": 0.33333334,
+        "unit": "cup",
+        "meta": [
+          "chopped"
+        ],
+        "measures": {
+          "us": {
+            "amount": 0.333,
+            "unitShort": "cups",
+            "unitLong": "cups"
+          },
+          "metric": {
+            "amount": 78.863,
+            "unitShort": "ml",
+            "unitLong": "milliliters"
+          }
+        }
+      },
+      {
+        "id": 14412,
+        "aisle": "Beverages",
+        "image": "water.png",
+        "consistency": "LIQUID",
+        "name": "water",
+        "nameClean": "water",
+        "original": "2 tablespoons water",
+        "originalName": "water",
+        "amount": 2,
+        "unit": "tablespoons",
+        "meta": [],
+        "measures": {
+          "us": {
+            "amount": 2,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          },
+          "metric": {
+            "amount": 2,
+            "unitShort": "Tbsps",
+            "unitLong": "Tbsps"
+          }
+        }
+      }
+    ],
+    "servings": 4,
+    "instructions": "Directions                                                                                                                                            In a large skillet, heat oil over medium heat. Place Brussels sprouts in pan, cut side down; cook 4-5 minutes or until bottoms are browned.                                                                                                                                                       Add cranberries and water; cook, covered, 1-2 minutes or until Brussels sprouts are crisp-tender. Stir in walnuts; cook and stir until water is evaporated. Stir in vinegar.                                                        Yield: 4 servings.                                                                                                                                                                                                                                                                                 Originally published as Cranberry-Walnut Brussels Sprouts in  Taste of HomeDecember 2014, p25                                                                                                                                                                                                                                                                                                                      window._taboola = window._taboola || [];                  _taboola.push({                    mode: 'thumbnails-i',                    container: 'taboola-native-stream-thumbnails',                    placement: 'Native Stream Thumbnails',                    target_type: 'mix'                  });"
+  }
+]

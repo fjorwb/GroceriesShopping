@@ -8,7 +8,10 @@ shoppinglistsRouter.get('/:id', SLC.getShoppingListById)
 shoppinglistsRouter.get('/shoplistid/:id', SLC.getShoppingListByShopListId)
 shoppinglistsRouter.post('/', SLC.createShoppingList)
 shoppinglistsRouter.put('/:id', SLC.updateShoppingList)
-shoppinglistsRouter.delete('/shoplistid/:id', SLC.deleteShoppingListByShopListId)
+shoppinglistsRouter.delete(
+  '/shoplistid/:id',
+  SLC.deleteShoppingListByShopListId
+)
 shoppinglistsRouter.delete('/:id', SLC.deleteShoppingList)
 
 module.exports = shoppinglistsRouter

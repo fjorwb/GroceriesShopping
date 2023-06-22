@@ -1,5 +1,5 @@
 'use strict'
-const {Model} = require('sequelize')
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
@@ -17,11 +17,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       barcode: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: '0000000000000'
       },
       extid: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
       },
       name: {
         type: DataTypes.STRING,
@@ -31,26 +32,26 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      unit: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
       presentation: {
         type: DataTypes.STRING,
         allowNull: false
       },
+      unit: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       price: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: true,
+        type: DataTypes.INTEGER,
+        allowNull: false,
         defaultValue: 0.0
       },
       market_id: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
       },
       category: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
         defaultValue: 'Others'
       },
       user_id: {

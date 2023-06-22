@@ -9,7 +9,7 @@ const morgan = require('morgan')
 
 const app = express()
 
-const {sequelize} = require('./models/index')
+const { sequelize } = require('./models/index')
 
 const authRouter = require('./routes/auth')
 const usersRouter = require('./routes/users')
@@ -27,9 +27,21 @@ const authenticate = require('./middlewares/authentication')
 
 // Middleware
 app.use(bodyParser.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(morgan('dev'))
+app.use((req, res, next) => {
+  // Dominio que tengan acceso (ej. 'http://example.com')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+
+  // Metodos de solicitud que deseas permitir
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+
+  // Encabecedados que permites (ej. 'X-Requested-With,content-type')
+  res.setHeader('Access-Control-Allow-Headers', '*')
+
+  next()
+})
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))

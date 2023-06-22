@@ -21,8 +21,9 @@ module.exports = {
         id: req.params.id
       }
     })
-      .then((shoppinglist) => {
-        return shoppinglist
+      .then((resp) => {
+        console.log(resp)
+        return resp
       })
       .catch((error) => {
         return res.status(500).json(error)
@@ -67,7 +68,7 @@ module.exports = {
       return res.status(500).json({ message: 'shoppingList already exists' })
     }
 
-    const shoppinglist = await ShoppingList.create(req.body)
+    await ShoppingList.create(req.body)
       .then((shoppinglist) => {
         return res
           .status(201)
@@ -91,7 +92,7 @@ module.exports = {
       return res.status(500).json({ message: 'shoppingList not found' })
     }
 
-    const shoppinglist = await ShoppingList.update(req.body, {
+    await ShoppingList.update(req.body, {
       where: {
         shop_list_id: req.params.id
       }
@@ -112,7 +113,7 @@ module.exports = {
       return res.status(404).json({ message: 'shoppingList not found' })
     }
 
-    const shoppinglist = await ShoppingList.destroy({
+    await ShoppingList.destroy({
       where: {
         id: req.params.id
       }
@@ -136,7 +137,7 @@ module.exports = {
       return res.status(404).json({ message: 'shoppingList not found' })
     }
 
-    const shoppinglist = await ShoppingList.destroy({
+    await ShoppingList.destroy({
       where: {
         shop_list_id: req.params.id
       }

@@ -1,10 +1,8 @@
-const axios = require('axios')
-
 const { Recipe } = require('../models/index')
 
 module.exports = {
   async getAllRecipes(req, res) {
-    const recipes = await Recipe.findAll({
+    await Recipe.findAll({
       where: {
         user_id: req.user.id
       }

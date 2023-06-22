@@ -3,6 +3,8 @@ const productsRouter = express.Router()
 
 const productsController = require('../controllers/productsController')
 
+productsRouter.get('/extid/:extid', productsController.getProductByExtId)
+
 productsRouter.get('/', productsController.getAllProducts)
 productsRouter.post('/', productsController.createProduct)
 productsRouter.get('/:id', productsController.getProductById)

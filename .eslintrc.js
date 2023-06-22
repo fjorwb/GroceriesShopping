@@ -13,6 +13,7 @@ module.exports = {
     'space-before-function-paren': 'off',
     camelcase: 'off',
     'object-curly-spacing': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'multiline-ternary': 'off'
   }
 }

@@ -9,5 +9,6 @@ productmocksRouter.post('/', productmocksController.createProductMocks)
 productmocksRouter.get('/:id', productmocksController.getProductMocksById)
 productmocksRouter.put('/:id', productmocksController.updateProductMocks)
 productmocksRouter.delete('/:id', productmocksController.deleteProductMocks)
+productmocksRouter.delete('/', productmocksController.deleteAllProductMocks)
 
 module.exports = productmocksRouter

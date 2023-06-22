@@ -82,5 +82,19 @@ module.exports = {
       .catch((error) => {
         return res.status(500).json(error)
       })
+  },
+  async deleteAllProductMocks(req, res) {
+    await ProductMock.destroy({
+      where: {},
+      truncate: true
+    })
+      .then((productmock) => {
+        return res
+          .status(200)
+          .json({ message: 'products deleted successfully', productmock })
+      })
+      .catch((error) => {
+        return res.status(500).json(error)
+      })
   }
 }

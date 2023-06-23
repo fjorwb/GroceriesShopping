@@ -8,11 +8,14 @@ module.exports = {
       }
     })
       .then((products) => {
+        console.log('PRODS', products)
         return res.status(200).json(products)
       })
       .catch((error) => {
         return res.status(500).json(error)
       })
+
+    console.log('PRODSX', products)
   },
 
   async getProductById(req, res) {
@@ -28,11 +31,9 @@ module.exports = {
         return res.status(500).json(error)
       })
 
-    if (!product) {
-      return res.status(404).json({ message: 'product not found' })
-    } else {
-      return res.status(200).json(product)
-    }
+    return product
+      ? res.status(200).json(product)
+      : res.status(404).json({ message: 'product not found' })
   },
 
   async getProductByExtId(req, res) {
@@ -44,15 +45,18 @@ module.exports = {
       }
     })
       .then((product) => {
+        console.log(product)
         return product
       })
       .catch((error) => {
         return res.status(500).json(error)
       })
 
-    return product
-      ? res.status(200).json(product)
-      : res.status(404).json({ message: 'product not found' })
+    if (!product) {
+      return res.status(404).json({ message: 'product not found' })
+    } else {
+      return res.status(200).json(product)
+    }
   },
 
   async createProduct(req, res) {
@@ -81,31 +85,34 @@ module.exports = {
       .then((res) => {
         res
           .status(201)
-          .send({ data: res.data, message: 'product created successfully' })
+          .status({ data: res.data, message: 'product created successfully' })
       })
       .catch((error) => {
-        res.send(500).json(error)
+        res.status(500).json(error)
       })
   },
 
   async updateProduct(req, res) {
     const checkProduct = await Product.findByPk(req.params.id)
+    console.log('CHECK!!!', checkProduct)
 
     if (!checkProduct) {
       return res.status(404).json({ message: 'product not found' })
     }
 
-    await Product.update(req.body, {
+    const product = await Product.update(req.body, {
       where: { id: req.params.id }
     })
-      .then((product) => {
-        return res
-          .status(200)
-          .send({ message: 'product updated successfully', product })
+      .then((res) => {
+        return res.status(200).json({ message: 'product updated successfully' })
       })
       .catch((error) => {
         return res.status(500).json(error)
       })
+
+    if (!product) return
+
+    return product
   },
 
   async deleteProduct(req, res) {

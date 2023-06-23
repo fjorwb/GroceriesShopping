@@ -2,20 +2,21 @@ const { Product } = require('../models')
 
 module.exports = {
   async getAllProducts(req, res) {
-    const products = await Product.findAll({
+    await Product.findAll({
+      // const products = await Product.findAll({
       where: {
         user_id: req.user.id
       }
     })
       .then((products) => {
-        console.log('PRODS', products)
+        // console.log('PRODS', products)
         return res.status(200).json(products)
       })
       .catch((error) => {
         return res.status(500).json(error)
       })
 
-    console.log('PRODSX', products)
+    // console.log('PRODSX', products)
   },
 
   async getProductById(req, res) {
@@ -37,7 +38,7 @@ module.exports = {
   },
 
   async getProductByExtId(req, res) {
-    console.log('req.params', req.params)
+    // console.log('req.params', req.params)
 
     const product = await Product.findOne({
       where: {
@@ -45,7 +46,7 @@ module.exports = {
       }
     })
       .then((product) => {
-        console.log(product)
+        // console.log(product)
         return product
       })
       .catch((error) => {
@@ -60,7 +61,7 @@ module.exports = {
   },
 
   async createProduct(req, res) {
-    console.log('req.body', req.body)
+    // console.log('req.body', req.body)
 
     const checkProduct = await Product.findOne({
       where: {
@@ -77,7 +78,7 @@ module.exports = {
       })
 
     if (checkProduct) {
-      console.log('product already exists')
+      // console.log('product already exists')
       return res.status(400).json({ message: 'product already exists' })
     }
 
@@ -93,8 +94,12 @@ module.exports = {
   },
 
   async updateProduct(req, res) {
+    console.log('REQBODY', req.body)
+    console.log('REQPARAMS', req.params)
+
     const checkProduct = await Product.findByPk(req.params.id)
-    console.log('CHECK!!!', checkProduct)
+    // console.log('CHECK!!!', checkProduct.dataValues)
+    console.log(!checkProduct)
 
     if (!checkProduct) {
       return res.status(404).json({ message: 'product not found' })
@@ -104,15 +109,19 @@ module.exports = {
       where: { id: req.params.id }
     })
       .then((res) => {
-        return res.status(200).json({ message: 'product updated successfully' })
+        return res
+        // return res.status(200).json({ message: 'product updated successfully' })
       })
       .catch((error) => {
-        return res.status(500).json(error)
+        console.log(error)
+        // return res.status(500).json(error)
       })
 
-    if (!product) return
-
-    return product
+    if (product) {
+      return res.status(200).json({ message: 'product updated successfully' })
+    } else {
+      return res.status(500).json({ message: 'product not updated' })
+    }
   },
 
   async deleteProduct(req, res) {

@@ -16,7 +16,8 @@ if (config.use_env_variable) {
         require: true,
         rejectUnauthorized: false
       }
-    }
+    },
+    logging: false
   })
 } else {
   sequelize = new Sequelize(

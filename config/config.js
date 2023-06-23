@@ -8,6 +8,7 @@ module.exports = {
     database: process.env.DATABASE || 'groceries_shopping',
     host: process.env.HOST || '127.0.0.1',
     dialect: process.env.DIALECT || 'postgres',
+    logging: false,
     define: {
       underscored: true
     }

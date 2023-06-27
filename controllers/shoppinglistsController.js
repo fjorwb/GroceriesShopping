@@ -1,5 +1,7 @@
 const { ShoppingList } = require('../models')
 
+console.log('data', ShoppingList)
+
 module.exports = {
   async getAllShoppingLists(req, res) {
     await ShoppingList.findAll({
@@ -57,22 +59,28 @@ module.exports = {
   },
 
   async createShoppingList(req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     const checkShoppingList = await ShoppingList.findOne({
       where: {
         shop_list_id: req.body.shop_list_id
       }
     })
+      .then((res) => {
+        return res
+      })
+      .catch((error) => {
+        console.log(error)
+      })
 
     if (checkShoppingList) {
       return res.status(500).json({ message: 'shoppingList already exists' })
     }
 
     await ShoppingList.create(req.body)
-      .then((shoppinglist) => {
+      .then((res) => {
         return res
           .status(201)
-          .send({ message: 'shoppingList created successfully', shoppinglist })
+          .json({ message: 'shoppingList created successfully', res })
       })
       .catch((err) => {
         return res.status(500).json(err)

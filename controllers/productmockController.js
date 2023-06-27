@@ -19,28 +19,62 @@ module.exports = {
         return res.status(500).json(error)
       })
   },
+
   async createProductMocks(req, res) {
-    const checkProductMock = await ProductMock.findOne({
-      where: {
-        idext: req.body.idext,
-        market_id: req.body.market_id
+    try {
+      const checkProductMock = await ProductMock.findOne({
+        where: {
+          idext: req.body.idext,
+          market_id: req.body.market_id
+        }
+      })
+
+      if (checkProductMock) {
+        // console.log('CHECK', checkProductMock.dataValues.name)
+        return res.status(302).json({ message: 'product already exists' })
       }
-    })
 
-    if (checkProductMock) {
-      return res.status(400).json({ message: 'product already exists' })
+      const createdProduct = await ProductMock.create(req.body)
+      // console.log('check z', createdProduct.dataValues.name)
+
+      const product = createdProduct.dataValues.name
+      return res.status(201).send({
+        message: 'product created successfully',
+        product
+      })
+    } catch (error) {
+      return res.status(500).json(error)
     }
-
-    await ProductMock.create(req.body)
-      .then((productmock) => {
-        return res
-          .status(201)
-          .send({ message: 'product created successfully', productmock })
-      })
-      .catch((error) => {
-        return res.status(500).json(error)
-      })
   },
+
+  // async createProductMocks(req, res) {
+  //   const checkProductMock = await ProductMock.findOne({
+  //     where: {
+  //       idext: req.body.idext,
+  //       market_id: req.body.market_id
+  //     }
+  //   })
+
+  //   if (checkProductMock) {
+  //     console.log('CHECK', checkProductMock.dataValues.name)
+  //     return res.status(400).json({ message: 'product already exists' })
+  //   }
+
+  //   const resp = await ProductMock.create(req.body)
+  //     .then((res) => {
+  //       console.log('check z', res.dataValues.name)
+  //       const product = res.dataValues.name
+  //       return res.status(201).send({
+  //         message: 'product created successfully',
+  //         product
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       return res.status(500).json(error)
+  //     })
+  //   return resp
+  // },
+
   async updateProductMocks(req, res) {
     const checkProductMock = await ProductMock.findByPk(req.params.id)
 

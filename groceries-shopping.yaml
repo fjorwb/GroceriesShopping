@@ -841,8 +841,8 @@ paths:
     delete:
       tags:
         - shoppinglists
-      summary: deletShoppingList
-      operationId: deletShoppingList
+      summary: deleteShoppingList
+      operationId: deleteShoppingList
       parameters:
         - name: id
           in: path
@@ -851,6 +851,45 @@ paths:
           schema:
             type: integer
             format: int64
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /shoppinglists/shoplistid/{shop_list_id}:
+    get:
+      tags:
+        - shoppinglists
+      summary: getShoppingListByShopListId
+      operationId: getShoppingListByShopListId
+      parameters:
+        - name: shop_list_id
+          in: path
+          description: Shopping List ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - shoppinglists
+      summary: deleteShoppingListByShopListId
+      operationId: deleteShoppingListByShopListId
+      parameters:
+        - name: shop_list_id
+          in: path
+          description: Shopping List ID
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: ''

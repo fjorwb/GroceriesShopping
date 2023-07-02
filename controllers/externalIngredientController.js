@@ -27,9 +27,8 @@ module.exports = {
       url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
       params: { includeNutrition: 'false' },
       headers: {
-        'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
-        'X-RapidAPI-Host':
-          'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Host': process.env.RAPIDAPI_HOST
       }
     }
 

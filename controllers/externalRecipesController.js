@@ -1,18 +1,18 @@
 const axios = require('axios')
 
-const {Recipe, Ingredients, sequelize} = require('../models/index')
+const { Recipe, Ingredients, sequelize } = require('../models/index')
 
 module.exports = {
   async getRecipesFromApi(req, res) {
-    const {recipe, cuisine} = req.query
+    const { recipe, cuisine } = req.query
 
     const options = {
       method: 'GET',
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-      params: {query: recipe, cuisine, number: '100'},
+      params: { query: recipe, cuisine, number: '100' },
       headers: {
-        'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
-        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Host': process.env.RAPIDAPI_HOST
       }
     }
     const response = await axios.request(options)
@@ -25,7 +25,7 @@ module.exports = {
     const options = {
       method: 'GET',
       url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
-      params: {includeNutrition: 'false'},
+      params: { includeNutrition: 'false' },
       headers: {
         'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
         'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
@@ -51,14 +51,14 @@ module.exports = {
           })
         }
 
-        obj = {...{ingredients: arr}}
+        obj = { ...{ ingredients: arr } }
 
         recipe = {
           ...obj,
-          ...{servings: resp2.servings},
-          ...{instructions: resp2.instructions},
-          ...{title: resp2.title},
-          ...{image: resp2.image}
+          ...{ servings: resp2.servings },
+          ...{ instructions: resp2.instructions },
+          ...{ title: resp2.title },
+          ...{ image: resp2.image }
         }
 
         res.json(recipe)
@@ -72,7 +72,7 @@ module.exports = {
     const idext = req.params.id
 
     const checkRecipe = await Recipe.findOne({
-      where: {idext}
+      where: { idext }
     })
       .then((recipe) => {
         return recipe
@@ -82,13 +82,13 @@ module.exports = {
       })
 
     if (checkRecipe) {
-      return res.status(404).send({message: 'recipe already exists'})
+      return res.status(404).send({ message: 'recipe already exists' })
     }
 
     const options = {
       method: 'GET',
       url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
-      params: {includeNutrition: 'false'},
+      params: { includeNutrition: 'false' },
       headers: {
         'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
         'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
@@ -99,8 +99,8 @@ module.exports = {
       .request(options)
       .then(function (response) {
         const resp2 = response.data
-        const {id, title, image, servings, instructions} = resp2
-        return {idext: id, title, image, servings, instructions}
+        const { id, title, image, servings, instructions } = resp2
+        return { idext: id, title, image, servings, instructions }
       })
       .catch((error) => {
         // return res.status( 400 ).json( { error: error } )
@@ -125,11 +125,11 @@ module.exports = {
 
   async updateExternalRecipe(req, res) {
     const checkRecipe = await Ingredients.findOne({
-      where: {id: req.params.id}
+      where: { id: req.params.id }
     })
 
     if (!checkRecipe) {
-      return res.status(400).send({message: 'recipe not found'})
+      return res.status(400).send({ message: 'recipe not found' })
     }
 
     const recipe = await Ingredients.update(req.body, {
@@ -138,20 +138,20 @@ module.exports = {
       }
     })
       .then((recipe) => {
-        res.status(200).send({message: 'recipe successfully updated'})
+        res.status(200).send({ message: 'recipe successfully updated' })
       })
       .catch((err) => {
-        res.status(400).send({message: err.message})
+        res.status(400).send({ message: err.message })
       })
   },
 
   async deleteExternalRecipe(req, res) {
     const checkRecipe = await Ingredients.findOne({
-      where: {id: req.params.id}
+      where: { id: req.params.id }
     })
 
     if (!checkRecipe) {
-      return res.status(400).send({message: 'recipe not found'})
+      return res.status(400).send({ message: 'recipe not found' })
     }
 
     const recipe = await Ingredients.destroy({
@@ -160,10 +160,10 @@ module.exports = {
       }
     })
       .then((recipe) => {
-        res.status(200).send({message: 'recipe successfully deleted'})
+        res.status(200).send({ message: 'recipe successfully deleted' })
       })
       .catch((err) => {
-        res.status(400).send({message: err.message})
+        res.status(400).send({ message: err.message })
       })
   }
 }

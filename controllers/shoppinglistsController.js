@@ -6,8 +6,8 @@ module.exports = {
   async getAllShoppingLists(req, res) {
     await ShoppingList.findAll({
       where: {
-        user_id: req.user.id
-      }
+        user_id: req.user.id,
+      },
     })
       .then((shoppingLists) => {
         return res.status(200).json(shoppingLists)
@@ -20,8 +20,8 @@ module.exports = {
   async getShoppingListById(req, res) {
     const shoppinglist = await ShoppingList.findOne({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((resp) => {
         console.log(resp)
@@ -41,8 +41,8 @@ module.exports = {
   async getShoppingListByShopListId(req, res) {
     const shoppinglist = await ShoppingList.findOne({
       where: {
-        shop_list_id: req.params.id
-      }
+        shop_list_id: req.params.id,
+      },
     })
       .then((shoppinglist) => {
         return shoppinglist
@@ -62,8 +62,8 @@ module.exports = {
     // console.log(req.body)
     const checkShoppingList = await ShoppingList.findOne({
       where: {
-        shop_list_id: req.body.shop_list_id
-      }
+        shop_list_id: req.body.shop_list_id,
+      },
     })
       .then((res) => {
         return res
@@ -78,9 +78,7 @@ module.exports = {
 
     await ShoppingList.create(req.body)
       .then((res) => {
-        return res
-          .status(201)
-          .json({ message: 'shoppingList created successfully', res })
+        return res.status(201).json({ message: 'shoppingList created successfully', res })
       })
       .catch((err) => {
         return res.status(500).json(err)
@@ -92,8 +90,8 @@ module.exports = {
 
     const checkShoppingList = await ShoppingList.findOne({
       where: {
-        shop_list_id: req.params.shop_list_id
-      }
+        shop_list_id: req.params.shop_list_id,
+      },
     })
 
     if (!checkShoppingList) {
@@ -102,8 +100,8 @@ module.exports = {
 
     await ShoppingList.update(req.body, {
       where: {
-        shop_list_id: req.params.id
-      }
+        shop_list_id: req.params.id,
+      },
     })
       .then((shoppinglist) => {
         res.status(200).send({ message: 'shoppingList updated successfully' })
@@ -123,8 +121,8 @@ module.exports = {
 
     await ShoppingList.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((shoppinglist) => {
         res.status(200).send({ message: 'shoppingList deleted successfully' })
@@ -135,26 +133,30 @@ module.exports = {
   },
 
   async deleteShoppingListByShopListId(req, res) {
+    console.log('req params', req.params.id)
     const checkShoppingList = await ShoppingList.findOne({
       where: {
-        shop_list_id: req.params.id
-      }
+        shop_list_id: req.params.id,
+      },
+      order: [['shop_list_id', 'ASC']],
     })
 
+    console.log('checkShoppingList', checkShoppingList)
+
     if (!checkShoppingList) {
-      return res.status(404).json({ message: 'shoppingList not found' })
+      return res.status(404).send({ message: 'shoppingList not found' })
     }
 
     await ShoppingList.destroy({
       where: {
-        shop_list_id: req.params.id
-      }
+        shop_list_id: req.params.id,
+      },
     })
-      .then((shoppinglist) => {
+      .then((res) => {
         res.status(200).send({ message: 'shoppingList deleted successfully' })
       })
       .catch((error) => {
         res.status(500).json(error)
       })
-  }
+  },
 }

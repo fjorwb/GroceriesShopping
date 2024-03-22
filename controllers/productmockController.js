@@ -25,8 +25,8 @@ module.exports = {
       const checkProductMock = await ProductMock.findOne({
         where: {
           idext: req.body.idext,
-          market_id: req.body.market_id
-        }
+          market_id: req.body.market_id,
+        },
       })
 
       if (checkProductMock) {
@@ -40,7 +40,7 @@ module.exports = {
       const product = createdProduct.dataValues.name
       return res.status(201).send({
         message: 'product created successfully',
-        product
+        product,
       })
     } catch (error) {
       return res.status(500).json(error)
@@ -84,34 +84,30 @@ module.exports = {
 
     await ProductMock.update(req.body, {
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((productmock) => {
-        return res
-          .status(200)
-          .json({ message: 'product updated successfully', productmock })
+        return res.status(200).json({ message: 'product updated successfully', productmock })
       })
       .catch((error) => {
         return res.status(500).json(error)
       })
   },
   async deleteProductMocks(req, res) {
-    const checkProductMock = await ProductMock.findByPk(req.params.id)
+    // const checkProductMock = await ProductMock.findByPk(req.params.id)
 
-    if (!checkProductMock) {
-      return res.status(404).json({ message: 'product not found' })
-    }
+    // if (!checkProductMock) {
+    //   return res.status(404).json({ message: 'product not found' })
+    // }
 
     await ProductMock.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((productmock) => {
-        return res
-          .status(200)
-          .json({ message: 'product deleted successfully', productmock })
+        return res.status(200).json({ message: 'product deleted successfully', productmock })
       })
       .catch((error) => {
         return res.status(500).json(error)
@@ -120,15 +116,13 @@ module.exports = {
   async deleteAllProductMocks(req, res) {
     await ProductMock.destroy({
       where: {},
-      truncate: true
+      truncate: true,
     })
       .then((productmock) => {
-        return res
-          .status(200)
-          .json({ message: 'products deleted successfully', productmock })
+        return res.status(200).json({ message: 'products deleted successfully', productmock })
       })
       .catch((error) => {
         return res.status(500).json(error)
       })
-  }
+  },
 }

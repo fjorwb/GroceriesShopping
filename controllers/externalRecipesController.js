@@ -12,8 +12,8 @@ module.exports = {
       params: { query: recipe, cuisine, number: '100' },
       headers: {
         'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-        'X-RapidAPI-Host': process.env.RAPIDAPI_HOST
-      }
+        'X-RapidAPI-Host': process.env.RAPIDAPI_HOST,
+      },
     }
     const response = await axios.request(options)
     res.send(response.data.results)
@@ -27,9 +27,9 @@ module.exports = {
       url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
       params: { includeNutrition: 'false' },
       headers: {
-        'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
-        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
-      }
+        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Host': process.env.RAPIDAPI_HOST,
+      },
     }
 
     const arr = []
@@ -47,7 +47,7 @@ module.exports = {
             idext: resp[i].id,
             ingredient: resp[i].nameClean,
             amount: resp[i].amount,
-            unit: resp[i].unit || 'unit'
+            unit: resp[i].unit || 'unit',
           })
         }
 
@@ -58,7 +58,7 @@ module.exports = {
           ...{ servings: resp2.servings },
           ...{ instructions: resp2.instructions },
           ...{ title: resp2.title },
-          ...{ image: resp2.image }
+          ...{ image: resp2.image },
         }
 
         res.json(recipe)
@@ -72,7 +72,7 @@ module.exports = {
     const idext = req.params.id
 
     const checkRecipe = await Recipe.findOne({
-      where: { idext }
+      where: { idext },
     })
       .then((recipe) => {
         return recipe
@@ -90,9 +90,9 @@ module.exports = {
       url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
       params: { includeNutrition: 'false' },
       headers: {
-        'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
-        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
-      }
+        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Host': process.env.RAPIDAPI_HOST,
+      },
     }
 
     const body = await axios
@@ -112,7 +112,7 @@ module.exports = {
       title: body.title,
       image: body.image,
       servings: body.servings,
-      instructions: body.instructions
+      instructions: body.instructions,
     })
       .then((recipe) => {
         return res.status(201).json(recipe)
@@ -125,7 +125,7 @@ module.exports = {
 
   async updateExternalRecipe(req, res) {
     const checkRecipe = await Ingredients.findOne({
-      where: { id: req.params.id }
+      where: { id: req.params.id },
     })
 
     if (!checkRecipe) {
@@ -134,8 +134,8 @@ module.exports = {
 
     const recipe = await Ingredients.update(req.body, {
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((recipe) => {
         res.status(200).send({ message: 'recipe successfully updated' })
@@ -147,7 +147,7 @@ module.exports = {
 
   async deleteExternalRecipe(req, res) {
     const checkRecipe = await Ingredients.findOne({
-      where: { id: req.params.id }
+      where: { id: req.params.id },
     })
 
     if (!checkRecipe) {
@@ -156,8 +156,8 @@ module.exports = {
 
     const recipe = await Ingredients.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((recipe) => {
         res.status(200).send({ message: 'recipe successfully deleted' })
@@ -165,5 +165,5 @@ module.exports = {
       .catch((err) => {
         res.status(400).send({ message: err.message })
       })
-  }
+  },
 }

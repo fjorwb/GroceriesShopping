@@ -4,8 +4,7 @@ info:
   contact: {}
   version: '1.1.1'
 servers:
-  # - url: https://groceries-shopping.herokuapp.com/
-  - url: http://localhost:4200
+  - url: https://groceries-shopping.herokuapp.com/
     variables: {}
 paths:
   /auth/login:

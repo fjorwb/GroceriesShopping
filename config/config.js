@@ -3,22 +3,23 @@ require('dotenv').config()
 module.exports = {
   // Database config
   development: {
-    username: process.env.USERNAME || 'groceries_shopping',
+    username: process.env.USERNAME || 'postgres',
     password: process.env.PASSWORD || null,
     database: process.env.DATABASE || 'groceries_shopping',
-    host: process.env.HOST || '127.0.0.1',
+    // host: process.env.HOST || '127.0.0.1',
+    host: process.env.HOST || 5432,
     dialect: process.env.DIALECT || 'postgres',
     logging: false,
     define: {
-      underscored: true
-    }
+      underscored: true,
+    },
   },
   test: {
     username: process.env.USERNAME,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     host: process.env.HOST,
-    dialect: process.env.DIALECT
+    dialect: process.env.DIALECT,
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -26,12 +27,12 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     },
     define: {
-      underscored: true
-    }
+      underscored: true,
+    },
   },
 
   // migration config
@@ -40,5 +41,5 @@ module.exports = {
 
   // seeder config
   seederStorage: 'sequelize',
-  seederStorageTableName: 'seeders'
+  seederStorageTableName: 'seeders',
 }

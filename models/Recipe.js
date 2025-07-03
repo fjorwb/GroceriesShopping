@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Recipe.belongsTo(models.User)
+      Recipe.belongsTo(models.User, { foreignKey: 'user_id' })
     }
   }
   Recipe.init(
@@ -19,39 +19,39 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       idext: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       servings: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       instructions: {
         type: DataTypes.TEXT,
-        allowNull: true
+        allowNull: true,
       },
       user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
 
     {
       sequelize,
       modelName: 'Recipe',
       tableName: 'recipes',
-      underscored: true
+      underscored: true,
     }
   )
   return Recipe

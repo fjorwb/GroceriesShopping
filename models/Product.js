@@ -1,10 +1,11 @@
 'use strict'
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      Product.belongsTo(models.User)
-      Product.belongsTo(models.Market)
+      Product.belongsTo(models.User, { foreignKey: 'user_id' })
+      Product.belongsTo(models.Market, { foreignKey: 'market_id' })
     }
   }
   Product.init(
@@ -13,57 +14,57 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       barcode: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: '0000000000000'
+        defaultValue: '0000000000000',
       },
       extid: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       description: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       presentation: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       unit: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       price: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 0.0
+        defaultValue: 0.0,
       },
       market_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       category: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'Others'
+        defaultValue: 'Others',
       },
       user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'Product',
       tableName: 'products',
-      underscored: true
+      underscored: true,
     }
   )
   return Product

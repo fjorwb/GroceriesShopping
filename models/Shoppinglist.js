@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      ShoppingList.belongsTo(models.User)
+      ShoppingList.belongsTo(models.User, { foreignKey: 'user_id' })
     }
   }
   ShoppingList.init(
@@ -18,26 +18,26 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       shop_list_id: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       shop_list: {
-        type: DataTypes.JSON
+        type: DataTypes.JSON,
         // allowNull: false
       },
       user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'ShoppingList',
       tableName: 'shoppinglists',
-      underscored: true
+      underscored: true,
     }
   )
   return ShoppingList

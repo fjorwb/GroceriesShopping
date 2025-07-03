@@ -64,11 +64,20 @@ app.get('/', function (req, res) {
   res.render('index')
 })
 
-const PORT = process.env.PORT || 5000
+const SERVER_PORT = process.env.SERVER_PORT || 5000
 
-app.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:${PORT}`)
+app.listen(SERVER_PORT, () => {
+  console.log(`Server running on port http://localhost:${SERVER_PORT}`)
 })
+
+// sequelize
+//   .sync({ force: true })
+//   .then(() => {
+//     console.log('Database synchronized successfully.')
+//   })
+//   .catch((err) => {
+//     console.error('Error synchronizing the database:', err)
+//   })
 
 sequelize
   .authenticate()

@@ -8,37 +8,40 @@ const env = process.env.NODE_ENV || 'development'
 const config = require(path.join(__dirname, '/../config/config.json'))[env]
 const db = {}
 
-let sequelize
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    },
-    logging: false
-  })
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  )
-}
+// const sequelize = new Sequelize()
+
+console.log('Database configuration:', config)
+console.log('Environment:', env)
+
+// const sequelize = config.use_env_variable
+//   ? new Sequelize(process.env.DATABASE_URL, {
+//       dialectOptions: {
+//         ssl: {
+//           require: true,
+//           rejectUnauthorized: false,
+//         },
+//       },
+//       logging: false,
+//     })
+//   : new Sequelize(config.database, config.username, config.password, config)
+
+const sequelize = new Sequelize(config.database, config.username, config.password, {
+  host: config.host,
+  port: config.port,
+  dialect: config.dialect,
+  // logging: config.logging,
+  define: {
+    underscored: true,
+  },
+  // dialectOptions: config.dialectOptions || {},
+})
 
 fs.readdirSync(__dirname)
   .filter((file) => {
-    return (
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-    )
+    return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
-      sequelize,
-      Sequelize.DataTypes
-    )
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
     db[model.name] = model
   })
 

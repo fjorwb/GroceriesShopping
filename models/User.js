@@ -19,66 +19,66 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       firstname: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       lastname: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       username: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       address: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       address2: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
       },
       city: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       state: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       zip_code: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       country: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       role: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'User',
       tableName: 'users',
-      underscored: true
+      underscored: true,
     }
   )
   return User

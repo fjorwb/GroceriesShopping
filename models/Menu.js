@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Menu.belongsTo(models.User)
+      Menu.belongsTo(models.User, { foreignKey: 'user_id' })
     }
   }
   Menu.init(
@@ -17,50 +17,50 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       week: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       date: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
       },
       meal: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       recipe_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       idext: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false,
       },
       recipe_title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       servings: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       factor: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'Menu',
       tableName: 'menus',
-      underscored: true
+      underscored: true,
     }
   )
   return Menu

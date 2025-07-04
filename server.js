@@ -67,17 +67,8 @@ app.get('/', function (req, res) {
 const SERVER_PORT = process.env.SERVER_PORT || 5000
 
 app.listen(SERVER_PORT, () => {
-  console.log(`Server running on port http://localhost:${SERVER_PORT}`)
+  console.log(`\nServer running on port http://localhost:${SERVER_PORT}\n`)
 })
-
-// sequelize
-//   .sync({ force: true })
-//   .then(() => {
-//     console.log('Database synchronized successfully.')
-//   })
-//   .catch((err) => {
-//     console.error('Error synchronizing the database:', err)
-//   })
 
 sequelize
   .authenticate()

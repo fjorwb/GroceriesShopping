@@ -10,8 +10,8 @@ const db = {}
 
 // const sequelize = new Sequelize()
 
-console.log('Database configuration:', config)
-console.log('Environment:', env)
+// console.log('Database configuration:', config)
+// console.log('Environment:', env)
 
 // const sequelize = config.use_env_variable
 //   ? new Sequelize(process.env.DATABASE_URL, {

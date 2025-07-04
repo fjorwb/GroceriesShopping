@@ -17,11 +17,11 @@ module.exports = {
   //   },
   // },
   development: {
-    username: process.env.USERNAME || 'postgres',
+    username: process.env.USERNAME || 'Fernando Oliveri',
     password: process.env.PASSWORD || '1509mcpv',
     database: process.env.DATABASE || 'groceries_shopping',
     host: process.env.HOST || 'localhost',
-    port: process.env.PORT || 5432,
+    port: process.env.PORT || 5440,
     dialect: process.env.DIALECT || 'postgres',
     logging: false,
     define: {

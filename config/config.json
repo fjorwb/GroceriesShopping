@@ -4,7 +4,7 @@
     "password": "1509mcpv",
     "database": "groceries_shopping",
     "host": "localhost",
-    "port": "5440",
+    "port": "5441",
     "dialect": "postgres",
     "logging": false,
     "define": {

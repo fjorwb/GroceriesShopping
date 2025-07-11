@@ -13,7 +13,8 @@
     "re-seed": "npm run undo-seed && npm run seed",
     "db-re-start": "npm run undo-migrate && npm run migrate && npm run seed",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "make-mockdata": "node ./MockData/makemock.js"
   },
   "name": "groceriesshopping",
   "version": "1.0.0",

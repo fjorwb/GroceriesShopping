@@ -4,11 +4,11 @@
     "ingredients": [
       {
         "id": 1022009,
-        "aisle": "Ethnic Foods;Spices and Seasonings",
+        "aisle": "Ethnic Foods",
         "image": "chili-powder.jpg",
         "consistency": "SOLID",
         "name": "ancho chile powder",
-        "nameClean": "ancho chili powder",
+        "nameClean": "ancho chile powder",
         "original": "1 teaspoon ancho chile powder (or other pure chile powder, not a blend)",
         "originalName": "ancho chile powder (or other pure chile powder, not a blend)",
         "amount": 1,
@@ -60,11 +60,11 @@
       },
       {
         "id": 16015,
-        "aisle": "Pasta and Rice;Canned and Jarred",
+        "aisle": "Pasta and Rice",
         "image": "black-beans.jpg",
         "consistency": "SOLID",
         "name": "can black beans",
-        "nameClean": "black beans",
+        "nameClean": "can black beans",
         "original": "1 15-ounce can black beans, rinsed and drained (about 1 1/2 cups)",
         "originalName": "15-ounce can black beans, rinsed and drained (about",
         "amount": 1.5,
@@ -81,9 +81,9 @@
             "unitLong": "cups"
           },
           "metric": {
-            "amount": 354.882,
-            "unitShort": "ml",
-            "unitLong": "milliliters"
+            "amount": 258,
+            "unitShort": "g",
+            "unitLong": "grams"
           }
         }
       },
@@ -108,19 +108,19 @@
             "unitLong": "cups"
           },
           "metric": {
-            "amount": 118.294,
-            "unitShort": "ml",
-            "unitLong": "milliliters"
+            "amount": 64,
+            "unitShort": "g",
+            "unitLong": "grams"
           }
         }
       },
       {
         "id": 98839,
-        "aisle": "Canned and Jarred;Ethnic Foods",
+        "aisle": "Canned and Jarred",
         "image": "chile-chipotle.jpg",
         "consistency": "SOLID",
         "name": "chipotle chile powder",
-        "nameClean": "chipotle chiles",
+        "nameClean": "chipotle chile powder",
         "original": "1/4 teaspoon chipotle chile powder, or to taste",
         "originalName": "chipotle chile powder, or to taste",
         "amount": 0.25,
@@ -195,7 +195,7 @@
       },
       {
         "id": 12220,
-        "aisle": "Health Foods;Baking",
+        "aisle": "Baking",
         "image": "flax-seeds.png",
         "consistency": "SOLID",
         "name": "ground flaxseed",
@@ -224,7 +224,7 @@
         "image": "kale.jpg",
         "consistency": "SOLID",
         "name": "kale leaves",
-        "nameClean": "kale",
+        "nameClean": "kale leaves",
         "original": "4 – 6 cups chopped kale leaves (about 4-5 ounces)",
         "originalName": "– 6 cups chopped kale leaves (about",
         "amount": 4,
@@ -251,7 +251,7 @@
         "image": "lemon-juice.jpg",
         "consistency": "LIQUID",
         "name": "additional lemon juice and seasonings",
-        "nameClean": "lemon juice",
+        "nameClean": "additional lemon juice and seasonings",
         "original": "additional lemon juice and seasonings, to taste",
         "originalName": "additional lemon juice and seasonings, to taste",
         "amount": 6,
@@ -293,7 +293,7 @@
             "unitLong": "cups"
           },
           "metric": {
-            "amount": 59.147,
+            "amount": 60.5,
             "unitShort": "ml",
             "unitLong": "milliliters"
           }
@@ -301,7 +301,7 @@
       },
       {
         "id": 20035,
-        "aisle": "Pasta and Rice;Health Foods",
+        "aisle": "Health Foods",
         "image": "uncooked-quinoa.png",
         "consistency": "SOLID",
         "name": "quinoa",
@@ -324,9 +324,9 @@
             "unitLong": "cup"
           },
           "metric": {
-            "amount": 236.588,
-            "unitShort": "ml",
-            "unitLong": "milliliters"
+            "amount": 170,
+            "unitShort": "g",
+            "unitLong": "grams"
           }
         }
       },
@@ -336,7 +336,7 @@
         "image": "red-pepper.jpg",
         "consistency": "SOLID",
         "name": "bell pepper",
-        "nameClean": "red pepper",
+        "nameClean": "bell pepper",
         "original": "1/2 red bell pepper, chopped",
         "originalName": "red bell pepper, chopped",
         "amount": 0.5,
@@ -364,7 +364,7 @@
         "image": "salt.jpg",
         "consistency": "SOLID",
         "name": "salt",
-        "nameClean": "table salt",
+        "nameClean": "salt",
         "original": "1/2 tsp salt, or to taste (optional)",
         "originalName": "salt, or to taste (optional)",
         "amount": 0.5,
@@ -391,7 +391,7 @@
         "image": "chicken-broth.png",
         "consistency": "LIQUID",
         "name": "vegetable broth",
-        "nameClean": "vegetable stock",
+        "nameClean": "vegetable broth",
         "original": "3 tablespoons vegetable broth",
         "originalName": "vegetable broth",
         "amount": 3,
@@ -446,7 +446,7 @@
       },
       {
         "id": 11216,
-        "aisle": "Produce;Ethnic Foods;Spices and Seasonings",
+        "aisle": "Produce",
         "image": "ginger.png",
         "consistency": "SOLID",
         "name": "ginger",
@@ -553,7 +553,7 @@
       },
       {
         "id": 12023,
-        "aisle": "Ethnic Foods;Spices and Seasonings",
+        "aisle": "Ethnic Foods",
         "image": "sesame-seeds.png",
         "consistency": "SOLID",
         "name": "sesame seeds",
@@ -578,7 +578,7 @@
       },
       {
         "id": 16124,
-        "aisle": "Ethnic Foods;Condiments",
+        "aisle": "Condiments",
         "image": "soy-sauce.jpg",
         "consistency": "LIQUID",
         "name": "soy sauce",
@@ -658,9 +658,9 @@
             "unitLong": "cups"
           },
           "metric": {
-            "amount": 118.294,
-            "unitShort": "ml",
-            "unitLong": "milliliters"
+            "amount": 82,
+            "unitShort": "g",
+            "unitLong": "grams"
           }
         }
       },
@@ -670,7 +670,7 @@
         "image": "english-cucumber.png",
         "consistency": "SOLID",
         "name": "cucumber",
-        "nameClean": "english cucumber",
+        "nameClean": "cucumber",
         "original": "½ English cucumber, sliced",
         "originalName": "English cucumber, sliced",
         "amount": 0.5,
@@ -698,7 +698,7 @@
         "image": "cherry-tomatoes.png",
         "consistency": "SOLID",
         "name": "grape tomatoes",
-        "nameClean": "grape tomato",
+        "nameClean": "grape tomatoes",
         "original": "1 cup Cherry or grape tomatoes, halved (or large tomato, diced)",
         "originalName": "Cherry or grape tomatoes, halved (or large tomato, diced)",
         "amount": 1,
@@ -715,19 +715,19 @@
             "unitLong": "cup"
           },
           "metric": {
-            "amount": 236.588,
-            "unitShort": "ml",
-            "unitLong": "milliliters"
+            "amount": 149,
+            "unitShort": "g",
+            "unitLong": "grams"
           }
         }
       },
       {
         "id": 10111251,
         "aisle": "Produce",
-        "image": "romaine.jpg",
+        "image": "img.spoonacular.",
         "consistency": "SOLID",
         "name": "romaine lettuce",
-        "nameClean": "romaine",
+        "nameClean": "romaine lettuce",
         "original": "1 large head Romaine Lettuce, rinsed, chopped and dried",
         "originalName": "Romaine Lettuce, rinsed, chopped and dried",
         "amount": 1,
@@ -756,7 +756,7 @@
         "image": "salt.jpg",
         "consistency": "SOLID",
         "name": "sea salt",
-        "nameClean": "coarse sea salt",
+        "nameClean": "sea salt",
         "original": "½ tsp sea salt",
         "originalName": "sea salt",
         "amount": 0.5,
@@ -781,7 +781,7 @@
         "image": "sugar-snap-peas.jpg",
         "consistency": "SOLID",
         "name": "l snap peas",
-        "nameClean": "sugar snap peas",
+        "nameClean": "l snap peas",
         "original": "l cup Snap peas, whole, optional",
         "originalName": "l Snap peas, whole, optional",
         "amount": 1,
@@ -796,9 +796,9 @@
             "unitLong": "cup"
           },
           "metric": {
-            "amount": 236.588,
-            "unitShort": "ml",
-            "unitLong": "milliliters"
+            "amount": 98,
+            "unitShort": "g",
+            "unitLong": "grams"
           }
         }
       },
@@ -835,7 +835,7 @@
         "image": "brown-onion.png",
         "consistency": "SOLID",
         "name": "onion",
-        "nameClean": "yellow onion",
+        "nameClean": "onion",
         "original": "½ small yellow onion, thinly sliced",
         "originalName": "yellow onion, thinly sliced",
         "amount": 0.5,

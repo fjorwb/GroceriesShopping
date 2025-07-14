@@ -4,8 +4,8 @@ module.exports = {
   async getAllRecipes(req, res) {
     await Recipe.findAll({
       where: {
-        user_id: req.user.id
-      }
+        user_id: req.user.id,
+      },
     })
       .then((recipes) => {
         res.status(200).send(recipes)
@@ -18,8 +18,8 @@ module.exports = {
   async getRecipeById(req, res) {
     const recipe = await Recipe.findOne({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((recipe) => {
         return recipe
@@ -38,8 +38,8 @@ module.exports = {
   async createRecipe(req, res) {
     const checkRecipe = await Recipe.findOne({
       where: {
-        idext: req.body.idext
-      }
+        idext: req.body.idext,
+      },
     })
       .then((recipe) => {
         return recipe
@@ -54,9 +54,7 @@ module.exports = {
 
     const recipe = await Recipe.create(req.body)
       .then((recipe) => {
-        res
-          .status(200)
-          .json({ data: recipe, message: 'recipe successfully created' })
+        res.status(200).json({ data: recipe, message: 'recipe successfully created' })
       })
       .catch((err) => {
         res.status(400).send({ message: err.message })
@@ -65,7 +63,7 @@ module.exports = {
 
   async updateRecipe(req, res) {
     const checkRecipe = await Recipe.findOne({
-      where: { id: req.params.id }
+      where: { id: req.params.id },
     })
 
     if (!checkRecipe) {
@@ -74,8 +72,8 @@ module.exports = {
 
     const recipe = await Recipe.update(req.body, {
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     })
       .then((recipe) => {
         res.status(200).send({ message: 'recipe successfully updated' })
@@ -88,8 +86,8 @@ module.exports = {
   async deleteRecipe(req, res) {
     const checkRecipe = await Recipe.findOne({
       where: {
-        idext: req.params.id
-      }
+        idext: req.params.id,
+      },
     })
 
     if (!checkRecipe) {
@@ -98,8 +96,8 @@ module.exports = {
 
     const recipe = await Recipe.destroy({
       where: {
-        idext: req.params.id
-      }
+        idext: req.params.id,
+      },
     })
       .then((recipe) => {
         res.status(200).send({ message: 'recipe successfully deleted' })
@@ -107,5 +105,5 @@ module.exports = {
       .catch((err) => {
         res.status(400).send({ message: err.message })
       })
-  }
+  },
 }

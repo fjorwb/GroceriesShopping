@@ -29,11 +29,11 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
   host: config.host,
   port: config.port,
   dialect: config.dialect,
+  logging: config.logging || false,
   // logging: config.logging,
   define: {
     underscored: true,
   },
-  // dialectOptions: config.dialectOptions || {},
 })
 
 fs.readdirSync(__dirname)

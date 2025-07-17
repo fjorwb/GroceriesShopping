@@ -4,30 +4,31 @@ require('dotenv').config()
 
 module.exports = {
   // Database config
-  // development: {
-  //   username: process.env.USERNAME || 'postgres',
-  //   password: process.env.PASSWORD || '1509mcpv',
-  //   database: process.env.DATABASE || 'groceries_shopping',
-  //   // host: process.env.HOST || '127.0.0.1',
-  //   host: process.env.HOST || 5432,
-  //   dialect: process.env.DIALECT || 'postgres',
-  //   logging: false,
-  //   define: {
-  //     underscored: true,
-  //   },
-  // },
   development: {
-    username: process.env.USERNAME || 'Fernando Oliveri',
+    username: process.env.USERNAME || 'postgres',
     password: process.env.PASSWORD || '1509mcpv',
     database: process.env.DATABASE || 'groceries_shopping',
+    // host: process.env.HOST || '127.0.0.1',
     host: process.env.HOST || 'localhost',
-    port: process.env.PORT || 5440,
+    port: process.env.PORT || 5441,
     dialect: process.env.DIALECT || 'postgres',
     logging: false,
     define: {
       underscored: true,
     },
   },
+  // development: {
+  //   username: process.env.USERNAME || 'Fernando Oliveri',
+  //   password: process.env.PASSWORD || '1509mcpv',
+  //   database: process.env.DATABASE || 'groceries_shopping',
+  //   host: process.env.HOST || 'localhost',
+  //   port: process.env.PORT || 5441,
+  //   dialect: process.env.DIALECT || 'postgres',
+  //   logging: false,
+  //   define: {
+  //     underscored: true,
+  //   },
+  // },
   test: {
     username: process.env.USERNAME,
     password: process.env.PASSWORD,

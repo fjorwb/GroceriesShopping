@@ -22,19 +22,37 @@ module.exports = (sequelize, DataTypes) => {
       },
       idext: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isInt: true,
+          min: 1,
+        },
       },
       ingredients: {
         type: DataTypes.JSON,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isObject(value) {
+            if (value === null || typeof value !== 'object') {
+              throw new Error('ingredients must be a valid JSON object')
+            }
+          },
+        },
       },
       servings: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 1,
+          isInt: true,
+        },
       },
       instructions: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
       user_id: {
         type: DataTypes.INTEGER,

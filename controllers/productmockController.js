@@ -2,22 +2,42 @@ const { ProductMock } = require('../models')
 
 module.exports = {
   async getAllProductMocks(req, res) {
-    const productmocks = await ProductMock.findAll()
-      .then((productmocks) => {
-        return res.status(200).json(productmocks)
+    try {
+      const productmocks = await ProductMock.findAll()
+      return res.status(200).json({
+        success: true,
+        data: productmocks
       })
-      .catch((error) => {
-        return res.status(500).json(error)
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch product mocks',
+        error: error.message
       })
+    }
   },
   async getProductMocksById(req, res) {
-    await ProductMock.findByPk(req.params.id)
-      .then((productmock) => {
-        return res.status(200).json(productmock)
+    try {
+      const productmock = await ProductMock.findByPk(req.params.id)
+
+      if (!productmock) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product mock not found'
+        })
+      }
+
+      return res.status(200).json({
+        success: true,
+        data: productmock
       })
-      .catch((error) => {
-        return res.status(500).json(error)
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch product mock',
+        error: error.message
       })
+    }
   },
 
   async createProductMocks(req, res) {
@@ -30,99 +50,107 @@ module.exports = {
       })
 
       if (checkProductMock) {
-        // console.log('CHECK', checkProductMock.dataValues.name)
-        return res.status(302).json({ message: 'product already exists' })
+        return res.status(409).json({
+          success: false,
+          message: 'Product already exists'
+        })
       }
 
       const createdProduct = await ProductMock.create(req.body)
-      // console.log('check z', createdProduct.dataValues.name)
 
-      const product = createdProduct.dataValues.name
-      return res.status(201).send({
-        message: 'product created successfully',
-        product,
+      return res.status(201).json({
+        success: true,
+        data: createdProduct,
+        message: 'Product created successfully'
       })
     } catch (error) {
-      return res.status(500).json(error)
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to create product mock',
+        error: error.message
+      })
     }
   },
-
-  // async createProductMocks(req, res) {
-  //   const checkProductMock = await ProductMock.findOne({
-  //     where: {
-  //       idext: req.body.idext,
-  //       market_id: req.body.market_id
-  //     }
-  //   })
-
-  //   if (checkProductMock) {
-  //     console.log('CHECK', checkProductMock.dataValues.name)
-  //     return res.status(400).json({ message: 'product already exists' })
-  //   }
-
-  //   const resp = await ProductMock.create(req.body)
-  //     .then((res) => {
-  //       console.log('check z', res.dataValues.name)
-  //       const product = res.dataValues.name
-  //       return res.status(201).send({
-  //         message: 'product created successfully',
-  //         product
-  //       })
-  //     })
-  //     .catch((error) => {
-  //       return res.status(500).json(error)
-  //     })
-  //   return resp
-  // },
 
   async updateProductMocks(req, res) {
-    const checkProductMock = await ProductMock.findByPk(req.params.id)
+    try {
+      const productMockId = req.params.id
 
-    if (!checkProductMock) {
-      return res.status(404).json({ message: 'product not found' })
+      const checkProductMock = await ProductMock.findByPk(productMockId)
+
+      if (!checkProductMock) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product mock not found'
+        })
+      }
+
+      await ProductMock.update(req.body, {
+        where: {
+          id: productMockId,
+        },
+      })
+
+      return res.status(200).json({
+        success: true,
+        message: 'Product updated successfully'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to update product mock',
+        error: error.message
+      })
     }
-
-    await ProductMock.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    })
-      .then((productmock) => {
-        return res.status(200).json({ message: 'product updated successfully', productmock })
-      })
-      .catch((error) => {
-        return res.status(500).json(error)
-      })
   },
   async deleteProductMocks(req, res) {
-    // const checkProductMock = await ProductMock.findByPk(req.params.id)
+    try {
+      const productMockId = req.params.id
 
-    // if (!checkProductMock) {
-    //   return res.status(404).json({ message: 'product not found' })
-    // }
+      const checkProductMock = await ProductMock.findByPk(productMockId)
 
-    await ProductMock.destroy({
-      where: {
-        id: req.params.id,
-      },
-    })
-      .then((productmock) => {
-        return res.status(200).json({ message: 'product deleted successfully', productmock })
+      if (!checkProductMock) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product mock not found'
+        })
+      }
+
+      await ProductMock.destroy({
+        where: {
+          id: productMockId,
+        },
       })
-      .catch((error) => {
-        return res.status(500).json(error)
+
+      return res.status(200).json({
+        success: true,
+        message: 'Product deleted successfully'
       })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to delete product mock',
+        error: error.message
+      })
+    }
   },
   async deleteAllProductMocks(req, res) {
-    await ProductMock.destroy({
-      where: {},
-      truncate: true,
-    })
-      .then((productmock) => {
-        return res.status(200).json({ message: 'products deleted successfully', productmock })
+    try {
+      await ProductMock.destroy({
+        where: {},
+        truncate: true,
       })
-      .catch((error) => {
-        return res.status(500).json(error)
+
+      return res.status(200).json({
+        success: true,
+        message: 'All products deleted successfully'
       })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to delete all product mocks',
+        error: error.message
+      })
+    }
   },
 }

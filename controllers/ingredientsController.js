@@ -1,115 +1,167 @@
 const { Ingredient } = require('../models/index')
+const { getPaginationParams, formatPaginatedResponse } = require('../utils/pagination')
 
 module.exports = {
   async getAllIngredients(req, res) {
-    const ingredients = await Ingredient.findAll({
-      where: {
-        user_id: req.user.id
-      }
-    })
-      .then((ingredients) => {
-        res.status(200).json(ingredients)
+    try {
+      const { page, limit, offset } = getPaginationParams(req, { page: 1, limit: 10, maxLimit: 100 })
+
+      const result = await Ingredient.findAndCountAll({
+        where: {
+          user_id: req.user.id
+        },
+        order: [['id', 'DESC']],
+        limit,
+        offset
       })
-      .catch((err) => {
-        res.status(500).json(err)
+
+      return res.status(200).json(formatPaginatedResponse(result, { page, limit, offset }))
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch ingredients',
+        error: error.message
       })
+    }
   },
 
   async getIngredientById(req, res) {
-    const ingredient = await Ingredient.findOne({
-      where: {
-        idext: req.params.id
-      }
-    })
-      .then((ingredient) => {
-        return ingredient
-      })
-      .catch((err) => {
-        return res.status(500).send({ message: err.message })
+    try {
+      const ingredient = await Ingredient.findOne({
+        where: {
+          idext: req.params.id,
+          user_id: req.user.id
+        }
       })
 
-    if (!ingredient) {
-      return res.status(404).send({ message: 'ingredient not found' })
-    } else {
-      return res.status(200).send(ingredient)
+      if (!ingredient) {
+        return res.status(404).json({
+          success: false,
+          message: 'Ingredient not found'
+        })
+      }
+
+      return res.status(200).json({
+        success: true,
+        data: ingredient
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch ingredient',
+        error: error.message
+      })
     }
   },
 
   async createIngredient(req, res) {
-    const checkIngredient = await Ingredient.findOne({
-      where: { idext: req.body.idext }
-    })
-      .then((ingredient) => {
-        return ingredient
-      })
-      .catch((err) => {
-        return res.status(500).json(err)
+    try {
+      const checkIngredient = await Ingredient.findOne({
+        where: {
+          idext: req.body.idext,
+          user_id: req.user.id
+        }
       })
 
-    if (checkIngredient) {
-      return res.status(400).json({ message: 'ingredient already exists' })
+      if (checkIngredient) {
+        return res.status(409).json({
+          success: false,
+          message: 'Ingredient already exists'
+        })
+      }
+
+      const ingredient = await Ingredient.create({
+        ...req.body,
+        user_id: req.user.id
+      })
+
+      return res.status(201).json({
+        success: true,
+        data: ingredient,
+        message: 'Ingredient successfully created'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to create ingredient',
+        error: error.message
+      })
     }
-
-    const ingredient = await Ingredient.create(req.body)
-      .then((ingredient) => {
-        return res
-          .status(201)
-          .json({ message: 'ingredient successfully created' })
-      })
-      .catch((err) => {
-        return res.status(500).json({ message: err.message })
-      })
   },
 
   async updateIngredient(req, res) {
-    const checkIngredient = await Ingredient.findByPk(req.params.id)
-      .then((ingredient) => {
-        return ingredient
-      })
-      .catch((err) => {
-        return res.status(500).json(err)
+    try {
+      const ingredientId = req.params.id
+
+      const checkIngredient = await Ingredient.findOne({
+        where: {
+          id: ingredientId,
+          user_id: req.user.id
+        }
       })
 
-    if (!checkIngredient) {
-      return res.status(400).json({ message: 'ingredient does not exist' })
+      if (!checkIngredient) {
+        return res.status(404).json({
+          success: false,
+          message: 'Ingredient not found'
+        })
+      }
+
+      await Ingredient.update(req.body, {
+        where: {
+          id: ingredientId,
+          user_id: req.user.id
+        }
+      })
+
+      return res.status(200).json({
+        success: true,
+        message: 'Ingredient successfully updated'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to update ingredient',
+        error: error.message
+      })
     }
-
-    const ingredient = await Ingredient.update(req.body, {
-      where: { id: req.params.id }
-    })
-      .then((ingredient) => {
-        return res
-          .status(200)
-          .json({ message: 'ingredient succesfully updated' })
-      })
-      .catch((err) => {
-        return res.status(500).json(err)
-      })
   },
 
   async deleteIngredient(req, res) {
-    const checkIngredient = await Ingredient.findOne({
-      where: {
-        idext: req.params.id
-      }
-    })
+    try {
+      const ingredientId = req.params.id
 
-    if (!checkIngredient) {
-      return res.status(400).json({ message: 'ingredient does not exist' })
+      const checkIngredient = await Ingredient.findOne({
+        where: {
+          idext: ingredientId,
+          user_id: req.user.id
+        }
+      })
+
+      if (!checkIngredient) {
+        return res.status(404).json({
+          success: false,
+          message: 'Ingredient not found'
+        })
+      }
+
+      await Ingredient.destroy({
+        where: {
+          idext: ingredientId,
+          user_id: req.user.id
+        }
+      })
+
+      return res.status(200).json({
+        success: true,
+        message: 'Ingredient successfully deleted'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to delete ingredient',
+        error: error.message
+      })
     }
-
-    const ingredient = await Ingredient.destroy({
-      where: {
-        idext: req.params.id
-      }
-    })
-      .then((ingredient) => {
-        return res
-          .status(200)
-          .send({ message: 'ingredient succesfully deleted' })
-      })
-      .catch((err) => {
-        return res.status(500).json(err)
-      })
   }
 }

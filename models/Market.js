@@ -9,8 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Market.hasMany(models.User)
-      Market.hasMany(models.Product)
+      // If a Market has many Products, ensure Product has a market_id foreign key
+      Market.hasMany(models.Product, { foreignKey: 'market_id' })
+      // Uncomment and configure the following if a Market has many Users
+      // Market.hasMany(models.User, { foreignKey: 'market_id' })
     }
   }
   Market.init(
@@ -19,11 +21,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+          len: [2, 100],
+        },
       },
       address: DataTypes.STRING,
       city: DataTypes.STRING,
@@ -33,26 +39,31 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true,
+          notEmpty: true,
+        },
       },
       website: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'Market',
       tableName: 'markets',
-      underscored: true
+      underscored: true,
     }
   )
   return Market

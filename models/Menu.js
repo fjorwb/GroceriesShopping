@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Menu.belongsTo(models.User)
+      Menu.belongsTo(models.User, { foreignKey: 'user_id' })
     }
   }
   Menu.init(
@@ -17,50 +17,81 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
       },
       week: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 1,
+          max: 52,
+          isInt: true,
+        },
       },
       date: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isDate: true,
+        },
       },
       meal: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+          len: [1, 50],
+        },
       },
       recipe_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          isInt: true,
+          min: 1,
+        },
       },
       idext: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false,
+        validate: {
+          isInt: true,
+        },
       },
       recipe_title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+          len: [1, 200],
+        },
       },
       servings: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 1,
+          isInt: true,
+        },
       },
       factor: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 1,
+          isInt: true,
+        },
       },
       user_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
       modelName: 'Menu',
       tableName: 'menus',
-      underscored: true
+      underscored: true,
     }
   )
   return Menu

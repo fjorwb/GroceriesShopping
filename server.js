@@ -31,14 +31,29 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(morgan('dev'))
 app.use((req, res, next) => {
-  // Dominio que tengan acceso (ej. 'http://example.com')
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  // Restrict CORS to specific origins for security
+  const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',')
+    : ['http://localhost:3000', 'http://localhost:5000']
+  
+  const origin = req.headers.origin
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
 
-  // Metodos de solicitud que deseas permitir
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+  // Allowed HTTP methods
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
 
-  // Encabecedados que permites (ej. 'X-Requested-With,content-type')
-  res.setHeader('Access-Control-Allow-Headers', '*')
+  // Allowed headers - restrict to specific headers instead of *
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+
+  // Allow credentials
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200)
+  }
 
   next()
 })
@@ -64,17 +79,36 @@ app.get('/', function (req, res) {
   res.render('index')
 })
 
-const PORT = process.env.PORT || 5000
-
-app.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:${PORT}`)
+// 404 handler for undefined routes
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+    path: req.originalUrl
+  })
 })
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.')
+// Global error handler middleware (must be last)
+const errorHandler = require('./middlewares/errorHandler')
+app.use(errorHandler)
+
+const SERVER_PORT = process.env.SERVER_PORT || 5000
+
+// Only start server if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(SERVER_PORT, () => {
+    console.log(`\nServer running on port http://localhost:${SERVER_PORT}\n`)
   })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err)
-  })
+
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.')
+    })
+    .catch((err) => {
+      console.error('Unable to connect to the database:', err)
+    })
+}
+
+// Export app for testing
+module.exports = app

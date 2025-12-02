@@ -16,5 +16,6 @@ module.exports = {
     'no-unused-vars': 'off',
     'multiline-ternary': 'off',
     'comma-dangle': 'off',
+    indent: 'off',
   },
 }

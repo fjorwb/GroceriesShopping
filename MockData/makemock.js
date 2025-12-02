@@ -6,7 +6,8 @@ const axios = require('axios')
 const RapidAPI_Key = process.env.RAPIDAPI_KEY
 const RapidAPI_Host = process.env.RAPIDAPI_HOST
 
-console.log(RapidAPI_Key, RapidAPI_Host)
+// console.log(RapidAPI_Key, RapidAPI_Host)
+console.log('-----------------------------------------')
 
 const data = require('./mockRecipesCopy.json')
 
@@ -26,9 +27,7 @@ list(data)
 console.log(recipes)
 
 async function getIngredients(idext) {
-  const checkIngredient = ingredients.find(
-    (ingredient) => ingredient.idext === idext
-  )
+  const checkIngredient = ingredients.find((ingredient) => ingredient.idext === idext)
 
   if (checkIngredient ?? false) {
     console.log('ingredients already exists')
@@ -39,28 +38,31 @@ async function getIngredients(idext) {
 
     // console.log(RapidAPI_Key, RapidAPI_Host)
 
+    // Validate API credentials are set
+    if (!RapidAPI_Key || !RapidAPI_Host) {
+      throw new Error('RAPIDAPI_KEY and RAPIDAPI_HOST environment variables must be set')
+    }
+
     const options = {
       method: 'GET',
       url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
-      params: {includeNutrition: 'false'},
+      params: { includeNutrition: 'false' },
       headers: {
-        // 'X-RapidAPI-Key': RapidAPI_Key,
-        // 'X-RapidAPI-Host': RapidAPI_Host
-        'X-RapidAPI-Key': 'acdc420992msh4ffbe009ed40816p166414jsn27bda9718d84',
-        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
-      }
+        'X-RapidAPI-Key': RapidAPI_Key,
+        'X-RapidAPI-Host': RapidAPI_Host,
+      },
     }
 
     const body = await axios
       .request(options)
       .then(function (response) {
         const resp2 = response.data
-        const {id, extendedIngredients, servings, instructions} = resp2
+        const { id, extendedIngredients, servings, instructions } = resp2
         return {
           idext: id,
           ingredients: extendedIngredients,
           servings,
-          instructions
+          instructions,
         }
       })
       .catch((err) => {
@@ -80,7 +82,7 @@ async function getIngredients(idext) {
       idext: body.idext,
       ingredients: body.ingredients,
       servings: body.servings,
-      instructions: body.instructions
+      instructions: body.instructions,
     }
   }
   // console.log(ingredients)
@@ -105,7 +107,7 @@ loopForIngredients(data)
 
 function convertToJSON(ingredients) {
   const json = JSON.stringify(ingredients, null, 2)
-  fs.writeFile('ingredients.json', json, (err) => {
+  fs.writeFile('./MockData/ingredients.json', json, (err) => {
     if (err) {
       console.error('Error writing JSON file:', err)
     } else {
@@ -114,4 +116,4 @@ function convertToJSON(ingredients) {
   })
 }
 
-// convertToJSON(ingredients)
+convertToJSON(ingredients)

@@ -1,21 +1,22 @@
 const { User } = require('../models/index')
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const authConfig = require('../config/authConfig')
 
 module.exports = {
-  // GET /auth
-  login(req, res) {
+  // POST /auth/login
+  login (req, res) {
     const { email, password } = req.body
 
     User.findOne({
       where: {
         email
       }
-    }).then((user) => {
+    }).then(user => {
       if (!user) {
-        return res.status(404).send({
+        return res.status(404).json({
+          success: false,
           message: 'User not found'
         })
       }
@@ -23,36 +24,38 @@ module.exports = {
       const passwordIsValid = bcrypt.compareSync(password, user.password)
 
       if (!passwordIsValid) {
-        return res.status(401).json({ msg: 'Invalid Password!', ok: false })
+        return res.status(401).json({
+          success: false,
+          message: 'Invalid password'
+        })
       }
 
       const token = jwt.sign(
         { id: user.id, email: user.email },
         authConfig.secret,
         {
-          expiresIn: 86400 // 24 hours
+          expiresIn: authConfig.expiresIn
         }
       )
 
-      res.cookie(
-        'accessToken',
-        { user_id: user.id, token },
-        { maxAge: 900000, httpOnly: true }
-      )
+      // Exclude password from user object
+      const { password: _, ...userWithoutPassword } = user.toJSON()
 
       res.status(200).json({
-        id: user.id,
-        email: user.email,
-        accessToken: token,
-        role: user.role,
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname
+        success: true,
+        token,
+        user: userWithoutPassword
+      })
+    }).catch(err => {
+      return res.status(500).json({
+        success: false,
+        message: 'Login failed',
+        error: err.message
       })
     })
   },
 
-  async register(req, res) {
+  async register (req, res) {
     const {
       firstname,
       lastname,
@@ -74,19 +77,23 @@ module.exports = {
         email
       }
     })
-      .then((user) => {
+      .then(user => {
         return user
       })
-      .catch((err) => {
-        return res.status(500).send(err)
+      .catch(err => {
+        return res.status(500).json({
+          success: false,
+          message: 'Database error',
+          error: err.message
+        })
       })
 
     if (checkUser) {
-      return res.status(400).send({ message: 'user already exists' })
+      return res.status(400).json({
+        success: false,
+        message: 'User already exists'
+      })
     }
-
-    const salt = bcrypt.genSaltSync(10)
-    const hash = bcrypt.hashSync(password, salt)
 
     const passwordEncrypted = bcrypt.hashSync(
       req.body.password,
@@ -106,65 +113,92 @@ module.exports = {
       zip_code: req.body.zip_code,
       country: req.body.country,
       phone: req.body.phone,
-      role: req.body.role
+      role: req.body.role || 'user'
     })
-      .then((user) => {
-        const token = jwt.sign({ user }, authConfig.secret, {
+      .then(user => {
+        const token = jwt.sign({ id: user.id }, authConfig.secret, {
           expiresIn: authConfig.expiresIn
         })
-        res.status(200).send({ user, token })
+        
+        // Exclude password from user object
+        const { password: _, ...userWithoutPassword } = user.toJSON()
+        
+        res.status(200).json({
+          success: true,
+          token,
+          user: userWithoutPassword
+        })
       })
-      .catch((err) => {
-        res.status(500).send({ message: err.message })
+      .catch(err => {
+        res.status(500).json({
+          success: false,
+          message: 'Registration failed',
+          error: err.message
+        })
       })
   },
 
-  async changePassword(req, res) {
-    const { email, password, newpassword } = req.query
+  async changePassword (req, res) {
+    try {
+      // Use body instead of query for security (passwords in query strings are logged)
+      const { currentPassword, newPassword } = req.body
+      const userId = req.user?.id
 
-    const checkUser = await User.findOne({
-      where: {
-        email
+      if (!userId) {
+        return res.status(401).json({
+          success: false,
+          message: 'User authentication required'
+        })
       }
-    })
-      .then((user) => {
-        return user
-      })
-      .catch((err) => {
-        return res.status(500).send(err)
-      })
 
-    if (!checkUser) {
-      return res.status(404).send({ message: 'user not found' })
-    }
+      // Validation is now handled by express-validator middleware
 
-    if (password !== newpassword) {
-      return res.status(400).send({ message: 'passwords do not match' })
-    }
+      const user = await User.findByPk(userId)
 
-    const salt = bcrypt.genSaltSync(10)
-    const hash = bcrypt.hashSync(newpassword, salt)
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: 'User not found'
+        })
+      }
 
-    const passwordEncrypted = bcrypt.hashSync(
-      req.query.newpassword,
-      Number(authConfig.rounds)
-    )
+      // Verify current password matches
+      const passwordIsValid = bcrypt.compareSync(currentPassword, user.password)
 
-    const user = await User.update(
-      {
-        password: passwordEncrypted
-      },
-      {
-        where: {
-          email
+      if (!passwordIsValid) {
+        return res.status(401).json({
+          success: false,
+          message: 'Current password is incorrect'
+        })
+      }
+
+      // Hash and update to new password
+      const passwordEncrypted = bcrypt.hashSync(
+        newPassword,
+        Number(authConfig.rounds)
+      )
+
+      await User.update(
+        {
+          password: passwordEncrypted
+        },
+        {
+          where: {
+            id: userId
+          }
         }
-      }
-    )
-      .then((user) => {
-        return res.status(200).send({ message: 'password changed' })
+      )
+
+      return res.status(200).json({
+        success: true,
+        message: 'Password changed successfully'
       })
-      .catch((err) => {
-        return res.status(500).send({ message: err.message })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to change password',
+        error: error.message
       })
+    }
   }
 }

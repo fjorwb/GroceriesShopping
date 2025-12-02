@@ -1,39 +1,45 @@
 {
-	"development": {
-		"username": "postgres",
-		"password": null,
-		"database": "groceries_shopping",
-		"host": "127.0.0.1",
-		"dialect": "postgres",
-		"logging": false,
-		"define": {
-			"underscored": true
-		}
-	},
-	"test": {
-		"username": "postgres",
-		"password": null,
-		"database": "groceries_shopping",
-		"host": "127.0.0.1",
-		"dialect": "postgres"
-	},
-	"production": {
-		"use_env_variable": "DATABASE_URL",
-		"dialect": "postgres",
-		"dialectOptions": {
-			"ssl": {
-				"require": true,
-				"rejectUnauthorized": false
-			}
-		},
-		"define": {
-			"underscored": true
-		}
-	},
+  "development": {
+    "username": "postgres",
+    "password": null,
+    "database": "groceries_shopping",
+    "host": "localhost",
+    "port": "5433",
+    "dialect": "postgres",
+    "logging": false,
+    "define": {
+      "underscored": true
+    }
+  },
+  "test": {
+    "username": "postgres",
+    "password": null,
+    "database": "groceries_shopping_test",
+    "host": "127.0.0.1",
+    "port": "5433",
+    "dialect": "postgres",
+    "logging": false,
+    "define": {
+      "underscored": true
+    }
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    },
+    "define": {
+      "underscored": true
+    }
+  },
 
-	"migrationStorage": "sequelize",
-	"migrationStorageTableName": "migrations",
+  "migrationStorage": "sequelize",
+  "migrationStorageTableName": "migrations",
 
-	"seederStorage": "sequelize",
-	"seederStorageTableName": "seeders"
+  "seederStorage": "sequelize",
+  "seederStorageTableName": "seeders"
 }

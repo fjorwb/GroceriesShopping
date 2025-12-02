@@ -1,85 +1,130 @@
 const { ProductCategory } = require('../models')
+const { getPaginationParams, formatPaginatedResponse } = require('../utils/pagination')
 
 module.exports = {
   async getAllCategories(req, res) {
-    const categories = await ProductCategory.findAll()
-      .then((categories) => {
-        return res.status(200).json(categories)
+    try {
+      const { page, limit, offset } = getPaginationParams(req, { page: 1, limit: 20, maxLimit: 100 })
+
+      const result = await ProductCategory.findAndCountAll({
+        order: [['id', 'ASC']],
+        limit,
+        offset
       })
-      .catch((error) => {
-        return res.status(500).json(error)
+
+      return res.status(200).json(formatPaginatedResponse(result, { page, limit, offset }))
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch categories',
+        error: error.message
       })
+    }
   },
 
   async getCategoryById(req, res) {
-    const category = await ProductCategory.findOne({
-      where: {
-        id: req.params.id
-      }
-    })
-      .then((category) => {
-        return category
-      })
-      .catch((error) => {
-        return res.status(500).json(error)
+    try {
+      const category = await ProductCategory.findOne({
+        where: {
+          id: req.params.id
+        }
       })
 
-    if (!category) {
-      return res.status(404).json({ message: 'category not found' })
-    } else {
-      return res.status(200).json(category)
+      if (!category) {
+        return res.status(404).json({
+          success: false,
+          message: 'Category not found'
+        })
+      }
+
+      return res.status(200).json({
+        success: true,
+        data: category
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch category',
+        error: error.message
+      })
     }
   },
 
   async createCategory(req, res) {
-    const category = await ProductCategory.create(req.body)
-      .then((category) => {
-        return res
-          .status(201)
-          .send({ message: 'category created successfully', category })
+    try {
+      const category = await ProductCategory.create(req.body)
+
+      return res.status(201).json({
+        success: true,
+        data: category,
+        message: 'Category created successfully'
       })
-      .catch((error) => {
-        return res.status(500).json(error)
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to create category',
+        error: error.message
       })
+    }
   },
 
   async updateCategory(req, res) {
-    const checkCategory = await ProductCategory.findByPk(req.params.id)
+    try {
+      const categoryId = req.params.id
 
-    if (!checkCategory) {
-      return res.status(404).json({ message: 'category not found' })
+      const checkCategory = await ProductCategory.findByPk(categoryId)
+
+      if (!checkCategory) {
+        return res.status(404).json({
+          success: false,
+          message: 'Category not found'
+        })
+      }
+
+      await ProductCategory.update(req.body, {
+        where: { id: categoryId }
+      })
+
+      return res.status(200).json({
+        success: true,
+        message: 'Category updated successfully'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to update category',
+        error: error.message
+      })
     }
-
-    const category = await ProductCategory.update(req.body, {
-      where: { id: req.params.id }
-    })
-      .then((category) => {
-        return res
-          .status(200)
-          .send({ message: 'category updated successfully' })
-      })
-      .catch((error) => {
-        return res.status(500).json(error)
-      })
   },
 
   async deleteCategory(req, res) {
-    const checkCategory = await ProductCategory.findByPk(req.params.id)
+    try {
+      const categoryId = req.params.id
 
-    if (!checkCategory) {
-      return res.status(404).json({ message: 'category not found' })
+      const checkCategory = await ProductCategory.findByPk(categoryId)
+
+      if (!checkCategory) {
+        return res.status(404).json({
+          success: false,
+          message: 'Category not found'
+        })
+      }
+
+      await ProductCategory.destroy({
+        where: { id: categoryId }
+      })
+
+      return res.status(200).json({
+        success: true,
+        message: 'Category deleted successfully'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to delete category',
+        error: error.message
+      })
     }
-
-    const category = await ProductCategory.destroy({
-      where: { id: req.params.id }
-    })
-      .then((category) => {
-        return res
-          .status(200)
-          .send({ message: 'category deleted successfully' })
-      })
-      .catch((error) => {
-        return res.status(500).json(error)
-      })
   }
 }

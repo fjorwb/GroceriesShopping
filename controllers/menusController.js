@@ -1,109 +1,153 @@
 const { Menu } = require('../models')
+const { getPaginationParams, formatPaginatedResponse } = require('../utils/pagination')
 
 module.exports = {
   async getAllMenus(req, res) {
-    const menu = await Menu.findAll({
-      where: {
-        user_id: req.user.id
-      }
-    })
+    try {
+      const { page, limit, offset } = getPaginationParams(req, { page: 1, limit: 10, maxLimit: 100 })
 
-    return menu
-      ? res.status(200).send(menu)
-      : res.status(404).send({ message: 'Menu not found' })
+      const result = await Menu.findAndCountAll({
+        where: {
+          user_id: req.user.id
+        },
+        order: [['id', 'DESC']],
+        limit,
+        offset
+      })
 
-    // await Menu.findAll({
-    //   where: {
-    //     user_id: req.user.id
-    //   }
-    // })
-    //   .then((menus) => {
-    //     res.status(200).json(menus)
-    //   })
-    //   .catch((err) => {
-    //     res.status(500).json(err)
-    //   })
+      return res.status(200).json(formatPaginatedResponse(result, { page, limit, offset }))
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch menus',
+        error: error.message
+      })
+    }
   },
 
   async getMenuById(req, res) {
-    const menu = await Menu.findOne({
-      where: {
-        id: req.params.id
-      }
-    })
+    try {
+      const menu = await Menu.findOne({
+        where: {
+          id: req.params.id,
+          user_id: req.user.id
+        }
+      })
 
-    return menu
-      ? res.status(200).send(menu)
-      : res.status(404).send({ message: 'Menu not found' })
+      if (!menu) {
+        return res.status(404).json({
+          success: false,
+          message: 'Menu not found'
+        })
+      }
+
+      return res.status(200).json({
+        success: true,
+        data: menu
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch menu',
+        error: error.message
+      })
+    }
   },
 
   async createMenu(req, res) {
-    const menu = await Menu.create(req.body)
+    try {
+      const menu = await Menu.create({
+        ...req.body,
+        user_id: req.user.id
+      })
 
-    return menu
-      ? res.status(201).send({ message: 'meal created successfully', menu })
-      : res.status(500).send({ message: 'Error creating menu' })
-
-    // await Menu.create(req.body)
-    //   .then((menu) => {
-    //     res.status(201).send({message: 'meal created successfully', menu})
-    //   })
-    //   .catch((err) => {
-    //     res.status(500).json(err)
-    //   })
+      return res.status(201).json({
+        success: true,
+        data: menu,
+        message: 'Meal created successfully'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to create menu',
+        error: error.message
+      })
+    }
   },
 
   async updateMenu(req, res) {
-    const checkMenu = await Menu.findOne({ where: { id: req.params.id } })
-      .then((menu) => {
-        return menu
-      })
-      .catch((err) => {
-        res.status(500).json(err)
+    try {
+      const menuId = req.params.id
+
+      const checkMenu = await Menu.findOne({
+        where: {
+          id: menuId,
+          user_id: req.user.id
+        }
       })
 
-    if (!checkMenu) {
-      return res.status(400).json({ message: 'meal not found' })
+      if (!checkMenu) {
+        return res.status(404).json({
+          success: false,
+          message: 'Menu not found'
+        })
+      }
+
+      await Menu.update(req.body, {
+        where: {
+          id: menuId,
+          user_id: req.user.id
+        }
+      })
+
+      return res.status(200).json({
+        success: true,
+        message: 'Meal updated successfully'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to update menu',
+        error: error.message
+      })
     }
-
-    const menu = await Menu.update(req.body, { where: { id: req.params.id } })
-
-    return menu
-      ? res.status(200).send({ message: 'meal updated successfully', menu })
-      : res.status(500).send(menu)
-
-    // .then((menu) => {
-    //   res.status(200).send({message: 'meal updated successfully', menu})
-    // })
-    // .catch((err) => {
-    //   res.status(500).json(err)
-    // })
   },
 
   async deleteMenu(req, res) {
-    const checkMenu = await Menu.findByPk(req.params.id)
-      .then((menu) => {
-        return menu
-      })
-      .catch((err) => {
-        res.status(500).json(err)
+    try {
+      const menuId = req.params.id
+
+      const checkMenu = await Menu.findOne({
+        where: {
+          id: menuId,
+          user_id: req.user.id
+        }
       })
 
-    if (!checkMenu) {
-      return res.status(400).json({ message: 'meal does not exist' })
+      if (!checkMenu) {
+        return res.status(404).json({
+          success: false,
+          message: 'Menu not found'
+        })
+      }
+
+      await Menu.destroy({
+        where: {
+          id: menuId,
+          user_id: req.user.id
+        }
+      })
+
+      return res.status(200).json({
+        success: true,
+        message: 'Meal deleted successfully'
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to delete menu',
+        error: error.message
+      })
     }
-
-    const menu = await Menu.destroy({ where: { id: req.params.id } })
-
-    return menu
-      ? res.status(200).send({ message: 'meal deleted successfully', menu })
-      : res.status(500).send(menu)
-
-    // .then((menu) => {
-    //   res.status(200).send({message: 'meal deleted successfully', menu})
-    // })
-    // .catch((err) => {
-    //   res.status(500).json(err)
-    // })
   }
 }

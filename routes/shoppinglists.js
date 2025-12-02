@@ -1,17 +1,17 @@
 const express = require('express')
 const shoppinglistsRouter = express.Router()
 
-const SLC = require('../controllers/shoppinglistsController')
+const shoppinglistsController = require('../controllers/shoppinglistsController')
 
-shoppinglistsRouter.get('/shoplistid/:id', SLC.getShoppingListByShopListId)
+shoppinglistsRouter.get('/shoplistid/:id', shoppinglistsController.getShoppingListByShopListId)
 shoppinglistsRouter.delete(
   '/shoplistid/:id',
-  SLC.deleteShoppingListByShopListId
+  shoppinglistsController.deleteShoppingListByShopListId
 )
-shoppinglistsRouter.get('/', SLC.getAllShoppingLists)
-shoppinglistsRouter.get('/:id', SLC.getShoppingListById)
-shoppinglistsRouter.post('/', SLC.createShoppingList)
-shoppinglistsRouter.put('/:id', SLC.updateShoppingList)
-shoppinglistsRouter.delete('/:id', SLC.deleteShoppingList)
+shoppinglistsRouter.get('/', shoppinglistsController.getAllShoppingLists)
+shoppinglistsRouter.get('/:id', shoppinglistsController.getShoppingListById)
+shoppinglistsRouter.post('/', shoppinglistsController.createShoppingList)
+shoppinglistsRouter.put('/:id', shoppinglistsController.updateShoppingList)
+shoppinglistsRouter.delete('/:id', shoppinglistsController.deleteShoppingList)
 
 module.exports = shoppinglistsRouter

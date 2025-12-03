@@ -1,3 +1,5 @@
+const { prototype } = require('pg/lib/type-overrides')
+
 require('dotenv').config()
 
 module.exports = {
@@ -15,6 +17,18 @@ module.exports = {
       underscored: true,
     },
   },
+  // development: {
+  //   username: process.env.USERNAME || 'Fernando Oliveri',
+  //   password: process.env.PASSWORD || '1509mcpv',
+  //   database: process.env.DATABASE || 'groceries_shopping',
+  //   host: process.env.HOST || 'localhost',
+  //   port: process.env.PORT || 5441,
+  //   dialect: process.env.DIALECT || 'postgres',
+  //   logging: false,
+  //   define: {
+  //     underscored: true,
+  //   },
+  // },
   test: {
     username: process.env.USERNAME,
     password: process.env.PASSWORD,

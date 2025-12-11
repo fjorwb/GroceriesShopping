@@ -5,7 +5,9 @@ const recipesController = require('../controllers/recipesController')
 const externalRecipesController = require('../controllers/externalRecipesController')
 
 // External API routes (no /recipes prefix needed since router is mounted at /recipes)
+// Support both /external and /recipes for backward compatibility
 recipesRouter.get('/external', externalRecipesController.getRecipesFromApi)
+recipesRouter.get('/recipes', externalRecipesController.getRecipesFromApi) // Backward compatibility
 recipesRouter.get('/external/:id', externalRecipesController.getRecipeFromApi)
 recipesRouter.post('/external/:id', externalRecipesController.createExternalRecipe)
 recipesRouter.put('/external/:id', externalRecipesController.updateExternalRecipe)

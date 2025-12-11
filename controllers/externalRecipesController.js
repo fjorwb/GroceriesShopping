@@ -5,23 +5,143 @@ const { Recipe } = require('../models/index')
 module.exports = {
   async getRecipesFromApi(req, res) {
     try {
-      const { recipe, cuisine } = req.query
+      const { recipe, cuisine, number = '50' } = req.query
 
-      const options = {
+      // Validate API credentials
+      const apiKey = process.env.RAPIDAPI_KEY?.replace(/^['"]|['"]$/g, '') // Remove quotes if present
+      const apiHost = process.env.RAPIDAPI_HOST?.replace(/^['"]|['"]$/g, '') // Remove quotes if present
+
+      if (!apiKey || !apiHost) {
+        return res.status(500).json({
+          success: false,
+          message: 'API configuration error: RAPIDAPI_KEY and RAPIDAPI_HOST must be set in environment variables'
+        })
+      }
+
+      // Validate required query parameter
+      if (!recipe) {
+        return res.status(400).json({
+          success: false,
+          message: 'Missing required query parameter: recipe'
+        })
+      }
+
+      // Step 1: Call complexSearch to get recipe IDs
+      const searchOptions = {
         method: 'GET',
         url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-        params: { query: recipe, cuisine, number: '100' },
+        params: { 
+          query: recipe, 
+          ...(cuisine && { cuisine }), // Only include cuisine if provided
+          number: number.toString() 
+        },
         headers: {
-          'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-          'X-RapidAPI-Host': process.env.RAPIDAPI_HOST,
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': apiHost,
         },
       }
-      const response = await axios.request(options)
+
+      const searchResponse = await axios.request(searchOptions)
+      
+      // Check if results exist
+      if (!searchResponse.data || !searchResponse.data.results || searchResponse.data.results.length === 0) {
+        return res.status(200).json({
+          success: true,
+          data: [],
+          message: 'No recipes found'
+        })
+      }
+
+      // Step 2: Extract recipe IDs from search results
+      const recipeIds = searchResponse.data.results.map(recipe => recipe.id)
+      
+      // Step 3: Call informationBulk to get full recipe details
+      const bulkOptions = {
+        method: 'GET',
+        url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk',
+        params: {
+          ids: recipeIds.join(','), // Comma-separated recipe IDs
+          includeNutrition: 'false'
+        },
+        headers: {
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': apiHost,
+        },
+      }
+
+      const bulkResponse = await axios.request(bulkOptions)
+      
+      // Step 4: Normalize and transform the data
+      const normalizedRecipes = (bulkResponse.data || []).map(recipeData => {
+        // Normalize ingredients from extendedIngredients
+        const ingredients = (recipeData.extendedIngredients || []).map(ing => ({
+          ingredient: ing.nameClean || ing.name || ing.originalName || '',
+          amount: ing.amount?.toString() || '1',
+          unit: ing.unit || ing.unitShort || ''
+        }))
+
+        // Normalize instructions from analyzedInstructions
+        let instructions = ''
+        if (recipeData.analyzedInstructions && recipeData.analyzedInstructions.length > 0) {
+          // Flatten steps from all instruction sections
+          const allSteps = recipeData.analyzedInstructions.flatMap(section => 
+            (section.steps || []).map(step => step.step)
+          )
+          instructions = allSteps.join(' ')
+        } else if (recipeData.instructions) {
+          // Fallback to plain instructions if available
+          instructions = recipeData.instructions
+        }
+
+        // Normalize servings (use yield or servings)
+        const servings = recipeData.servings || recipeData.yield || 1
+
+        return {
+          id: recipeData.id,
+          title: recipeData.title || '',
+          image: recipeData.image || '',
+          servings: servings,
+          instructions: instructions,
+          ingredients: ingredients
+        }
+      })
+
       return res.status(200).json({
         success: true,
-        data: response.data.results
+        data: normalizedRecipes
       })
     } catch (error) {
+      // Handle axios errors with more detail
+      if (error.response) {
+        // API responded with error status
+        const statusCode = error.response.status
+        const errorMessage = error.response.data?.message || error.message
+        
+        // Map common API errors to appropriate HTTP status codes
+        if (statusCode === 401 || statusCode === 403) {
+          return res.status(401).json({
+            success: false,
+            message: 'API authentication failed. Please check your RAPIDAPI_KEY.',
+            error: errorMessage
+          })
+        }
+        
+        if (statusCode === 429) {
+          return res.status(429).json({
+            success: false,
+            message: 'API rate limit exceeded. Please try again later.',
+            error: errorMessage
+          })
+        }
+
+        return res.status(statusCode).json({
+          success: false,
+          message: 'Failed to fetch recipes from API',
+          error: errorMessage
+        })
+      }
+
+      // Network or other errors
       return res.status(500).json({
         success: false,
         message: 'Failed to fetch recipes from API',
@@ -41,33 +161,61 @@ module.exports = {
         })
       }
 
+      // Validate API credentials
+      const apiKey = process.env.RAPIDAPI_KEY?.replace(/^['"]|['"]$/g, '')
+      const apiHost = process.env.RAPIDAPI_HOST?.replace(/^['"]|['"]$/g, '')
+
+      if (!apiKey || !apiHost) {
+        return res.status(500).json({
+          success: false,
+          message: 'API configuration error: RAPIDAPI_KEY and RAPIDAPI_HOST must be set in environment variables'
+        })
+      }
+
       const options = {
         method: 'GET',
         url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
         params: { includeNutrition: 'false' },
         headers: {
-          'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-          'X-RapidAPI-Host': process.env.RAPIDAPI_HOST,
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': apiHost,
         },
       }
 
       const response = await axios.request(options)
-      const extendedIngredients = response.data.extendedIngredients || []
       const recipeData = response.data
 
-      const ingredients = extendedIngredients.map((ing) => ({
-        idext: ing.id,
-        ingredient: ing.nameClean,
-        amount: ing.amount,
-        unit: ing.unit || 'unit',
+      // Normalize ingredients from extendedIngredients (same format as bulk endpoint)
+      const ingredients = (recipeData.extendedIngredients || []).map(ing => ({
+        ingredient: ing.nameClean || ing.name || ing.originalName || '',
+        amount: ing.amount?.toString() || '1',
+        unit: ing.unit || ing.unitShort || ''
       }))
 
+      // Normalize instructions from analyzedInstructions
+      let instructions = ''
+      if (recipeData.analyzedInstructions && recipeData.analyzedInstructions.length > 0) {
+        // Flatten steps from all instruction sections
+        const allSteps = recipeData.analyzedInstructions.flatMap(section => 
+          (section.steps || []).map(step => step.step)
+        )
+        instructions = allSteps.join(' ')
+      } else if (recipeData.instructions) {
+        // Fallback to plain instructions if available
+        instructions = recipeData.instructions
+      }
+
+      // Normalize servings (use yield or servings)
+      const servings = recipeData.servings || recipeData.yield || 1
+
+      // Return normalized recipe object (same structure as bulk endpoint)
       const recipe = {
-        ingredients,
-        servings: recipeData.servings,
-        instructions: recipeData.instructions,
-        title: recipeData.title,
-        image: recipeData.image,
+        id: recipeData.id,
+        title: recipeData.title || '',
+        image: recipeData.image || '',
+        servings: servings,
+        instructions: instructions,
+        ingredients: ingredients
       }
 
       return res.status(200).json({
@@ -75,6 +223,33 @@ module.exports = {
         data: recipe
       })
     } catch (error) {
+      if (error.response) {
+        const statusCode = error.response.status
+        const errorMessage = error.response.data?.message || error.message
+        
+        if (statusCode === 401 || statusCode === 403) {
+          return res.status(401).json({
+            success: false,
+            message: 'API authentication failed. Please check your RAPIDAPI_KEY.',
+            error: errorMessage
+          })
+        }
+        
+        if (statusCode === 404) {
+          return res.status(404).json({
+            success: false,
+            message: 'Recipe not found',
+            error: errorMessage
+          })
+        }
+
+        return res.status(statusCode).json({
+          success: false,
+          message: 'Failed to fetch recipe from API',
+          error: errorMessage
+        })
+      }
+
       return res.status(500).json({
         success: false,
         message: 'Failed to fetch recipe from API',
@@ -113,13 +288,24 @@ module.exports = {
         })
       }
 
+      // Validate API credentials
+      const apiKey = process.env.RAPIDAPI_KEY?.replace(/^['"]|['"]$/g, '')
+      const apiHost = process.env.RAPIDAPI_HOST?.replace(/^['"]|['"]$/g, '')
+
+      if (!apiKey || !apiHost) {
+        return res.status(500).json({
+          success: false,
+          message: 'API configuration error: RAPIDAPI_KEY and RAPIDAPI_HOST must be set in environment variables'
+        })
+      }
+
       const options = {
         method: 'GET',
         url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${idext}/information`,
         params: { includeNutrition: 'false' },
         headers: {
-          'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-          'X-RapidAPI-Host': process.env.RAPIDAPI_HOST,
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': apiHost,
         },
       }
 

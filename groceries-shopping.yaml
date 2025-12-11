@@ -537,7 +537,7 @@ paths:
         - name: cuisine
           in: query
           description: ''
-          required: true
+          required: false
           style: form
           explode: true
           schema:

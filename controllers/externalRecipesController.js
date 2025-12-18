@@ -30,10 +30,10 @@ module.exports = {
       const searchOptions = {
         method: 'GET',
         url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-        params: { 
-          query: recipe, 
+        params: {
+          query: recipe,
           ...(cuisine && { cuisine }), // Only include cuisine if provided
-          number: number.toString() 
+          number: number.toString()
         },
         headers: {
           'X-RapidAPI-Key': apiKey,
@@ -42,7 +42,7 @@ module.exports = {
       }
 
       const searchResponse = await axios.request(searchOptions)
-      
+
       // Check if results exist
       if (!searchResponse.data || !searchResponse.data.results || searchResponse.data.results.length === 0) {
         return res.status(200).json({
@@ -54,7 +54,7 @@ module.exports = {
 
       // Step 2: Extract recipe IDs from search results
       const recipeIds = searchResponse.data.results.map(recipe => recipe.id)
-      
+
       // Step 3: Call informationBulk to get full recipe details
       const bulkOptions = {
         method: 'GET',
@@ -70,7 +70,7 @@ module.exports = {
       }
 
       const bulkResponse = await axios.request(bulkOptions)
-      
+
       // Step 4: Normalize and transform the data
       const normalizedRecipes = (bulkResponse.data || []).map(recipeData => {
         // Normalize ingredients from extendedIngredients
@@ -84,7 +84,7 @@ module.exports = {
         let instructions = ''
         if (recipeData.analyzedInstructions && recipeData.analyzedInstructions.length > 0) {
           // Flatten steps from all instruction sections
-          const allSteps = recipeData.analyzedInstructions.flatMap(section => 
+          const allSteps = recipeData.analyzedInstructions.flatMap(section =>
             (section.steps || []).map(step => step.step)
           )
           instructions = allSteps.join(' ')
@@ -100,9 +100,9 @@ module.exports = {
           id: recipeData.id,
           title: recipeData.title || '',
           image: recipeData.image || '',
-          servings: servings,
-          instructions: instructions,
-          ingredients: ingredients
+          servings,
+          instructions,
+          ingredients
         }
       })
 
@@ -116,7 +116,7 @@ module.exports = {
         // API responded with error status
         const statusCode = error.response.status
         const errorMessage = error.response.data?.message || error.message
-        
+
         // Map common API errors to appropriate HTTP status codes
         if (statusCode === 401 || statusCode === 403) {
           return res.status(401).json({
@@ -125,7 +125,7 @@ module.exports = {
             error: errorMessage
           })
         }
-        
+
         if (statusCode === 429) {
           return res.status(429).json({
             success: false,
@@ -196,7 +196,7 @@ module.exports = {
       let instructions = ''
       if (recipeData.analyzedInstructions && recipeData.analyzedInstructions.length > 0) {
         // Flatten steps from all instruction sections
-        const allSteps = recipeData.analyzedInstructions.flatMap(section => 
+        const allSteps = recipeData.analyzedInstructions.flatMap(section =>
           (section.steps || []).map(step => step.step)
         )
         instructions = allSteps.join(' ')
@@ -213,9 +213,9 @@ module.exports = {
         id: recipeData.id,
         title: recipeData.title || '',
         image: recipeData.image || '',
-        servings: servings,
-        instructions: instructions,
-        ingredients: ingredients
+        servings,
+        instructions,
+        ingredients
       }
 
       return res.status(200).json({
@@ -226,7 +226,7 @@ module.exports = {
       if (error.response) {
         const statusCode = error.response.status
         const errorMessage = error.response.data?.message || error.message
-        
+
         if (statusCode === 401 || statusCode === 403) {
           return res.status(401).json({
             success: false,
@@ -234,7 +234,7 @@ module.exports = {
             error: errorMessage
           })
         }
-        
+
         if (statusCode === 404) {
           return res.status(404).json({
             success: false,

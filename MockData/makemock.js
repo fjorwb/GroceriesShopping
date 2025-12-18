@@ -81,7 +81,7 @@ async function getIngredients(idext, retryCount = 0) {
     if (statusCode === 429 && retryCount < MAX_RETRIES) {
       const delay = BASE_DELAY * Math.pow(2, retryCount) // Exponential backoff: 2s, 4s, 8s
       const retryAfter = err.response?.headers['retry-after'] || delay / 1000
-      
+
       console.warn(`⚠️  Rate limited (429) for recipe ${idext}. Waiting ${retryAfter}s before retry ${retryCount + 1}/${MAX_RETRIES}...`)
       await sleep(retryAfter * 1000)
       return getIngredients(idext, retryCount + 1)

@@ -83,4 +83,3 @@ module.exports = {
     await queryInterface.removeIndex('users', 'users_email_idx')
   }
 }
-

@@ -8,13 +8,13 @@ module.exports = async (req, res, next) => {
     if (!req.headers.authorization) {
       // Provide helpful message for POST /users requests (user creation attempts)
       // Check if this is a POST request to /users route
-      const isUserCreationAttempt = req.method === 'POST' && 
+      const isUserCreationAttempt = req.method === 'POST' &&
         (req.originalUrl?.startsWith('/users') || req.baseUrl?.includes('/users'))
-      
+
       const errorMessage = isUserCreationAttempt
         ? 'No authorization access token provided. For user registration, use POST /auth/register instead. This endpoint (POST /users) is for admin user creation only.'
         : 'No authorization access token provided'
-      
+
       return res.status(401).json({
         success: false,
         message: errorMessage

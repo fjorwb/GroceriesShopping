@@ -206,7 +206,7 @@ module.exports = {
 
       // Prepare update data - include all fields except password
       const updateData = { ...otherFields }
-      
+
       // Hash password if provided
       if (password) {
         const bcrypt = require('bcryptjs')

@@ -7,7 +7,7 @@
 module.exports = async () => {
   try {
     const { sequelize } = require('../models/index')
-    
+
     // Close all Sequelize connections if they exist and are connected
     if (sequelize && sequelize.connectionManager) {
       await sequelize.close()
@@ -19,4 +19,3 @@ module.exports = async () => {
     }
   }
 }
-

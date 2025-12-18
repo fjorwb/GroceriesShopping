@@ -81,4 +81,3 @@ module.exports = {
     await queryInterface.removeConstraint('products', 'products_user_id_fk')
   }
 }
-

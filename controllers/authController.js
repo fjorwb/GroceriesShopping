@@ -119,10 +119,10 @@ module.exports = {
         const token = jwt.sign({ id: user.id }, authConfig.secret, {
           expiresIn: authConfig.expiresIn
         })
-        
+
         // Exclude password from user object
         const { password: _, ...userWithoutPassword } = user.toJSON()
-        
+
         res.status(200).json({
           success: true,
           token,

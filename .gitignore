@@ -6,6 +6,9 @@
 .gitignore
 .gitignore.*
 
+.vscode
+.vscode/settings.json
+
 // dotenv environment files
 
 # Test coverage

@@ -235,4 +235,3 @@ describe('Authentication Endpoints', () => {
     })
   })
 })
-

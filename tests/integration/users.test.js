@@ -264,4 +264,3 @@ describe('User Management Endpoints', () => {
     })
   })
 })
-

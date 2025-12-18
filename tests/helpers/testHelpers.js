@@ -223,4 +223,3 @@ module.exports = {
   cleanupTestData,
   syncDatabase
 }
-

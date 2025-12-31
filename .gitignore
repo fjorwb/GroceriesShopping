@@ -6,6 +6,8 @@
 .gitignore
 .gitignore.*
 
+settings.json
+
 .vscode
 .vscode/settings.json
 
@@ -17,3 +19,4 @@
 
 # Jest
 /.jest-cache
+

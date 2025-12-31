@@ -5,8 +5,15 @@
         "firstname",
         "fjorwb",
         "groceriesshopping",
+        "idext",
         "makemock",
         "mockdata",
-        "nodeversion"
+        "nodeversion",
+        "productcategories",
+        "productmock",
+        "productmocks",
+        "productsmock",
+        "setval",
+        "shoppinglists"
     ]
 }

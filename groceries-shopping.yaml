@@ -1175,6 +1175,20 @@ paths:
       deprecated: false
       security:
         - bearer: []
+  /productmocks:
+    get:
+      tags:
+        - productmocks
+      summary: getAllProductMocks
+      operationId: getAllProductMocks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
 components:
   schemas:
     loginUserRequest:

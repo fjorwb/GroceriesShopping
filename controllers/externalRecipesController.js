@@ -2,6 +2,35 @@ const axios = require('axios')
 
 const { Recipe } = require('../models/index')
 
+// Helper: perform axios request with retries on 429 (rate limit)
+async function axiosRequestWithRetry(options, maxRetries = 3) {
+  let attempt = 0
+  while (true) {
+    try {
+      return await axios.request(options)
+    } catch (error) {
+      attempt += 1
+
+      const status = error.response?.status
+      // Only retry on 429 and while attempts remain
+      if (status === 429 && attempt <= maxRetries) {
+        // Prefer Retry-After header (seconds) if provided
+        const retryAfterHeader = error.response.headers && (error.response.headers['retry-after'] || error.response.headers['Retry-After'])
+        const retryAfterSec = retryAfterHeader ? parseInt(retryAfterHeader, 10) : null
+
+        // Exponential backoff in ms (fallback to 1s * 2^(attempt-1))
+        const waitMs = retryAfterSec && !isNaN(retryAfterSec) ? retryAfterSec * 1000 : 1000 * Math.pow(2, attempt - 1)
+
+        await new Promise(resolve => setTimeout(resolve, waitMs))
+        continue
+      }
+
+      // Not a retryable error or out of attempts, rethrow
+      throw error
+    }
+  }
+}
+
 module.exports = {
   async getRecipesFromApi(req, res) {
     try {
@@ -41,7 +70,7 @@ module.exports = {
         },
       }
 
-      const searchResponse = await axios.request(searchOptions)
+      const searchResponse = await axiosRequestWithRetry(searchOptions)
 
       // Check if results exist
       if (!searchResponse.data || !searchResponse.data.results || searchResponse.data.results.length === 0) {
@@ -69,7 +98,7 @@ module.exports = {
         },
       }
 
-      const bulkResponse = await axios.request(bulkOptions)
+      const bulkResponse = await axiosRequestWithRetry(bulkOptions)
 
       // Step 4: Normalize and transform the data
       const normalizedRecipes = (bulkResponse.data || []).map(recipeData => {
@@ -182,7 +211,7 @@ module.exports = {
         },
       }
 
-      const response = await axios.request(options)
+      const response = await axiosRequestWithRetry(options)
       const recipeData = response.data
 
       // Normalize ingredients from extendedIngredients (same format as bulk endpoint)
@@ -309,7 +338,7 @@ module.exports = {
         },
       }
 
-      const apiResponse = await axios.request(options)
+      const apiResponse = await axiosRequestWithRetry(options)
       const { id, title, image, servings, instructions } = apiResponse.data
 
       const recipe = await Recipe.create({

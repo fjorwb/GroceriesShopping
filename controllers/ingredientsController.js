@@ -14,6 +14,7 @@ module.exports = {
         limit,
         offset
       })
+      console.log(result)
 
       return res.status(200).json(formatPaginatedResponse(result, { page, limit, offset }))
     } catch (error) {
@@ -69,6 +70,8 @@ module.exports = {
           message: 'Ingredient already exists'
         })
       }
+
+      console.log(req.body)
 
       const ingredient = await Ingredient.create({
         ...req.body,

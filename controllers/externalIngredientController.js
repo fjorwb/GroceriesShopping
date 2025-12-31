@@ -12,6 +12,7 @@ module.exports = {
       }
     })
       .then((ingredient) => {
+        console.log(ingredient)
         return ingredient
       })
       .catch((err) => {

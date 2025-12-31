@@ -7,6 +7,7 @@ module.exports = {
       'recipes',
       [
         {
+          id: 1,
           idext: 1,
           title: 'Recipe 1',
           image:
@@ -18,6 +19,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
+          id: 2,
           idext: 2,
           title: 'Recipe 2',
           image:
@@ -29,6 +31,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
+          id: 3,
           idext: 3,
           title: 'Recipe 3',
           image:
@@ -40,6 +43,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
+          id: 4,
           idext: 4,
           title: 'Recipe 4',
           image:
@@ -51,6 +55,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
+          id: 5,
           idext: 5,
           title: 'Recipe 5',
           image:
@@ -62,6 +67,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
+          id: 6,
           idext: 6,
           title: 'Recipe 6',
           image:

@@ -7,6 +7,7 @@ module.exports = {
       'markets',
       [
         {
+          id: 1,
           name: 'Test Market',
           address: '123 Main St',
           city: 'Testville',
@@ -22,6 +23,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
+          id: 2,
           name: 'Test Market 2',
           address: '123 Main St',
           city: 'Testville',
@@ -37,6 +39,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
+          id: 3,
           name: 'Test Market 3',
           address: '123 Main St',
           city: 'Testville',

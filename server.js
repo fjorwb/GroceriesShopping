@@ -72,7 +72,8 @@ app.use('/products', authenticate, productsRouter)
 app.use('/shoppinglists', authenticate, shoppinglistsRouter)
 app.use('/menus', authenticate, menusRouter)
 app.use('/productcategories', authenticate, categoriesRouter)
-app.use('/productmocks', authenticate, productmocksRouter)
+// app.use('/productmocks', authenticate, productmocksRouter)
+app.use('/productmocks', productmocksRouter)
 app.use('/docs', docsRouter)
 
 app.get('/', function (req, res) {

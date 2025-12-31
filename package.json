@@ -12,8 +12,9 @@
     "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
     "seed": "npx sequelize-cli db:seed:all",
     "undo-seed": "npx sequelize-cli db:seed:undo:all",
-    "re-seed": "npm run undo-seed && npm run seed",
-    "db-re-start": "npm run undo-migrate && npm run migrate && npm run seed",
+    "reset-sequences": "npx sequelize-cli db:seed --seed reset-sequences.js",
+    "re-seed": "npm run undo-seed && npm run seed && npm run reset-sequences",
+    "db-re-start": "npm run undo-migrate && npm run migrate && npm run seed && npm run reset-sequences",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "make-mockdata": "node ./MockData/makemock.js"

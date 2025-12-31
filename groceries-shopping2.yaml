@@ -408,6 +408,27 @@ paths:
       deprecated: false
       security:
         - bearer: []
+  /recipes/book/{book}:
+    get:
+      tags:
+        - recipes
+      summary: getRecipeByBook
+      operationId: getRecipeByBook
+      parameters:
+        - name: book
+          in: path
+          description: recipe book (own or external)
+          required: true
+          schema:
+            type: string
+            example: own
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
   /recipes/{id}:
     get:
       tags:
@@ -926,8 +947,8 @@ paths:
     delete:
       tags:
         - shoppinglists
-      summary: deletShoppingList
-      operationId: deletShoppingList
+      summary: deleteShoppingList
+      operationId: deleteShoppingList
       parameters:
         - name: id
           in: path
@@ -1221,6 +1242,7 @@ paths:
       deprecated: false
       security:
         - bearer: []
+
 components:
   schemas:
     loginUserRequest:

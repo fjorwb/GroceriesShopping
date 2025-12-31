@@ -14,6 +14,7 @@ recipesRouter.put('/external/:id', externalRecipesController.updateExternalRecip
 recipesRouter.delete('/external/:id', externalRecipesController.deleteExternalRecipe)
 
 // Internal database routes
+recipesRouter.get('/book/:book', recipesController.getRecipeByBook)
 recipesRouter.get('/', recipesController.getAllRecipes)
 recipesRouter.post('/', recipesController.createRecipe)
 recipesRouter.get('/:id', recipesController.getRecipeById)

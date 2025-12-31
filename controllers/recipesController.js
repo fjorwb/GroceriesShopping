@@ -34,6 +34,84 @@ module.exports = {
     }
   },
 
+  async getRecipeByBook(req, res) {
+    try {
+      const userId = req.user?.id
+      let book_value = null
+
+       console.log('book_value inicio', book_value)
+
+      if (!userId) {
+        return res.status(401).json({
+          success: false,
+          message: 'User authentication required'
+        })
+      }
+
+      const book_name = req.params.book
+      console.log("params",req.params.book)
+      console.log('Book name:', book_name)
+
+      if (!book_name) {
+        return res.status(400).json({
+          success: false,
+          message: 'Recipe book is required'
+        })
+      }
+
+      if (book_name === 'null' || book_name === 'undefined') {
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid recipe book'
+        })
+      }
+
+      if (typeof book_name !== 'string') {
+        return res.status(400).json({
+          success: false,
+          message: 'Recipe book must be a string'
+        })
+      }
+
+      if (book_name) {
+        console.log('Processing book name:', book_name)
+        if (book_name === 'own') {
+          book_value = true
+        } else {
+          book_value = false
+        }
+      } else {
+        book_value = 0
+      }
+
+      console.log('Book value:', book_value)
+      const recipe = await Recipe.findAndCountAll({
+        where: {
+          book: book_value,
+          user_id: userId,
+        },
+      })
+
+      if (!recipe) {
+        return res.status(404).json({
+          success: false,
+          message: 'Recipe not found'
+        })
+      }
+
+      return res.status(200).json({
+        success: true,
+        data: recipe
+      })
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to fetch recipe',
+        error: error.message
+      })
+    }
+  },
+
   async getRecipeById(req, res) {
     try {
       const userId = req.user?.id
